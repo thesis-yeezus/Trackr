@@ -10,10 +10,10 @@ var userRouter = require('./user.router');
 var router = express.Router();
 
 router.use('/blog', blogRouter);
-router.use('/coachSeeker', coachSeekerRouter);
-router.use('/jobOpening', jobOpeningRouter);
+router.use('/coach-seeker', coachSeekerRouter);
+router.use('/job-opening', jobOpeningRouter);
 router.use('/keyword', keywordRouter);
-router.use('/sharedJob', sharedJobRouter);
+router.use('/shared-job', sharedJobRouter);
 router.use('/user', userRouter);
 
 module.exports = router;
