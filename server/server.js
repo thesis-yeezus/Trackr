@@ -17,7 +17,9 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.get('/api', router);
+app.use('/', express.static(path.join(__dirname, '../src')));
+
+app.use('/api', router);
 
 
 // Display error 404 for unknown routes
