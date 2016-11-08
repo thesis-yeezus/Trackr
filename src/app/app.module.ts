@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgSemanticModule } from 'ng-semantic';
+import { ModalModule } from 'ng2-modal';
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
@@ -24,7 +25,8 @@ import { SplashComponent } from './splash/splash.component';
     BrowserModule,
     FormsModule,
     HttpModule, 
-    NgSemanticModule
+    NgSemanticModule,
+    ModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

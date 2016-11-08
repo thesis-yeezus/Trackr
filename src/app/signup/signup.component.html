@@ -1,11 +1,59 @@
-<button class="ui left attached button">Back</button>
-<button class="right attached ui button">Already a registered user?</button>
+<button class="ui left attached button">Go Back</button>
+<!--<button class="right attached ui button">Already a registered user?</button>-->
+<app-login ></app-login>
 
-<p>
-  signup works!
-</p>
+<h2>
+  User Registration
+</h2>
 
-First Name
-Last Name
-Username
-Password
+<form class="ui form" (click)="test()">
+  <div class="fields">
+    <div class="field">
+      <label>First Name</label>
+      <input type="text" placeholder="First Name">
+    </div>
+    <div class="field">
+      <label>Last Name</label>
+      <input type="text" placeholder="Last Name">
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Username</label>
+      <input type="text" placeholder="Username">
+    </div>
+  </div>
+  <div class="three fields">
+    <div class="field">
+      <label>Password</label>
+      <input type="password" placeholder="password">
+    </div>
+  </div>
+  <div class="fields">
+    <div class="field">
+      <label>Re-type Password</label>
+      <input type="password" placeholder="Re-type Password">
+    </div>
+  </div>
+  <div class="fields">
+    <div class="field">
+      <label>E-mail Address</label>
+      <input type="text" placeholder="E-mail Address">
+    </div>
+  </div>
+  <button class="ui button" type="submit">Submit</button>
+</form>
+
+<!--Can also include field errors, disabled fields, warnings, 
+Should we include terms? We can "I agree to the Terms and Conditions" checkboxes
+http://semantic-ui.com/collections/form.html-->
+
+
+<!--For Testing Purposes-->
+<h2>Testing Purposes</h2>
+<label>UserName</label>
+<input type="text" placeholder="username">
+<label>Password</label>
+<input type="password" placeholder="Password">
+
+<!--<app-login></app-login>-->
