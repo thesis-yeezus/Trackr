@@ -2,12 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { NgSemanticModule } from 'ng-semantic';
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './shared/login.component';
 import { SignoutComponent } from './shared/signout.component';
+import { SplashComponent } from './splash/splash.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { SignoutComponent } from './shared/signout.component';
     SignupComponent,
     MainComponent,
     LoginComponent,
-    SignoutComponent
+    SignoutComponent,
+    SplashComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule, 
+    NgSemanticModule
   ],
   providers: [],
   bootstrap: [AppComponent]
