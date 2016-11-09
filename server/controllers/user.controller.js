@@ -1,4 +1,4 @@
-var User = require('../models/user')
+var userModel = require('../models').userModel
 
 // var userController = {};
 //   userModel.GET_USER(userId)
@@ -9,13 +9,7 @@ var User = require('../models/user')
 userController = {};
 
 userController.GET = function(req, res) {
-  User
-    .find({
-      where: {
-        username: req.query.username,
-        password: req.query.password
-      }
-    })
+  userModel.GET(req.query.username, req.query.password)
     .then(function(data) {
       res.send(data)
     })
