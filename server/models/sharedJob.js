@@ -1,9 +1,9 @@
-var Sequelize = require('sequelize');
+// var Sequelize = require('sequelize');
 
-module.exports = function(db) {
-  var SharedJob = db.define('sharedJob', {
-  });
+// module.exports = function(db) {
+//   var SharedJob = db.define('sharedJob', {
+//   });
 
-  return SharedJob;
-};
+//   return SharedJob;
+// };
 

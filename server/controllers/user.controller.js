@@ -1,4 +1,4 @@
-var User = require('../db').User
+var User = require('../models/user')
 
 var userController = {};
 

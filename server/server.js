@@ -9,8 +9,6 @@ var router = require('./routes');
 
 var app = express();
 
-var db = require('./db').db;
-
 var port = process.env.PORT || 8000;
 
 app.use(cors());
