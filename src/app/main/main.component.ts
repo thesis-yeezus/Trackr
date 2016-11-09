@@ -15,6 +15,30 @@ export class MainComponent implements OnInit {
   private rowData: any[];
   private columnDefs: any[];
   private rowCount: string;
+  private dummyData: any[] = [
+  {
+    id: 1,
+    position: 'Front End dev',
+    url: 'google.com',
+    contact: 'John Doe',
+    contactEmail: 'john@google.com',
+    comments: 'Great!',
+    interview: true,
+    pursuing: true,
+    date: 'January 1st',
+  },
+  {
+    id: 2,
+    position: 'Back End dev',
+    url: 'apple.com',
+    contact: 'Jane Doe',
+    contactEmail: 'jane@apple.com',
+    comments: 'Great!!!!!!!!!!!!!!',
+    interview: true,
+    pursuing: true,
+    date: 'January 2st',
+  }
+]
 
   constructor() {
     // we pass an empty gridOptions in, so we can grab the api out
