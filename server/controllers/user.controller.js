@@ -1,15 +1,15 @@
-var User = require('../models/user')
+var userModel = require('../models').userModel
 
-var userController = {};
+// var userController = {};
+//   userModel.GET_USER(userId)
+//     .then(user => {
+//       res.status(200).send(user)
+//     })
 
-userController.GET = function(req, res) {
-  User
-    .find({
-      where: {
-        username: req.query.username,
-        password: req.query.password
-      }
-    })
+userController = {};
+
+userController.getUser = function(req, res) {
+  userModel.getUser(req.query.username, req.query.password)
     .then(function(data) {
       res.send(data)
     })
@@ -18,9 +18,11 @@ userController.GET = function(req, res) {
     });
 };
 
-userController.POST = function(req, res) {
-  User.create(req.body);
-  res.send(req.body);
+userController.signup = function(req, res) {
+  userModel.signup(req.body)
+    .then(function(data) {
+      res.send(data)
+    })
 };
 
 module.exports = userController;

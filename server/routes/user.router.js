@@ -3,7 +3,7 @@ var userController = require('../controllers').userController;
 
 var userRouter = express.Router();
 
-userRouter.get('/', userController.GET);
-userRouter.post('/',userController.POST);
+userRouter.get('/', userController.getUser);
+userRouter.post('/',userController.signup);
 
 module.exports = userRouter;
