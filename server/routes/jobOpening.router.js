@@ -3,7 +3,7 @@ var jobOpeningController = require('../controllers').jobOpeningController;
 
 var jobOpeningRouter = express.Router();
 
-jobOpeningRouter.get('/', jobOpeningController.GET);
-jobOpeningRouter.post('/',jobOpeningController.POST);
+jobOpeningRouter.get('/', jobOpeningController.getJobs);
+jobOpeningRouter.post('/',jobOpeningController.createRow);
 
 module.exports = jobOpeningRouter;

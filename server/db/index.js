@@ -40,15 +40,3 @@ module.exports = {
 	SharedJob: SharedJob
 };
 
-
-
-// // Assign table relationships
-// // PossibleActivities.belongsTo(Trip);
-// // SavedActivities.belongsTo(Trip);
-// // PossibleExpedia.belongsTo(Trip);
-// // SavedExpedia.belongsTo(Trip);
-
-// // Trip.hasMany(PossibleActivities, {foreignKey: 'PossibleActivitiesId', constraints: false});
-// // Trip.hasMany(PossibleExpedia, {foreignKey: 'PossibleExpediaId', constraints: false});
-// // Trip.hasMany(SavedActivities, {foreignKey: 'SavedActivitiesId', constraints: false});
-// // Trip.hasMany(SavedExpedia, {foreignKey: 'SavedExpediaId', constraints: false});

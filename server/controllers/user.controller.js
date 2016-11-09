@@ -6,7 +6,7 @@ var userModel = require('../models').userModel
 //       res.status(200).send(user)
 //     })
 
-userController = {};
+var userController = {};
 
 userController.getUser = function(req, res) {
   userModel.getUser(req.query.username, req.query.password)
