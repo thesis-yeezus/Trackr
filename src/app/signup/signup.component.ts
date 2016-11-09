@@ -15,7 +15,7 @@ export class SignupComponent implements OnInit {
   }
   
   submitForm() {
-    this.model = new Signup(firstName);
+    // this.model = new Signup(firstName);
   }
 // , lastName, username, password, email
 }
