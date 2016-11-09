@@ -2,9 +2,13 @@ var User = require('../db').User;
 
 var userModel = {};
 
-userModel.register = function(user) {
+userModel.signup = function(user) {
+  console.log('da fuq', user)
   // This function accepts an object with a first name, last name, email, and password
-  return Users.create(user)
+  return User.create({
+    username: user.username,
+    password: user.password
+  })
     .then(function(result) {
       return result
     })
@@ -14,16 +18,18 @@ userModel.register = function(user) {
 }
 
 //functions to grab from the db
-userModel.GET = function(username, password) {
-  User
-    .find({
+userModel.getUser = function(username, password) {
+  return User.find({
       where: {
         username: username,
         password: password
       }
     })
     .then(function(users) {
-        return users;
+        if (users === null) {
+          return 'No users found'
+        } 
+        return users
     })
 }
 

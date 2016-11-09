@@ -8,8 +8,8 @@ var userModel = require('../models').userModel
 
 userController = {};
 
-userController.GET = function(req, res) {
-  userModel.GET(req.query.username, req.query.password)
+userController.getUser = function(req, res) {
+  userModel.getUser(req.query.username, req.query.password)
     .then(function(data) {
       res.send(data)
     })
@@ -18,9 +18,11 @@ userController.GET = function(req, res) {
     });
 };
 
-userController.POST = function(req, res) {
-  User.create(req.body);
-  res.send(req.body);
+userController.signup = function(req, res) {
+  userModel.signup(req.body)
+    .then(function(data) {
+      res.send(data)
+    })
 };
 
 module.exports = userController;
