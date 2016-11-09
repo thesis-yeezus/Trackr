@@ -6,39 +6,39 @@
   User Registration
 </h2>
 
-<form class="ui form" (click)="test()">
+<form name="signup"class="ui form" (ngSubmit)="submitForm()"> 
   <div class="fields">
     <div class="field">
       <label>First Name</label>
-      <input type="text" placeholder="First Name">
-    </div>
+      <input type="text" placeholder="First Name" [(ngModel)]="firstName" name="firstName">
+    </div> {{firstName}}{{lastName}}{{username}}{{password}}
     <div class="field">
       <label>Last Name</label>
-      <input type="text" placeholder="Last Name">
+      <input type="text" placeholder="Last Name" [(ngModel)]="lastName" name="lastName">
     </div>
   </div>
   <div class="two fields">
     <div class="field">
       <label>Username</label>
-      <input type="text" placeholder="Username">
+      <input type="text" placeholder="Username" [(ngModel)]="username" name="username">
     </div>
   </div>
   <div class="three fields">
     <div class="field">
       <label>Password</label>
-      <input type="password" placeholder="password">
+      <input type="password" placeholder="password" [(ngModel)]="password" name="password">
     </div>
   </div>
   <div class="fields">
     <div class="field">
       <label>Re-type Password</label>
-      <input type="password" placeholder="Re-type Password">
+      <input type="password" placeholder="Re-type Password" [(ngModel)]="passwordCheck" name="passwordCheck">
     </div>
   </div>
   <div class="fields">
     <div class="field">
       <label>E-mail Address</label>
-      <input type="text" placeholder="E-mail Address">
+      <input type="text" placeholder="E-mail Address" [(ngModel)]="email" name="email">
     </div>
   </div>
   <button class="ui button" type="submit">Submit</button>
@@ -47,7 +47,7 @@
 <!--Can also include field errors, disabled fields, warnings, 
 Should we include terms? We can "I agree to the Terms and Conditions" checkboxes
 http://semantic-ui.com/collections/form.html-->
-
+<!--11.9.16 - Jeff, add required fields for required fields-->
 
 <!--For Testing Purposes-->
 <h2>Testing Purposes</h2>
@@ -55,5 +55,3 @@ http://semantic-ui.com/collections/form.html-->
 <input type="text" placeholder="username">
 <label>Password</label>
 <input type="password" placeholder="Password">
-
-<!--<app-login></app-login>-->

@@ -5,7 +5,5 @@ import { Injectable } from '@angular/core';
 export class LoginService {
 
     modal() {
-        // return LoginComponent;
-        alert('login.service works jeff')
     }
 }
