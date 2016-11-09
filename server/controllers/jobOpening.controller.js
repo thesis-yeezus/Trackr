@@ -1,22 +1,28 @@
-var JobOpening = require('../db').JobOpening
+var jobOpeningModel = require('../models').jobOpeningModel
 
 var jobOpeningController = {};
 
-jobOpeningController.GET = function(req, res) {
-  JobOpening
-    .find({
-      where: {
+console.log(jobOpeningModel)
 
-      }
-    })
+jobOpeningController.createRow = function(req, res) {
+  jobOpeningModel.createRow(req.body)
     .then(function(data) {
       res.send(data)
     })
-};
+    .catch(function(err) {
+      res.status(418).send(err);
+    });
+  };
 
-jobOpeningController.POST = function(req, res) {
-  JobOpening.create(req.body);
-  res.send(req.body);
-};
+jobOpeningController.getJobs = function(req, res) {
+  console.log("This is req.query", req.query)
+  jobOpeningModel.getJobs(req.query.username)
+    .then(function(data) {
+      res.send(data)
+    })
+    .catch(function(err) {
+      res.status(418).send(err);
+    });
+  };
 
 module.exports = jobOpeningController;
