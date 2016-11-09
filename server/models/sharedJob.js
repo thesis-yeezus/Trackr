@@ -6,4 +6,3 @@ module.exports = function(db) {
 
   return SharedJob;
 };
-

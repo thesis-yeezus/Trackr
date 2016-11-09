@@ -1,6 +1,12 @@
 var User = require('../db').User
 
-var userController = {};
+// var userController = {};
+//   userModel.GET_USER(userId)
+//     .then(user => {
+//       res.status(200).send(user)
+//     })
+
+userController = {};
 
 userController.GET = function(req, res) {
   User
