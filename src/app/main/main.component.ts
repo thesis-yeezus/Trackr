@@ -10,14 +10,10 @@ import { GridOptions, IFilter } from 'ag-grid/main';
 
 export class MainComponent implements OnInit {
 
-  private gridOptions: GridOptions;
-  private showGrid: boolean;
-  private rowData: any[];
-  private columnDefs: any[];
-  private rowCount: string;
   private dummyData: any[] = [
   {
     id: 1,
+    name: 'Google',
     position: 'Front End dev',
     url: 'google.com',
     contact: 'John Doe',
@@ -29,6 +25,7 @@ export class MainComponent implements OnInit {
   },
   {
     id: 2,
+    name: 'Apple',
     position: 'Back End dev',
     url: 'apple.com',
     contact: 'Jane Doe',
@@ -40,10 +37,17 @@ export class MainComponent implements OnInit {
   }
 ]
 
+  private gridOptions: GridOptions;
+  private showGrid: boolean;
+  private rowData: any[] = this.dummyData;
+  private columnDefs: any[];
+  private rowCount: string;
+  
+
   constructor() {
     // we pass an empty gridOptions in, so we can grab the api out
     this.gridOptions = <GridOptions>{};
-    this.createRowData();
+    this.getRowData();
     this.showGrid = true;
    }
 
@@ -51,8 +55,8 @@ export class MainComponent implements OnInit {
     
   }
 
-  private createRowData() {
-    var rowData: any[] = [];
+  private getRowData() {
+    
   }
 
 }
