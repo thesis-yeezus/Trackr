@@ -1,6 +1,6 @@
 var path = require('path');
 var express = require('express');
-// require('dotenv').config();
+require('dotenv').config();
 var request = require('request');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
