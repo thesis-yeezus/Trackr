@@ -2,7 +2,7 @@
   main works!
 </p>
 <div style="width: 800px;">
-   <ag-grid-ng2 #agGrid style="width: 100%; height: 350px;" class="ag-dark"
+  <ag-grid-ng2 #agGrid style="width: 100%; height: 350px;" class="ag-dark"
       [gridOptions]="gridOptions"
       [showToolPanel]="showToolPanel"
       [rowData]="rowData"
@@ -16,21 +16,33 @@
       toolPanelSuppressValues
       rowHeight="22"
       rowSelection="multiple">
-  <!--<ag-grid-column headerName="Date">
-    <ag-grid-column headerName="Applied" field="date-applied" [width]="100" [suppressSorting]="true" [suppressMenu]="true"></ag-grid-column>
-    <ag-grid-column headerName="Since Applied" field="days-since-applied" [width]="120" ></ag-grid-column>
-  </ag-grid-column>-->
-  <ag-grid-column headerName="Company">
-    <ag-grid-column headerName="Name" field="name" [width]="150" ></ag-grid-column>
-    <ag-grid-column headerName="Position" field="position" [width]="150" ></ag-grid-column>
-  </ag-grid-column>
-  <!--<ag-grid-column headerName="Contact">
-    <ag-grid-column headerName="Name" field="name" [width]="150" ></ag-grid-column>
-    <ag-grid-column headerName="Email" field="email" [width]="150" ></ag-grid-column>
-    <ag-grid-column headerName="Number" field="number" [width]="150" ></ag-grid-column>
-  </ag-grid-column>-->
-  <ag-grid-column headerName="Comments">
-    <ag-grid-column headerName="Experiences" field="comments" [width]="150" ></ag-grid-column>
-  </ag-grid-column>
+    <ag-grid-column headerName="Date">
+      <ag-grid-column headerName="Applied" field="date" [width]="100" [suppressSorting]="true" [suppressMenu]="true"></ag-grid-column>
+      <ag-grid-column headerName="Since Applied" field="date" [width]="120" ></ag-grid-column>
+    </ag-grid-column>
+    <ag-grid-column headerName="Company">
+      <ag-grid-column headerName="Name" field="companyName" [width]="150" ></ag-grid-column>
+      <ag-grid-column headerName="Position" field="position" [width]="150" ></ag-grid-column>
+    </ag-grid-column>
+    <ag-grid-column headerName="Contact">
+      <ag-grid-column headerName="Name" field="contactName" [width]="150" ></ag-grid-column>
+      <ag-grid-column headerName="Email" field="contactEmail" [width]="150" ></ag-grid-column>
+      <ag-grid-column headerName="Number" field="contactNumber" [width]="150" ></ag-grid-column>
+    </ag-grid-column>
+    <ag-grid-column headerName="Comments">
+      <ag-grid-column headerName="Experiences" field="comments" [width]="150" ></ag-grid-column>
+    </ag-grid-column>
   </ag-grid-ng2>
 </div>
+
+<button class="ui button primary" (click)="myModalNormal.show({inverted: true})">Click me</button>
+<sm-modal title="Hello from Modal" class="" icon="home" #myModalNormal>
+    <modal-content>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    </modal-content>
+    <button>
+        <div class="ui buttons">
+            <div class="ui button primary" (click)="myModalNormal.hide()">Close modal</div>
+        </div>
+    </button>
+</sm-modal>

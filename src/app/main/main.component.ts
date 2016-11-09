@@ -10,30 +10,36 @@ import { GridOptions, IFilter } from 'ag-grid/main';
 
 export class MainComponent implements OnInit {
 
+  private convert() {
+    return 'testingConvert!'
+  }
+
   private dummyData: any[] = [
   {
     id: 1,
-    name: 'Google',
+    companyName: 'Google',
     position: 'Front End dev',
     url: 'google.com',
-    contact: 'John Doe',
+    contactName: 'John Doe',
     contactEmail: 'john@google.com',
     comments: 'Great!',
     interview: true,
     pursuing: true,
     date: 'January 1st',
+    contactNumber: '123-123-1234'
   },
   {
     id: 2,
-    name: 'Apple',
+    companyName: 'Apple',
     position: 'Back End dev',
     url: 'apple.com',
-    contact: 'Jane Doe',
+    contactName: 'Jane Doe',
     contactEmail: 'jane@apple.com',
     comments: 'Great!!!!!!!!!!!!!!',
     interview: true,
     pursuing: true,
-    date: 'January 2st',
+    date: this.convert(),
+    contactNumber: '123-123-2334'
   }
 ]
 
