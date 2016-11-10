@@ -8,8 +8,7 @@ module.exports = function(db) {
     contactEmail: { type: Sequelize.STRING, defaultValue: null },
     comments: { type: Sequelize.STRING, defaultValue: null },
     interview: { type: Sequelize.BOOLEAN, defaultValue: null },
-    pursuing: { type: Sequelize.BOOLEAN, defaultValue: null },
-    date: { type: Sequelize.DATEONLY, defaultValue: null }
+    pursuing: { type: Sequelize.BOOLEAN, defaultValue: null }
   });
 
   return JobOpening; 

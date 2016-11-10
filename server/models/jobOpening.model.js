@@ -9,7 +9,8 @@ jobOpeningModel.createRow = function(job) {
       return result
     })
     .catch(function(err) {
-      console.err(err)
+      return err
+      // console.log(err)
     })
 }
 
