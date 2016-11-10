@@ -12,6 +12,7 @@ import { MainComponent }    from './main/main.component';
 import { LoginComponent }   from './shared/login.component';
 import { SignoutComponent } from './shared/signout.component';
 import { SplashComponent }  from './splash/splash.component';
+import { JobFormComponent } from './main/job-form.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { SplashComponent }  from './splash/splash.component';
     MainComponent,
     LoginComponent,
     SignoutComponent,
-    SplashComponent
+    SplashComponent,
+    JobFormComponent
   ],
 
   providers: [],

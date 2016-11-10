@@ -22,11 +22,12 @@ export class MainComponent implements OnInit {
     url: 'google.com',
     contactName: 'John Doe',
     contactEmail: 'john@google.com',
+    contactNumber: '123-123-1234',
     comments: 'Great!',
     interview: true,
     pursuing: true,
-    date: 'January 1st',
-    contactNumber: '123-123-1234'
+    date: 'January 1st'
+    
   },
   {
     id: 2,
@@ -35,11 +36,11 @@ export class MainComponent implements OnInit {
     url: 'apple.com',
     contactName: 'Jane Doe',
     contactEmail: 'jane@apple.com',
+    contactNumber: '123-123-2334',
     comments: 'Great!!!!!!!!!!!!!!',
     interview: true,
     pursuing: true,
-    date: this.convert(),
-    contactNumber: '123-123-2334'
+    date: this.convert()
   }
 ]
 

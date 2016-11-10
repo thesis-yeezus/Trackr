@@ -33,10 +33,12 @@ export class JobListService {
   }
 
   createJob(
+    companyName: string,
     position: string,
     url: string,
-    contact: string,
+    contactName: string,
     contactEmail: string,
+    contactNumber: string,
     comments: string,
     interview: boolean,
     pursuing: boolean,
@@ -44,13 +46,15 @@ export class JobListService {
     ): Promise<Job> {
       return this.http
         .post(this.jobListUrl, JSON.stringify({
+          companyName: companyName,
           position: position,
           url: url,
-          contact: contact,
+          contactName: contactName,
           contactEmail: contactEmail,
+          contactNumber: contactNumber,
           comments: comments,
-          interview: interview,
-          pursuing: pursuing,
+          interview: false,
+          pursuing: true,
           date: date
         }), {headers: this.headers})
         .toPromise()
