@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { GridOptions, IFilter } from 'ag-grid/main';
 
+import { JobListService } from './job-list.service';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -46,24 +48,25 @@ export class MainComponent implements OnInit {
 
   private gridOptions: GridOptions;
   private showGrid: boolean;
-  private rowData: any[] = this.dummyData;
+  private rowData: any[];
   private columnDefs: any[];
   private rowCount: string;
   
 
-  constructor() {
+  constructor( private joblistService: JobListService ) {
     // we pass an empty gridOptions in, so we can grab the api out
     this.gridOptions = <GridOptions>{};
-    this.getRowData();
+    //this.getRowData();
     this.showGrid = true;
    }
 
   ngOnInit() {
-    
+    // make a get request for all jobs
+    this.getRowData("user");
   }
 
-  private getRowData() {
-    
+  private getRowData(user: string) {
+    this.joblistService.getJobList(user).then(jobList => this.rowData = jobList)
   }
 
 }

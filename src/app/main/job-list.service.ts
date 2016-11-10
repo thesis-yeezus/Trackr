@@ -4,24 +4,13 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { UserService } from '../shared/user.service';
+import { JobPosting } from './job-posting.interface';
 
-
-class Job {
-  id: number;
-  position: string;
-  url: string;
-  contact: string;
-  contactEmail: string;
-  comments: string;
-  interview: boolean;
-  pursuing: boolean;
-  date: string;
-}
 
 @Injectable()
 export class JobListService {
 
-  private jobListUrl = 'api/';
+  private jobListUrl = 'http://localhost:8000/api/';
 
   constructor(private http: Http) { }
 
@@ -32,47 +21,28 @@ export class JobListService {
     return Promise.reject(error.message || error);
   }
 
-  createJob(
-    companyName: string,
-    position: string,
-    url: string,
-    contactName: string,
-    contactEmail: string,
-    contactNumber: string,
-    comments: string,
-    interview: boolean,
-    pursuing: boolean,
-    date: string
-    ): Promise<Job> {
+  createJob(posting: JobPosting
+    ): Promise<JobPosting> {
       return this.http
-        .post(this.jobListUrl, JSON.stringify({
-          companyName: companyName,
-          position: position,
-          url: url,
-          contactName: contactName,
-          contactEmail: contactEmail,
-          contactNumber: contactNumber,
-          comments: comments,
-          interview: false,
-          pursuing: true,
-          date: date
-        }), {headers: this.headers})
+        .post(this.jobListUrl+'job-opening', JSON.stringify(
+          posting
+        ), {headers: this.headers})
         .toPromise()
-        .then(res => res.json().data)
+        .then(res => console.log("SUCCESS!",res.json()))
         .catch(this.handleError);
   }
 
-  getJob(id: number): Promise<Job> {
+  getJob(user: string,id: number): Promise<JobPosting> {
     return this.http.get(this.jobListUrl)
           .toPromise()
           .then(response => response.json().data)
           .catch(this.handleError);
   }
 
-  getJobList(): Promise<Job[]> {
-    return this.http.get(this.jobListUrl)
+  getJobList(user: string): Promise<any[]> {
+    return this.http.get(this.jobListUrl + "job-opening?username=" + user) // get username somehow!? JEFF@
             .toPromise()
-            .then(response => response.json().data as Job[])
+            .then(response => response.json() as any[])
             .catch(this.handleError)
   }
 

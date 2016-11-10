@@ -2,9 +2,9 @@
   job-form works!
 </p>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<button class="ui button primary" (click)="myModalNormal.show({inverted: true})">Click me</button>
+<!--<button class="ui button primary" (click)="myModalNormal.show({inverted: true})">Click me</button>
 <sm-modal title="Hello from Modal" class="" icon="home" #myModalNormal>
-<modal-content>
+<modal-content>-->
 <div class="container">
   <h1>Add user</h1>
   <form #f="ngForm" novalidate (ngSubmit)="save(f.value, f.valid)">
@@ -101,5 +101,5 @@
     <pre>Is form submitted?: <br>{{f.submitted | json}}</pre>
     <pre>form value: <br>{{f.value | json}}</pre>
   </div>
-</modal-content>
-</sm-modal>
+<!--</modal-content>
+</sm-modal>-->

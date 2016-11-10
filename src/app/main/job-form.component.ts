@@ -1,16 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-interface JobPosting {
-  companyName
-  position: string;
-  url: string;
-  contactName: string;
-  contactEmail: string;
-  contactNumber: string;
-  comments: string;
-  date: string;
-}
+import { Component, OnInit } from '@angular/core';
+import { JobPosting } from './job-posting.interface';
+import { JobListService } from './job-list.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-job-form',
@@ -19,7 +10,13 @@ interface JobPosting {
 })
 
 export class JobFormComponent implements OnInit {
-public jobPosting: JobPosting;
+
+  public jobPosting: JobPosting;
+
+  constructor(
+    private router: Router,
+    private jobListService: JobListService
+  ) { }
   
   ngOnInit() {
     this.jobPosting = {
@@ -30,11 +27,13 @@ public jobPosting: JobPosting;
       contactEmail: '',
       contactNumber: '',
       comments: '',
-      date: ''
+      date: 'mm/dd/yyyy'
       }
     };
   
-  save(model: JobPosting, isValid: boolean) {
-    console.log(model, isValid);
+  save(post: JobPosting, isValid: boolean) {
+    console.log(post, isValid);
+    post.date = null;
+    this.jobListService.createJob(post);
   }
 }
