@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { GridOptions, IFilter } from 'ag-grid/main';
 
+import { JobListService } from './job-list.service';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -22,11 +24,12 @@ export class MainComponent implements OnInit {
     url: 'google.com',
     contactName: 'John Doe',
     contactEmail: 'john@google.com',
+    contactNumber: '123-123-1234',
     comments: 'Great!',
     interview: true,
     pursuing: true,
-    date: 'January 1st',
-    contactNumber: '123-123-1234'
+    date: 'January 1st'
+    
   },
   {
     id: 2,
@@ -35,34 +38,35 @@ export class MainComponent implements OnInit {
     url: 'apple.com',
     contactName: 'Jane Doe',
     contactEmail: 'jane@apple.com',
+    contactNumber: '123-123-2334',
     comments: 'Great!!!!!!!!!!!!!!',
     interview: true,
     pursuing: true,
-    date: this.convert(),
-    contactNumber: '123-123-2334'
+    date: this.convert()
   }
 ]
 
   private gridOptions: GridOptions;
   private showGrid: boolean;
-  private rowData: any[] = this.dummyData;
+  private rowData: any[];
   private columnDefs: any[];
   private rowCount: string;
   
 
-  constructor() {
+  constructor( private joblistService: JobListService ) {
     // we pass an empty gridOptions in, so we can grab the api out
     this.gridOptions = <GridOptions>{};
-    this.getRowData();
+    //this.getRowData();
     this.showGrid = true;
    }
 
   ngOnInit() {
-    
+    // make a get request for all jobs
+    this.getRowData("user");
   }
 
-  private getRowData() {
-    
+  private getRowData(user: string) {
+    this.joblistService.getJobList(user).then(jobList => this.rowData = jobList)
   }
 
 }
