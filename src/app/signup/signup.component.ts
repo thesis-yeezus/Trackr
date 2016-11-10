@@ -1,21 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-
-import { LoginService } from '../shared/login.service';
+import { LoginService }      from '../shared/login.service';
+import { UserService }       from '../shared/user.service';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
+  providers: [UserService]
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private userService: UserService) { }
+
+  user: Object = {};
 
   ngOnInit() {
   }
   
-  submitForm() {
-    // this.model = new Signup(firstName);
+  createUser(formObj) {
+    
+    console.log('dis is the user:', formObj);
+    localStorage.username = formObj.username;
+    console.log('this is window.localStorage:', window.localStorage);
+    //call a method inside the user.service
+    //after it successes, say success
+    this.userService.createUser(formObj) 
+    
+      // .subscribe
+    // formObj = {};
   }
-// , lastName, username, password, email
 }
+
+// post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response>;
