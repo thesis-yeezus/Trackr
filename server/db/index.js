@@ -39,4 +39,3 @@ module.exports = {
 	Coach_Seeker: Coach_Seeker,
 	SharedJob: SharedJob
 };
-

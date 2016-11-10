@@ -3,8 +3,10 @@ import { NgModule }         from '@angular/core';
 import { FormsModule }      from '@angular/forms';
 import { HttpModule }       from '@angular/http';
 import { NgSemanticModule } from 'ng-semantic';
-import { ModalModule } from 'ng2-modal';
-import { AgGridModule } from 'ag-grid-ng2/main';
+import { ModalModule }      from 'ng2-modal';
+import { AgGridModule }     from 'ag-grid-ng2/main';
+
+//import { AppRoutingModule } from '../app/app-routing.module';
 
 import { AppComponent }     from './app.component';
 import { SignupComponent }  from './signup/signup.component';
@@ -12,6 +14,7 @@ import { MainComponent }    from './main/main.component';
 import { LoginComponent }   from './shared/login.component';
 import { SignoutComponent } from './shared/signout.component';
 import { SplashComponent }  from './splash/splash.component';
+// import {UserService} from './shared/user.service'
 
 @NgModule({
   imports: [
@@ -20,6 +23,7 @@ import { SplashComponent }  from './splash/splash.component';
     HttpModule, 
     NgSemanticModule,
     ModalModule,
+    //AppRoutingModule,
     AgGridModule.withNg2ComponentSupport()
   ],
   declarations: [
