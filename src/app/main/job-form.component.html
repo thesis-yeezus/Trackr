@@ -1,0 +1,105 @@
+<p>
+  job-form works!
+</p>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<!--<button class="ui button primary" (click)="myModalNormal.show({inverted: true})">Click me</button>
+<sm-modal title="Hello from Modal" class="" icon="home" #myModalNormal>
+<modal-content>-->
+<div class="container">
+  <h1>Add user</h1>
+  <form #f="ngForm" novalidate (ngSubmit)="save(f.value, f.valid)">
+
+    <div class="form-group">
+      <label>Company Name</label>
+      <input type="text" class="form-control" 
+        name="companyName" [(ngModel)]="jobPosting.companyName" 
+        #companyName="ngModel" required minlength="5">
+      <small [hidden]="companyName.valid || (companyName.pristine && !f.submitted)" class="text-danger">
+            Name is required (minimum 5 characters).
+          </small>
+    </div>
+
+    <div class="form-group">
+      <label>Position</label>
+      <input type="text" class="form-control" 
+        name="position" [(ngModel)]="jobPosting.position" 
+        #position="ngModel" required minlength="5">
+      <small [hidden]="position.valid || (position.pristine && !f.submitted)" class="text-danger">
+            Name is required (minimum 5 characters).
+          </small>
+    </div>
+
+    <div class="form-group">
+      <label>URL</label>
+      <input type="text" class="form-control" 
+        name="url" [(ngModel)]="jobPosting.url" 
+        #url="ngModel" required minlength="5">
+      <small [hidden]="url.valid || (url.pristine && !f.submitted)" class="text-danger">
+            Name is required (minimum 5 characters).
+          </small>
+    </div>
+
+    <div class="form-group">
+      <label>Contact Name</label>
+      <input type="text" class="form-control" 
+        name="contactName" [(ngModel)]="jobPosting.contactName" 
+        #contactName="ngModel" required minlength="5">
+      <small [hidden]="contactName.valid || (contactName.pristine && !f.submitted)" class="text-danger">
+            Name is required (minimum 5 characters).
+          </small>
+    </div>
+
+    <div class="form-group">
+      <label>Contact Email</label>
+      <input type="text" class="form-control" 
+        name="contactEmail" [(ngModel)]="jobPosting.contactEmail" 
+        #contactEmail="ngModel" required minlength="5">
+      <small [hidden]="contactEmail.valid || (contactEmail.pristine && !f.submitted)" class="text-danger">
+            Name is required (minimum 5 characters).
+          </small>
+    </div>
+
+    <div class="form-group">
+      <label>Contact Number</label>
+      <input type="text" class="form-control" 
+        name="contactNumber" [(ngModel)]="jobPosting.contactNumber" 
+        #contactNumber="ngModel" required minlength="5">
+      <small [hidden]="contactNumber.valid || (contactNumber.pristine && !f.submitted)" class="text-danger">
+            Name is required (minimum 5 characters).
+          </small>
+    </div>
+
+    <div class="form-group">
+      <label>Comments</label>
+      <input type="text" class="form-control" 
+        name="comments" [(ngModel)]="jobPosting.comments" 
+        #comments="ngModel" required minlength="5">
+      <small [hidden]="comments.valid || (comments.pristine && !f.submitted)" class="text-danger">
+            Name is required (minimum 5 characters).
+          </small>
+    </div>
+
+    <div class="form-group">
+      <label>Date</label>
+      <input type="text" class="form-control" 
+        name="date" [(ngModel)]="jobPosting.date" 
+        #date="ngModel" required minlength="5">
+      <small [hidden]="date.valid || (date.pristine && !f.submitted)" class="text-danger">
+            Name is required (minimum 5 characters).
+          </small>
+    </div>
+
+  
+
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+  <div class="margin-20">
+    <div>Form details:-</div>
+    <pre>Is form valid?: <br>{{f.valid | json}}</pre>
+    <pre>Is form submitted?: <br>{{f.submitted | json}}</pre>
+    <pre>form value: <br>{{f.value | json}}</pre>
+  </div>
+<!--</modal-content>
+</sm-modal>-->
