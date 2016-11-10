@@ -9,18 +9,22 @@ var userModel = require('../models').userModel
 var userController = {};
 
 userController.getUser = function(req, res) {
-  userModel.getUser(req.query.username, req.query.password)
-    .then(function(data) {
-      res.send(data)
-    })
-    .catch(function(err) {
-      res.status(418).send(err);
-    });
+  console.log('inside of getUser')
+  // userModel.getUser(req.query.username, req.query.password)
+  //   .then(function(data) {
+  //     res.send(data)
+  //   })
+  //   .catch(function(err) {
+  //     res.status(418).send(err);
+  //   });
+  res.json({name: 'something', something: 'anothersomething'})
 };
 
-userController.signup = function(req, res) {
-  userModel.signup(req.body)
+userController.createUser = function(req, res) {
+  console.log('Inside of createUser!!', req.body)
+  userModel.createUser(req.body)
     .then(function(data) {
+      // console.log('HERES SOME DATA', data);
       res.send(data)
     })
 };
