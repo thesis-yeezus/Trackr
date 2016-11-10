@@ -1,15 +1,15 @@
-// var Blog = require('./blog');
+var blogModel = require('./blog.model');
 var jobOpeningModel = require('./jobOpening.model');
 // var Keyword = require('./keyword');
 var userModel = require('./user.model');
-// var Coach_Seeker = require('./coachSeeker');
+var coachSeekerModel = require('./coachSeeker.model');
 // var SharedJob = require('./sharedJob');
 
 module.exports = {
-//   Blog: Blog,
+  blogModel: blogModel,
   jobOpeningModel: jobOpeningModel,
 //   Keyword: Keyword,
   userModel: userModel,
-//   Coach_Seeker: Coach_Seeker,
+  coachSeekerModel: coachSeekerModel,
 //   SharedJob: SharedJob
 };

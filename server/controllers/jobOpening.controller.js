@@ -2,14 +2,14 @@ var jobOpeningModel = require('../models').jobOpeningModel
 
 var jobOpeningController = {};
 
-console.log(jobOpeningModel)
-
 jobOpeningController.createRow = function(req, res) {
+  console.log(req.body)
   jobOpeningModel.createRow(req.body)
     .then(function(data) {
       res.send(data)
     })
     .catch(function(err) {
+      console.log(err)
       res.status(418).send(err);
     });
   };

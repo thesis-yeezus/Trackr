@@ -3,7 +3,7 @@ var blogController = require('../controllers').blogController;
 
 var blogRouter = express.Router();
 
-blogRouter.get('/', blogController.GET);
-blogRouter.post('/',blogController.POST);
+blogRouter.get('/', blogController.getBlog);
+blogRouter.post('/',blogController.postBlog);
 
 module.exports = blogRouter;

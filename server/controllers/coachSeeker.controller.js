@@ -1,21 +1,21 @@
-var Coach_Seeker = require('../db').Coach_Seeker
+var coachSeekerModel = require('../models').coachSeekerModel
 
 var coachSeekerController = {};
 
-coachSeekerController.GET = function(req, res) {
-  Coach_Seeker
-    .find({
-      where: {
-      }
-    })
+coachSeekerController.link = function(req, res) {
+  coachSeekerModel.link(req.body.seeker, req.body.coach, req.body.cohort)
     .then(function(data) {
       res.send(data)
     })
+    .catch(function(err) {
+      res.status(418).send(err);
+    });
 };
 
-coachSeekerController.POST = function(req, res) {
-  Coach_Seeker.create(req.body);
-  res.send(req.body);
-};
+
+// coachSeekerController.POST = function(req, res) {
+//   Coach_Seeker.create(req.body);
+//   res.send(req.body);
+// };
 
 module.exports = coachSeekerController;

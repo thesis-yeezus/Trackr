@@ -16,8 +16,8 @@ User.hasOne(Blog);
 User.hasOne(JobOpening);
 Blog.belongsToMany(Keyword, {through: 'BlogKeyword'});
 Keyword.belongsToMany(Blog, {through: 'BlogKeyword'});
-JobOpening.belongsToMany(Keyword, {through: 'JobOpeningKeyword'});
-Keyword.belongsToMany(JobOpening, {through: 'JobOpeningKeyword'});
+// JobOpening.belongsToMany(Keyword, {through: 'JobOpeningKeyword'});
+// Keyword.belongsToMany(JobOpening, {through: 'JobOpeningKeyword'});
 
 // JobOpening.belongsToMany(JobOpening, {as: 'JobPosting', through: 'SharedJobs', foreignKey: 'jobOpening_id'} )
 
