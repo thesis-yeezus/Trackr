@@ -21,19 +21,19 @@ userModel.createUser = function(user) {
 }
 
 //functions to grab from the db, Oliver made this
-// userModel.loginUser = function(username, password) {
-  // return User.find({
-  //     where: {
-  //       username: username,
-  //       password: password
-  //     }
-  //   })
-  //   .then(function(users) {
-  //       if (users === null) {
-  //         return 'No users found'
-  //       } 
-  //       return users
-  //   })
-// }
+userModel.loginUser = function(username, password) {
+  return User.find({
+      where: {
+        username: username,
+        password: password
+      }
+    })
+    .then(function(users) {
+        if (users === null) {
+          return 'No users found'
+        } 
+        return users
+    })
+}
 
 module.exports = userModel

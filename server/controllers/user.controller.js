@@ -10,13 +10,13 @@ var userController = {};
 
 userController.loginUser = function(req, res) {
   console.log('inside of loginUser')
-  // userModel.loginUser(req.query.username, req.query.password)
-  //   .then(function(data) {
-  //     res.send(data)
-  //   })
-  //   .catch(function(err) {
-  //     res.status(418).send(err);
-  //   });
+  userModel.loginUser(req.query.username, req.query.password)
+    .then(function(data) {
+      res.send(data)
+    })
+    .catch(function(err) {
+      res.status(418).send(err);
+    });
   res.json({name: 'something', something: 'anothersomething'})
 };
 

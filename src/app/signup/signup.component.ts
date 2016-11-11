@@ -17,6 +17,10 @@ export class SignupComponent implements OnInit {
 
   user: Object = {};
 
+  redirectToHomePage() {
+    this.router.navigate(['/splash']);
+  }
+
   ngOnInit() {
   }
   

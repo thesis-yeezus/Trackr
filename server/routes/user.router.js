@@ -3,7 +3,7 @@ var userController = require('../controllers').userController;
 var bodyParser = require('body-parser');
 var userRouter = express.Router();
 
-userRouter.get('/loginUser', userController.loginUser);
+userRouter.post('/loginUser', userController.loginUser);
 userRouter.post('/createUser', userController.createUser);
 
 module.exports = userRouter;
