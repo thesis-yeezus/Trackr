@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-//import signup component here
 
 class User {
   // id: number;
@@ -45,24 +44,28 @@ export class UserService {
   //         // .catch(this.handleError);
   // }
 
-  // loginUser(username: string, password:string): Observable<boolean> {
-    //if the username and password match
-      //update local storage
-      //redirect to the mainpage
-    // return this.http
-              //  .post(this.loginUserUrl, JSON.stringify({username: username, password: password}))
-              //  .map((response: Response) => {
-              //    console.log('this is the response:', response)
-              //    let res = response.json();
-              //    if(res) {
-              //      window.localStorage.userId = res.userId;
-              //      window.localStorage.userName = res.username;
-              //      return true;
-              //    } else {
-              //      return false
-              //    }
-              //  })
-  // }
+  loginUser(username: string, password:string): Observable<boolean> {
+    //Pseudocode:
+    // if the username and password match
+    //   update local storage
+    //   redirect to the mainpage
+    console.log('are we making it here?:',username, password)
+    // JEFF//ABOVE CONSOLE WORKS, SO DATA IS GETTING HERE
+    return this.http
+               .post(this.loginUserUrl, JSON.stringify({username, password}))
+               .map((response: Response) => {
+                 console.log('this is the response:', response)
+                 let res = response.json();
+                 console.log(res);
+                 if(res) {
+                   window.localStorage.userId = res.userId;
+                   window.localStorage.username = res.userName;
+                   return true;
+                 } else {
+                   return false
+                 }
+               })
+  }
 
   // getUserList(): Promise<User[]> {
   //   return this.http.get(this.userUrl)
