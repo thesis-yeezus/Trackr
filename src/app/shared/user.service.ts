@@ -34,6 +34,7 @@ export class UserService {
     this.http.post(this.userUrl, JSON.stringify(user), {headers: this.headers})
       .subscribe((response) => {
         console.log(`The user has been added.`, response.json())
+        window.localStorage.userId = response.json().id;
       })
   }
 
