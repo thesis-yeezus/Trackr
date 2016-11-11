@@ -10,7 +10,7 @@ var passport = require('passport');
 var LinkedInStrategy = require('passport-linkedin').Strategy;
 var session = require('express-session');
 var db = require('./db').db;
-var User = require('./db').User(db);
+var User = require('./db').User;
 
 var app = express();
 
@@ -47,7 +47,14 @@ passport.use(new LinkedInStrategy({
   function(token, tokenSecret, profile, done) {
     process.nextTick(function () {
       console.log("this is profile ", profile)
-      User.findOrCreate({where: {username: profile.id} });
+      User.findOrCreate({
+        where: {
+          firstName: profile.name.givenName,
+          lastName: profile.name.familyName,
+          email: profile.emails[0].value,
+          username: profile.id
+        } 
+      });
       return done(null, profile);
     })
   }));
@@ -61,7 +68,7 @@ app.get('/api/auth/linkedin/callback',
   passport.authenticate('linkedin', { failureRedirect: '/signup' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/home');
+    res.redirect('/main');
 });
 
 
