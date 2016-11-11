@@ -17,12 +17,17 @@ class User {
 
 @Injectable()
 export class UserService {
+  public token: string;
   //Resolve HTTP using the constructor
-  constructor(private http: Http) { }
+  constructor(private http: Http) { 
+    // var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // this.token = currentUser && currentUser.token;
+  }
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private createUserUrl = 'http://localhost:8000/api/user/createUser';
-  private loginUserUrl = 'http://localhost:8000/api/user/loginUser';
+  private options = new RequestOptions({ headers: this.headers });
+  private createUserUrl = '/api/user/createUser';
+  private loginUserUrl = '/api/user/loginUser';
   // private handleError(error: any): Promise<any> {
   //   console.error('An error occurred', error);
   //   return Promise.reject(error.message || error);
@@ -45,22 +50,20 @@ export class UserService {
   //         // .catch(this.handleError);
   // }
 
-  loginUser(username: string, password:string): Observable<boolean> {
-    //Pseudocode:
-    // if the username and password match
-    //   update local storage
-    //   redirect to the mainpage
+  //MIGHT BE ABLE TO DELETE THIS BELOW!!
+  loginUser(username, password): Observable<boolean> {
     console.log('are we making it here?:',username, password)
     // JEFF//ABOVE CONSOLE WORKS, SO DATA IS GETTING HERE
     return this.http
-               .post(this.loginUserUrl, JSON.stringify({username, password}))
+               .post(this.loginUserUrl, JSON.stringify({username: username, password: password}), {headers: this.headers})
                .map((response: Response) => {
                  console.log('this is the response:', response)
+                 console.log('this is the response.json:', response.json())
                  let res = response.json();
                  console.log(res);
                  if(res) {
-                   window.localStorage.userId = res.userId;
-                   window.localStorage.username = res.userName;
+                   window.localStorage.userId = res.id;
+                   window.localStorage.username = res.username;
                    return true;
                  } else {
                    return false
