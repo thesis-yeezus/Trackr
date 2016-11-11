@@ -15,6 +15,7 @@ import { LoginComponent }   from './shared/login.component';
 import { SignoutComponent } from './shared/signout.component';
 import { SplashComponent }  from './splash/splash.component';
 import { JobFormComponent } from './main/job-form.component';
+import { LinkedinComponent } from './linkedin/linkedin.component';
 
 // import {UserService} from './shared/user.service'
 
@@ -36,7 +37,8 @@ import { JobFormComponent } from './main/job-form.component';
     LoginComponent,
     SignoutComponent,
     SplashComponent,
-    JobFormComponent
+    JobFormComponent,
+    LinkedinComponent
   ],
 
   providers: [],
