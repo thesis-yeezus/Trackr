@@ -58,7 +58,14 @@ passport.use(new LinkedInStrategy({
         } 
       });
       console.log("this is profile ", profile)
-      User.findOrCreate({where: {username: profile.id} });
+      User.findOrCreate({
+        where: {
+          firstName: profile.name.givenName,
+          lastName: profile.name.familyName,
+          email: profile.emails[0].value,
+          username: profile.id
+        } 
+      });
       return done(null, profile);
     })
   }));
@@ -84,7 +91,6 @@ app.get('/api/auth/linkedin/callback',
       lastName: req.user.name.familyName,
       email: req.user.emails[0].value
     }
-    // Successful authentication, redirect home.
     res.status(200).cookie('user', JSON.stringify(userObj));
     res.redirect('/main');
 });
