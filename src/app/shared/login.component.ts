@@ -26,8 +26,7 @@ import { Router }            from '@angular/router';
    #inputLabel {
      color: white;
    } 
-  `],
-  providers: [Router]
+    `]
 })
 export class LoginComponent implements OnInit {
 
