@@ -12,8 +12,9 @@ userModel.createUser = function(user) {
     lastName: user.lastName,
     email: user.email
   })
-    .then(function(result) {
-      return result
+    .then(function(user) {
+      return user
+      // ^ is returning the user info
     })
     .catch(function(err) {
       console.err(err)

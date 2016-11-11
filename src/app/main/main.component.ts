@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { GridOptions, IFilter } from 'ag-grid/main';
@@ -11,7 +11,7 @@ import { JobListService } from './job-list.service';
   styleUrls: ['./main.component.css']
 })
 
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, AfterContentInit {
 
   private convert() {
     return 'testingConvert!'
@@ -66,6 +66,10 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     // make a get request for all jobs
+    this.getRowData(window.localStorage.username);
+  }
+
+  ngAfterContentInit() {
     this.getRowData(window.localStorage.username);
   }
 
