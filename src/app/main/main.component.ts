@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { GridOptions, IFilter } from 'ag-grid/main';
 
@@ -53,7 +54,10 @@ export class MainComponent implements OnInit {
   private rowCount: string;
   
 
-  constructor( private joblistService: JobListService ) {
+  constructor(
+    private router: Router,
+    private joblistService: JobListService
+  ) {
     // we pass an empty gridOptions in, so we can grab the api out
     this.gridOptions = <GridOptions>{};
     //this.getRowData();
@@ -62,11 +66,18 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     // make a get request for all jobs
-    this.getRowData("user");
+    this.getRowData(window.localStorage.username);
   }
 
   private getRowData(user: string) {
-    this.joblistService.getJobList(user).then(jobList => this.rowData = jobList)
+    this.joblistService.getJobList(user).then(jobList => {
+      this.rowData = jobList;
+      console.log(this.rowData)
+    })
+  }
+
+  private redirectToJob() {
+    this.router.navigate(['/job-form'])
   }
 
 }

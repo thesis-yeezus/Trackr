@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService }      from '../shared/login.service';
 import { UserService }       from '../shared/user.service';
+import { Router }            from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +11,10 @@ import { UserService }       from '../shared/user.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private router: Router
+    ) { }
 
   user: Object = {};
 
@@ -20,12 +24,12 @@ export class SignupComponent implements OnInit {
   createUser(formObj) {
     
     console.log('dis is the user:', formObj);
-    localStorage.username = formObj.username;
+    window.localStorage.username = formObj.username;
     console.log('this is window.localStorage:', window.localStorage);
     //call a method inside the user.service
     //after it successes, say success
-    this.userService.createUser(formObj) 
-    
+    this.userService.createUser(formObj);
+    this.router.navigate(['/main']);
       // .subscribe
     // formObj = {};
   }

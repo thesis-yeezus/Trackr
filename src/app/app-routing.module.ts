@@ -1,15 +1,18 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { MainComponent }        from './main/main.component';
-import { JobFormComponent }        from './main/job-form.component';
+import { JobFormComponent }     from './main/job-form.component';
+import { SignupComponent }      from './signup/signup.component';
 //TODO Add other routes
 
-import './rxjs-extensions';
+//import './rxjs-extensions';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/signin', pathMatch: 'full' },
-  { path: 'main/:userName',  component: MainComponent },
-  { path: 'job-form/:userName', component: JobFormComponent }
+  { path: '', redirectTo: '/signup', pathMatch: 'full' },
+  { path: 'signup', component: SignupComponent },
+  { path: 'main',  component: MainComponent },
+  { path: 'job-form', component: JobFormComponent }
   //TODO Add other routes
 ];
 

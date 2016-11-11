@@ -6,7 +6,7 @@ import { NgSemanticModule } from 'ng-semantic';
 import { ModalModule }      from 'ng2-modal';
 import { AgGridModule }     from 'ag-grid-ng2/main';
 
-//import { AppRoutingModule } from '../app/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent }     from './app.component';
 import { SignupComponent }  from './signup/signup.component';
@@ -26,7 +26,7 @@ import { JobFormComponent } from './main/job-form.component';
     HttpModule, 
     NgSemanticModule,
     ModalModule,
-    //AppRoutingModule,
+    AppRoutingModule,
     AgGridModule.withNg2ComponentSupport()
   ],
   declarations: [
