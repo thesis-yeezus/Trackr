@@ -57,6 +57,8 @@ passport.use(new LinkedInStrategy({
           username: profile.id
         } 
       });
+      console.log("this is profile ", profile)
+      User.findOrCreate({where: {username: profile.id} });
       return done(null, profile);
     })
   }));
@@ -75,7 +77,6 @@ app.get('/api/auth/linkedin/callback',
         exp: moment().add(7, 'd').valueOf()
       }, process.env.SECRET);
    res.cookie('token', token)
-
 
     var userObj = {
       username: req.user.id,
