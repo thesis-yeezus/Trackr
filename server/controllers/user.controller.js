@@ -8,9 +8,9 @@ var userModel = require('../models').userModel
 
 var userController = {};
 
-userController.getUser = function(req, res) {
-  console.log('inside of getUser')
-  // userModel.getUser(req.query.username, req.query.password)
+userController.loginUser = function(req, res) {
+  console.log('inside of loginUser')
+  // userModel.loginUser(req.query.username, req.query.password)
   //   .then(function(data) {
   //     res.send(data)
   //   })
