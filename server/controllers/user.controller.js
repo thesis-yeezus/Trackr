@@ -24,8 +24,9 @@ userController.createUser = function(req, res) {
   console.log('Inside of createUser!!', req.body)
   userModel.createUser(req.body)
     .then(function(data) {
-      // console.log('HERES SOME DATA', data);
-      // res.send(data)
+      res.send(data)
+      // Data being sent back is the User
+      console.log('what is coming back?:', data)
       res.sendStatus(200);
     })
     .catch(function(err) {
