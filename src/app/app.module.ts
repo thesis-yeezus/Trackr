@@ -2,9 +2,11 @@ import { BrowserModule }    from '@angular/platform-browser';
 import { NgModule }         from '@angular/core';
 import { FormsModule }      from '@angular/forms';
 import { HttpModule }       from '@angular/http';
+// import { RouterModule }     from '@angular/router';
 import { NgSemanticModule } from 'ng-semantic';
 import { ModalModule }      from 'ng2-modal';
 import { AgGridModule }     from 'ag-grid-ng2/main';
+
 
 //import { AppRoutingModule } from '../app/app-routing.module';
 

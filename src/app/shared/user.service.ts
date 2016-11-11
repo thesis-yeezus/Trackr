@@ -22,8 +22,8 @@ export class UserService {
   constructor(private http: Http) { }
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private userUrl = 'http://localhost:8000/api/user/createUser';
-
+  private createUserUrl = 'http://localhost:8000/api/user/createUser';
+  private loginUserUrl = 'http://localhost:8000/api/user/loginUser';
   // private handleError(error: any): Promise<any> {
   //   console.error('An error occurred', error);
   //   return Promise.reject(error.message || error);
@@ -31,39 +31,36 @@ export class UserService {
 
   createUser(user: any) {
     console.log('The user', user)
-    this.http.post(this.userUrl, JSON.stringify(user), {headers: this.headers})
+    this.http.post(this.createUserUrl, JSON.stringify(user), {headers: this.headers})
       .subscribe((response) => {
         console.log(`The user has been added.`, response.json())
       })
   }
 
-  // createUser(
-  //   firstName: string,
-  //   lastName: string,
-  //   email: string,
-  //   username: string,
-  //   password: string,
-  //   role: string
-  //   ): Promise<User> {
-  //     return this.http
-  //       .post(this.userUrl, JSON.stringify({
-  //         firstName: firstName,
-  //         lastName: lastName,
-  //         email: email,
-  //         username: username,
-  //         password: password,
-  //         role: role
-  //       }), {headers: this.headers})
-  //       .toPromise()
-  //       .then(res => res.json().data)
-  //       .catch(this.handleError);
-  // }
-
   // getUser(id: number): Promise<User> {
   //   return this.http.get(this.userUrl)
   //         .toPromise()
   //         .then(response => response.json().data)
-  //         .catch(this.handleError);
+  //         // .catch(this.handleError);
+  // }
+
+  // loginUser(username: string, password:string): Observable<boolean> {
+    //if the username and password match
+      //update local storage
+      //redirect to the mainpage
+    // return this.http
+              //  .post(this.loginUserUrl, JSON.stringify({username: username, password: password}))
+              //  .map((response: Response) => {
+              //    console.log('this is the response:', response)
+              //    let res = response.json();
+              //    if(res) {
+              //      window.localStorage.userId = res.userId;
+              //      window.localStorage.userName = res.username;
+              //      return true;
+              //    } else {
+              //      return false
+              //    }
+              //  })
   // }
 
   // getUserList(): Promise<User[]> {
