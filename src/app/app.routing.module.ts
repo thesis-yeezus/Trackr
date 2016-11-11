@@ -23,7 +23,7 @@ const routes: Routes = [
     //ie. main and job-form
 
   //JEFF - 11/11/16, "otherwise redirect to splash/home page"
-  { path: '...', redirectTo: ''}
+  { path: '*', redirectTo: ''}
 ];
 
 @NgModule({

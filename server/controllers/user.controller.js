@@ -25,7 +25,11 @@ userController.createUser = function(req, res) {
   userModel.createUser(req.body)
     .then(function(data) {
       // console.log('HERES SOME DATA', data);
-      res.send(data)
+      // res.send(data)
+      res.sendStatus(200);
+    })
+    .catch(function(err) {
+      res.status(400).send(err);
     })
 };
 
