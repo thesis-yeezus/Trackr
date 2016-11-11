@@ -10,6 +10,9 @@ var passport = require('passport');
 var LinkedInStrategy = require('passport-linkedin').Strategy;
 var session = require('express-session');
 var db = require('./db').db;
+var cookieParser = require('cookie-parser');
+var jwt = require('jwt-simple');
+var moment = require('moment');
 var User = require('./db').User;
 
 var app = express();
@@ -20,7 +23,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(cookieParser("keyboard cat"));
 app.use(session({ 
   secret: 'keyboard cat', 
   resave: false,
@@ -46,7 +49,6 @@ passport.use(new LinkedInStrategy({
   },
   function(token, tokenSecret, profile, done) {
     process.nextTick(function () {
-      console.log("this is profile ", profile)
       User.findOrCreate({
         where: {
           firstName: profile.name.givenName,
@@ -67,7 +69,22 @@ app.get('/api/auth/linkedin',
 app.get('/api/auth/linkedin/callback', 
   passport.authenticate('linkedin', { failureRedirect: '/signup' }),
   function(req, res) {
+    // console.log("This is req", req.user)
+    var token = jwt.encode({
+        iss: req.user.id,
+        exp: moment().add(7, 'd').valueOf()
+      }, process.env.SECRET);
+   res.cookie('token', token)
+
+
+    var userObj = {
+      username: req.user.id,
+      firstName: req.user.name.givenName,
+      lastName: req.user.name.familyName,
+      email: req.user.emails[0].value
+    }
     // Successful authentication, redirect home.
+    res.status(200).cookie('user', JSON.stringify(userObj));
     res.redirect('/main');
 });
 
