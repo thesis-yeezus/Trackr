@@ -56,17 +56,10 @@ passport.use(new LinkedInStrategy({
           email: profile.emails[0].value,
           username: profile.id
         } 
-      });
-      console.log("this is profile ", profile)
-      User.findOrCreate({
-        where: {
-          firstName: profile.name.givenName,
-          lastName: profile.name.familyName,
-          email: profile.emails[0].value,
-          username: profile.id
-        } 
-      });
-      return done(null, profile);
+      })
+      .then(function(user) {
+        return done(null, user);
+      })
     })
   }));
 
@@ -79,19 +72,20 @@ app.get('/api/auth/linkedin/callback',
   passport.authenticate('linkedin', { failureRedirect: '/signup' }),
   function(req, res) {
     // console.log("This is req", req.user)
-    var token = jwt.encode({
-        iss: req.user.id,
-        exp: moment().add(7, 'd').valueOf()
-      }, process.env.SECRET);
-   res.cookie('token', token)
-
-    var userObj = {
-      username: req.user.id,
-      firstName: req.user.name.givenName,
-      lastName: req.user.name.familyName,
-      email: req.user.emails[0].value
-    }
-    res.status(200).cookie('user', JSON.stringify(userObj));
+  //   var token = jwt.encode({
+  //       iss: req.user.id,
+  //       exp: moment().add(7, 'd').valueOf()
+  //     }, process.env.SECRET);
+  //  res.cookie('token', token)
+  console.log("this is req", req.user)
+     var userId = req.user[0].dataValues.id
+     var username = req.user[0].dataValues.username
+      // username: req.user.id,
+      // firstName: req.user.name.givenName,
+      // lastName: req.user.name.familyName,
+      // email: req.user.emails[0].value
+    // Successful authentication, redirect home.
+    res.status(200).cookie('userId', userId).cookie('username', username);
     res.redirect('/main');
 });
 
