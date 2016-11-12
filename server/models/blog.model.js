@@ -14,7 +14,7 @@ blogModel.postBlog = function(newBlog, keywords, username) {
   .then(function(user) {
     console.log("This is user", user)
     return Blog.create({
-      userId: user.dataValues.id,
+      id: user.dataValues.id,//JEFFY00
       content: newBlog.content
     })
     .then(function(blog) {

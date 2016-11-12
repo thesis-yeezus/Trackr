@@ -23,17 +23,21 @@ userModel.createUser = function(user) {
 
 //functions to grab from the db, Oliver made this
 userModel.loginUser = function(username, password) {
+  console.log('inside loginuser in userModel:', username, password)
   return User.find({
       where: {
         username: username,
         password: password
       }
     })
-    .then(function(users) {
-        if (users === null) {
+    .then(function(user) {
+      console.log('what is the user?:', user)
+        if (user === null) {
+          console.log('Users not found in userModel.loginUser')
           return 'No users found'
         } 
-        return users
+        console.log('Users have been found in userModel.loginUser:', user)
+        return user
     })
 }
 

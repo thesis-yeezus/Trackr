@@ -70,7 +70,11 @@ export class MainComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    this.getRowData(window.localStorage.username);
+    var self = this;
+    setTimeout(function(){
+      self.getRowData(window.localStorage.username);
+    },500)
+    
   }
 
   private getRowData(user: string) {

@@ -32,7 +32,11 @@ export class SignupComponent implements OnInit {
     //call a method inside the user.service
     //after it successes, say success
     this.userService.createUser(formObj);
-    this.router.navigate(['/main']);
+    // this.router.navigate(['/main'])
+    var here = this;
+    setTimeout(function(){
+      here.router.navigate(['/main'])
+    }, 1000)
       // .subscribe
     // formObj = {};
   }
