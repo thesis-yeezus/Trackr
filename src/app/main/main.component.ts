@@ -66,13 +66,13 @@ export class MainComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     // make a get request for all jobs
-    this.getRowData(window.localStorage.username);
+    this.getRowData(window.localStorage["username"]);
   }
 
   ngAfterContentInit() {
     var self = this;
     setTimeout(function(){
-      self.getRowData(window.localStorage.username);
+      self.getRowData(window.localStorage["username"]);
     },500)
     
   }

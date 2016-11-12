@@ -24,10 +24,11 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
   
+
   createUser(formObj) {
-    
+
     console.log('dis is the user:', formObj);
-    window.localStorage.username = formObj.username;
+    window.localStorage["username"] = formObj.username;
     console.log('this is window.localStorage:', window.localStorage);
     //call a method inside the user.service
     //after it successes, say success

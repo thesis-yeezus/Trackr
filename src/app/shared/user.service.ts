@@ -39,7 +39,7 @@ export class UserService {
       .subscribe((response) => {
         console.log('made it back to user.service.ts')
         console.log(`The user has been added.`, response.json())
-        window.localStorage.userId = response.json().id;
+        window.localStorage["userId"] = response.json().id;
       })
   }
 
@@ -62,8 +62,8 @@ export class UserService {
                  let res = response.json();
                  console.log(res);
                  if(res) {
-                   window.localStorage.userId = res.id;
-                   window.localStorage.username = res.username;
+                   window.localStorage["userId"] = res.id;
+                   window.localStorage["username"] = res.username;
                    return true;
                  } else {
                    return false

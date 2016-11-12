@@ -28,13 +28,13 @@ export class JobFormComponent implements OnInit {
       contactNumber: '',
       comments: '',
       date: 'mm/dd/yyyy',
-      userId: parseInt(window.localStorage.userId)
+      userId: parseInt(window.localStorage["userId"])
       }
     };
   
   save(post: JobPosting, isValid: boolean) {
     console.log(post, isValid);
-    post.userId = parseInt(window.localStorage.userId);
+    post.userId = parseInt(window.localStorage["userId"]);
     post.date = null;
     this.jobListService.createJob(post);
     this.router.navigate(['/main']);
