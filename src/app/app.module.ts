@@ -19,7 +19,7 @@ import { JobFormComponent }      from './main/job-form.component';
 import { AuthGuard }             from './shared/auth.guards';
 import { AuthenticationService } from './shared/authentication.service';
 import { UserService }           from './shared/user.service';
-import { LinkedinComponent } from './linkedin/linkedin.component';
+import { LinkedinComponent }     from './linkedin/linkedin.component';
 
 // import {UserService} from './shared/user.service'
 
