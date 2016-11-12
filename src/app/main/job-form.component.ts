@@ -27,10 +27,14 @@ export class JobFormComponent implements OnInit {
       contactEmail: '',
       contactNumber: '',
       comments: '',
-      date: 'mm/dd/yyyy',
+      date: 'yyyy-dd-mm',
       userId: parseInt(window.localStorage["userId"])
       }
     };
+
+  back() {
+    this.router.navigate(['/main']);
+  }
   
   save(post: JobPosting, isValid: boolean) {
     console.log(post, isValid);
