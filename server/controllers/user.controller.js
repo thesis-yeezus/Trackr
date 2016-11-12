@@ -26,10 +26,13 @@ userController.createUser = function(req, res) {
   console.log('Inside of createUser!!', req.body)
   userModel.createUser(req.body)
     .then(function(data) {
-      res.send(data)
-      // Data being sent back is the User
-      console.log('what is coming back?:', data)
-      res.sendStatus(200);
+      console.log("data", data.dataValues)
+      // Create cookie while user is created & send id to front-end.
+      var userIdObj = {
+        userId: data.dataValues.id
+      }
+      res.cookie('userId', JSON.stringify(userIdObj))
+      res.status(200).send(data)
     })
     .catch(function(err) {
       res.status(400).send(err);

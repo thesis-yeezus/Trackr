@@ -14,8 +14,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/splash', pathMatch: 'full' },
   { path: 'splash', component: SplashComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'main',  component: MainComponent, canActivate: [AuthGuard]},
-  { path: 'job-form', component: JobFormComponent, canActivate: [AuthGuard]},
+  { path: 'main',  component: MainComponent},
+  { path: 'job-form', component: JobFormComponent},
+  //took out AuthGuard to make linkedin work
   
   //Add logout button to job-form and main
     // Not a redirect, but a void!

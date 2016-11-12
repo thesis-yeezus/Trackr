@@ -74,6 +74,15 @@ export class MainComponent implements OnInit, AfterContentInit {
     setTimeout(function(){
       self.getRowData(window.localStorage["username"]);
     },500)
+
+   const splitCookie = document.cookie.split(';')
+   splitCookie.forEach(cookie => {
+     if (cookie.indexOf('userId') !== -1) {
+       localStorage.userId = cookie.slice(8);
+     } else if (cookie.indexOf('username') !== -1) {
+       localStorage.username = cookie.slice(10);
+     }
+   })
     
   }
 
