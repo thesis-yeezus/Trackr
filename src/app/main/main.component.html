@@ -7,6 +7,7 @@
       [gridOptions]="gridOptions"
       [showToolPanel]="showToolPanel"
       [rowData]="rowData"
+      
 
       enableColResize
       enableSorting
@@ -19,7 +20,7 @@
       rowSelection="multiple">
     <ag-grid-column headerName="Date">
       <ag-grid-column headerName="Applied" field="date" [width]="100" [suppressSorting]="true" [suppressMenu]="true"></ag-grid-column>
-      <ag-grid-column headerName="Since Applied" field="date" [width]="120" ></ag-grid-column>
+      <ag-grid-column headerName="Since Applied" field="remaining" [width]="120" ></ag-grid-column>
     </ag-grid-column>
     <ag-grid-column headerName="Company">
       <ag-grid-column headerName="Name" field="companyName" [width]="150" ></ag-grid-column>

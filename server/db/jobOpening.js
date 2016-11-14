@@ -10,7 +10,8 @@ module.exports = function(db) {
     contactNumber: { type: Sequelize.STRING, defaultValue: null },
     comments: { type: Sequelize.STRING, defaultValue: null },
     interview: { type: Sequelize.BOOLEAN, defaultValue: null },
-    pursuing: { type: Sequelize.BOOLEAN, defaultValue: null }
+    pursuing: { type: Sequelize.BOOLEAN, defaultValue: null },
+    date: { type: Sequelize.STRING, defaultValue: null }
   });
 
   return JobOpening; 

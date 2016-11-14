@@ -39,7 +39,6 @@ export class JobFormComponent implements OnInit {
   save(post: JobPosting, isValid: boolean) {
     console.log(post, isValid);
     post.userId = parseInt(window.localStorage["userId"]);
-    post.date = null;
     this.jobListService.createJob(post);
     this.router.navigate(['/main']);
   }
