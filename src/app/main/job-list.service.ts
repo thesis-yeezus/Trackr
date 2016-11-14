@@ -23,6 +23,7 @@ export class JobListService {
 
   createJob(posting: JobPosting
     ): Promise<JobPosting> {
+      console.log(posting,"This is posting")
       return this.http
         .post(this.jobListUrl+'job-opening', JSON.stringify(
           posting
