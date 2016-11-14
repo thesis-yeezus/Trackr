@@ -5,6 +5,8 @@ import { GridOptions, IFilter } from 'ag-grid/main';
 
 import { JobListService } from './job-list.service';
 
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -78,9 +80,9 @@ export class MainComponent implements OnInit, AfterContentInit {
    const splitCookie = document.cookie.split(';')
    splitCookie.forEach(cookie => {
      if (cookie.indexOf('userId') !== -1) {
-       localStorage.userId = cookie.slice(7);
+       localStorage["userId"] = cookie.slice(7);
      } else if (cookie.indexOf('username') !== -1) {
-       localStorage.username = cookie.slice(10);
+       localStorage["username"] = cookie.slice(10);
      }
    })
     
@@ -89,6 +91,17 @@ export class MainComponent implements OnInit, AfterContentInit {
   private getRowData(user: string) {
     this.joblistService.getJobList(user).then(jobList => {
       this.rowData = jobList;
+      this.rowData.forEach(function(row) {
+        var day:any = moment(row.date);
+        var today:any = moment().startOf('day');
+        if(row.date === null) {
+          row["remaining"] = "Invalid Date"
+        } else if(Math.round((today - day) / 86400000) === 1) { 
+          row["remaining"] = "1 day ago"
+        } else {
+          row["remaining"] = Math.round((today - day) / 86400000) + " days ago"
+        }
+      })
       console.log(this.rowData)
     })
   }
