@@ -52,7 +52,6 @@ export class MainComponent implements OnInit, AfterContentInit {
   private rowData: any[];
   private columnDefs: any[];
   private rowCount: string;
-  
 
   constructor(
     private router: Router,
@@ -60,6 +59,7 @@ export class MainComponent implements OnInit, AfterContentInit {
   ) {
     // we pass an empty gridOptions in, so we can grab the api out
     this.gridOptions = <GridOptions>{};
+
     //this.getRowData();
     this.showGrid = true;
    }
@@ -75,15 +75,16 @@ export class MainComponent implements OnInit, AfterContentInit {
       self.getRowData(window.localStorage["username"]);
     },500)
 
-   const splitCookie = document.cookie.split(';')
-   splitCookie.forEach(cookie => {
-     if (cookie.indexOf('userId') !== -1) {
-       localStorage.userId = cookie.slice(7);
-     } else if (cookie.indexOf('username') !== -1) {
-       localStorage.username = cookie.slice(10);
-     }
-   })
-    
+    if(document.cookie) {
+      const splitCookie = document.cookie.split(';')
+      splitCookie.forEach(cookie => {
+        if (cookie.indexOf('userId') !== -1) {
+          localStorage['userId'] = cookie.slice(7);
+        } else if (cookie.indexOf('username') !== -1) {
+          localStorage['username'] = cookie.slice(10);
+        }
+      })
+    }
   }
 
   private getRowData(user: string) {
@@ -94,7 +95,18 @@ export class MainComponent implements OnInit, AfterContentInit {
   }
 
   private redirectToJob() {
-    this.router.navigate(['/job-form'])
+    this.router.navigate(['/job-form']);
+  }
+
+  private saveJob() {
+
+  }
+
+  private removeJob() {
+    console.log("removeJob", this.gridOptions.api.getSelectedNodes())
+     this.gridOptions.api.forEachNode( function(node) {
+       console.log(node.data);
+    });
   }
 
 }

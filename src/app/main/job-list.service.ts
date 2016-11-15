@@ -46,4 +46,18 @@ export class JobListService {
             .catch(this.handleError)
   }
 
+  editJobs(user: string): Promise<any[]> {
+    return this.http.put(this.jobListUrl, user, {headers: this.headers})
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError)
+  }
+
+  deleteJob(jobId: number): Promise<any[]> {
+    return this.http.delete(this.jobListUrl, {headers: this.headers})
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError)
+  }
+
 }
