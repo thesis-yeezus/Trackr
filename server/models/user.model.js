@@ -1,43 +1,50 @@
 var User = require('../db').User;
+var bcrypt = require('bcrypt-nodejs');
 
 var userModel = {};
 
 userModel.createUser = function(user) {
-  console.log('da fuq', user)
-  // This function accepts an object with a first name, last name, email, and password
+  console.log('In user.model.js in the server, this is the user:', user);
+
+  // Hashing the password
+  var salt = bcrypt.genSaltSync(5);
+  var hashedPassword = bcrypt.hashSync(user.password, salt);
+
   return User.create({
     username: user.username,
-    password: user.password,
+    password: hashedPassword,
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email
   })
     .then(function(user) {
       return user
-      // ^ is returning the user info
     })
     .catch(function(err) {
       console.err(err)
     })
 }
 
-//functions to grab from the db, Oliver made this
 userModel.loginUser = function(username, password) {
-  console.log('inside loginuser in userModel:', username, password)
   return User.find({
       where: {
-        username: username,
-        password: password
+        username: username
       }
     })
     .then(function(user) {
       console.log('what is the user?:', user)
-        if (user === null) {
-          console.log('Users not found in userModel.loginUser')
-          return 'No users found'
-        } 
-        console.log('Users have been found in userModel.loginUser:', user)
-        return user
+      if (user === null) {
+        console.log('User not found in DB')
+        return 'No users found'
+      }
+      var result = bcrypt.compareSync(password, user.password)
+    
+      if (result === false) {
+        console.log('Incorrect Password')
+        return 'Incorrect Password'
+      }
+      console.log('Users have been found in DB:', user)
+      return user
     })
 }
 

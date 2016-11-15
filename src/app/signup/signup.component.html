@@ -1,5 +1,4 @@
 <button class="ui left attached button" (click)="redirectToHomePage()">Go Back To The Homepage</button>
-<!--<button class="right attached ui button">Already a registered user?</button>-->
 <app-login ></app-login>
 
 <h2>
@@ -10,12 +9,10 @@
   <div class="fields">
     <div class="field">
       <label>First Name</label>
-      <!--Below is the first way to do the formControl-->
-      <input type="text" placeholder="First Name" formControlName="firstName" [ngClass]="{'error': signupForm.controls['firstName'].invalid && signupForm.controls['firstName'].touched}">
+      <input type="text" placeholder="First Name" [formControl]="signupForm.controls['firstName']" [ngClass]="{'error': signupForm.controls['firstName'].invalid && signupForm.controls['firstName'].touched}">
     </div> 
     <div class="field">
       <label>Last Name</label> 
-      <!--Below is the other way to do the formControl-->
       <input type="text" placeholder="Last Name" [formControl]="signupForm.controls['lastName']" [ngClass]="{'error': signupForm.controls['lastName'].invalid && signupForm.controls['lastName'].touched}">
     </div>
   </div>
@@ -46,8 +43,3 @@
   </div>
   <button class="ui button" type="submit" [disabled]="!signupForm.valid || signupForm.pristine">Submit</button>
 </form>
-
-<!--Can also include field errors, disabled fields, warnings, 
-Should we include terms? We can "I agree to the Terms and Conditions" checkboxes
-http://semantic-ui.com/collections/form.html-->
-<!--11.9.16 - Jeff, add required fields for required fields-->
