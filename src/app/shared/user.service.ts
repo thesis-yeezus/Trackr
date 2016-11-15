@@ -28,32 +28,20 @@ export class UserService {
   private options = new RequestOptions({ headers: this.headers });
   private createUserUrl = '/api/user/createUser';
   private loginUserUrl = '/api/user/loginUser';
-  // private handleError(error: any): Promise<any> {
-  //   console.error('An error occurred', error);
-  //   return Promise.reject(error.message || error);
-  // }
 
   createUser(user: any) {
     console.log('The user', user)
     this.http.post(this.createUserUrl, JSON.stringify(user), {headers: this.headers})
       .subscribe((response) => {
-        console.log('made it back to user.service.ts')
-        console.log(`The user has been added.`, response.json())
+        console.log(`Made it back to user.service.ts and the user has been added:`, response.json())
         window.localStorage["userId"] = response.json().id;
       })
   }
 
-  // getUser(id: number): Promise<User> {
-  //   return this.http.get(this.userUrl)
-  //         .toPromise()
-  //         .then(response => response.json().data)
-  //         // .catch(this.handleError);
-  // }
-
-  //MIGHT BE ABLE TO DELETE THIS BELOW!!
+  
   loginUser(username, password): Observable<boolean> {
     console.log('are we making it here?:',username, password)
-    // JEFF//ABOVE CONSOLE WORKS, SO DATA IS GETTING HERE
+    
     return this.http
                .post(this.loginUserUrl, JSON.stringify({username: username, password: password}), {headers: this.headers})
                .map((response: Response) => {
@@ -71,7 +59,13 @@ export class UserService {
                })
   }
   
-
+  // getUser(id: number): Promise<User> {
+  //   return this.http.get(this.userUrl)
+  //         .toPromise()
+  //         .then(response => response.json().data)
+  //         // .catch(this.handleError);
+  // }
+  
   // getUserList(): Promise<User[]> {
   //   return this.http.get(this.userUrl)
   //           .toPromise()
