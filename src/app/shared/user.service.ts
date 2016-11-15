@@ -70,6 +70,7 @@ export class UserService {
                  }
                })
   }
+  
 
   // getUserList(): Promise<User[]> {
   //   return this.http.get(this.userUrl)

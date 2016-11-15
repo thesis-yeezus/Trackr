@@ -6,52 +6,48 @@
   User Registration
 </h2>
 
-<form name="signup" #f="ngForm" class="ui form" (ngSubmit)="createUser(f.value)"> 
+<form [formGroup]="signupForm" class="ui form" (ngSubmit)="createUser(signupForm.value)"> 
   <div class="fields">
     <div class="field">
       <label>First Name</label>
-      <input type="text" placeholder="First Name" name="firstName" ngModel>
-    </div> {{firstName}}{{lastName}}{{username}}{{password}}
+      <!--Below is the first way to do the formControl-->
+      <input type="text" placeholder="First Name" formControlName="firstName" [ngClass]="{'error': signupForm.controls['firstName'].invalid && signupForm.controls['firstName'].touched}">
+    </div> 
     <div class="field">
-      <label>Last Name</label>
-      <input type="text" placeholder="Last Name" name="lastName" ngModel>
+      <label>Last Name</label> 
+      <!--Below is the other way to do the formControl-->
+      <input type="text" placeholder="Last Name" [formControl]="signupForm.controls['lastName']" [ngClass]="{'error': signupForm.controls['lastName'].invalid && signupForm.controls['lastName'].touched}">
     </div>
   </div>
   <div class="two fields">
     <div class="field">
       <label>Username</label>
-      <input type="text" placeholder="Username" name="username" ngModel>
+      <input type="text" placeholder="Username" [formControl]="signupForm.controls['username']" [ngClass]="{'error': signupForm.controls['username'].invalid && signupForm.controls['username'].touched}">
     </div>
   </div>
   <div class="three fields">
     <div class="field">
       <label>Password</label>
-      <input type="password" placeholder="password" name="password" ngModel>
+      <input type="password" placeholder="Password" [formControl]="signupForm.controls['password']" [ngClass]="{'error': signupForm.controls['password'].invalid && signupForm.controls['password'].touched}">
     </div>
   </div>
   <div class="fields">
     <div class="field">
       <label>Re-type Password</label>
-      <input type="password" placeholder="Re-type Password" name="passwordCheck" ngModel>
+      <input type="password" placeholder="Re-type Password" [formControl]="signupForm.controls['confirmPassword']" [ngClass]="{'error': signupForm.value.password !== signupForm.value.confirmPassword}">
+      <small *ngIf="signupForm.value.password !== signupForm.value.confirmPassword">Password is not the same</small>
     </div>
   </div>
   <div class="fields">
     <div class="field">
       <label>E-mail Address</label>
-      <input type="text" placeholder="E-mail Address" name="email" ngModel>
+      <input type="email" asyncValidator placeholder="E-mail Address" [formControl]="signupForm.controls['email']" [ngClass]="{'error': signupForm.controls['email'].invalid && signupForm.controls['email'].touched}">
     </div>
   </div>
-  <button class="ui button" type="submit">Submit</button>
+  <button class="ui button" type="submit" [disabled]="!signupForm.valid || signupForm.pristine">Submit</button>
 </form>
 
 <!--Can also include field errors, disabled fields, warnings, 
 Should we include terms? We can "I agree to the Terms and Conditions" checkboxes
 http://semantic-ui.com/collections/form.html-->
 <!--11.9.16 - Jeff, add required fields for required fields-->
-
-<!--For Testing Purposes-->
-<h2>Testing Purposes</h2>
-<label>UserName</label>
-<input type="text" placeholder="username">
-<label>Password</label>
-<input type="password" placeholder="Password">
