@@ -37,33 +37,29 @@ jobOpeningModel.getJobs = function(username) {
 }
 
 jobOpeningModel.deleteJob = function(jobId) {
-  return JobOpening.findOne({
+  return JobOpening.destroy({
     where: {
-
+      id: jobId
     }
   })
-    .then(function(job) {
-      return JobOpening.findOne
+    .then(function(num) {
+      console.log("deleteJob NUM?", num)
+      return num
     })
     .catch(function(err) {
       console.err(err)
     })
 }
 
-jobOpeningModel.updateJobs = function(username) {
-  return User.findOne({
+jobOpeningModel.updateJobs = function(job) {
+  return JobOpening.update(job, {
     where: {
-      username: username
+      id: job.id
     }
   })
-    .then(function(user) {
-      return JobOpening.findAll({
-
-      })
-    })
-    .then(function(job) {
-
-    })
+  .then(function(res) {
+    return res
+  })
     .catch(function(err) {
       console.err(err)
     })

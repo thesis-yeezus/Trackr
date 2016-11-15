@@ -66,7 +66,6 @@ export class MainComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     // make a get request for all jobs
-    this.getRowData(window.localStorage["username"]);
   }
 
   ngAfterContentInit() {
@@ -99,14 +98,25 @@ export class MainComponent implements OnInit, AfterContentInit {
   }
 
   private saveJob() {
+    console.log(this.rowData);
+    this.rowData.forEach(ele => {
+      this.joblistService.editJobs(ele).then(updatedList => {
 
+      })
+    })
   }
 
   private removeJob() {
+    var self = this;
     console.log("removeJob", this.gridOptions.api.getSelectedNodes())
-     this.gridOptions.api.forEachNode( function(node) {
-       console.log(node.data);
-    });
+    this.gridOptions.api.getSelectedNodes().forEach(ele => {
+      self.joblistService.deleteJob(ele.data.id).then(e => {
+        console.log('does it even go here?')
+      })
+    })
+    setTimeout(function(){
+      self.getRowData(window.localStorage["username"]);
+    },1000)
   }
 
 }
