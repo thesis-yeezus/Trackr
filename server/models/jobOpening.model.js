@@ -9,7 +9,7 @@ jobOpeningModel.createRow = function(job) {
       return result
     })
     .catch(function(err) {
-      return err
+     console.err(err)
       // console.log(err)
     })
 }
@@ -31,6 +31,39 @@ jobOpeningModel.getJobs = function(username) {
         return jobs
     })
   })
+    .catch(function(err) {
+      console.err(err)
+    })
+}
+
+jobOpeningModel.deleteJob = function(jobId) {
+  return JobOpening.findOne({
+    where: {
+
+    }
+  })
+    .then(function(job) {
+      return JobOpening.findOne
+    })
+    .catch(function(err) {
+      console.err(err)
+    })
+}
+
+jobOpeningModel.updateJobs = function(username) {
+  return User.findOne({
+    where: {
+      username: username
+    }
+  })
+    .then(function(user) {
+      return JobOpening.findAll({
+
+      })
+    })
+    .then(function(job) {
+
+    })
     .catch(function(err) {
       console.err(err)
     })
