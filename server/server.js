@@ -13,7 +13,9 @@ var db = require('./db').db;
 var cookieParser = require('cookie-parser');
 var jwt = require('jwt-simple');
 var moment = require('moment');
+var CronJob = require('cron').CronJob;
 var User = require('./db').User;
+var JobOpening = require('./db').JobOpening;
 
 var app = express();
 
@@ -32,6 +34,30 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+var job = new CronJob({
+  cronTime: '30 22 19 * * 1-5',
+  onTick: function() {
+    User.findAll()
+      .then(function(userArr) {
+        userArr.forEach(function(user) {
+          JobOpening.findAll({
+            where: {
+              userId: user.dataValues.id
+            }
+          })
+            .then(function(jobs) {
+              jobs.forEach(function(job) {
+                
+              })
+            })
+        })
+      })
+  },
+  start: false,
+  timeZone: 'America/Los_Angeles'
+});
+job.start();
 
 passport.serializeUser(function(user, done) {
   done(null, user);

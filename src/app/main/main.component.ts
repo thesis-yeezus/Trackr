@@ -102,6 +102,7 @@ export class MainComponent implements OnInit, AfterContentInit {
           row["remaining"] = Math.round((today - day) / 86400000) + " days ago"
         }
       })
+      console.log(moment("2016-11-14T21:56:19.083Z").isValid());
       console.log(this.rowData)
     })
   }
