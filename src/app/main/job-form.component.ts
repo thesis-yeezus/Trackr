@@ -42,4 +42,6 @@ export class JobFormComponent implements OnInit {
     this.jobListService.createJob(post);
     this.router.navigate(['/main']);
   }
+
+  
 }

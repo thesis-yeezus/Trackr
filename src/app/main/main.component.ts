@@ -110,4 +110,9 @@ export class MainComponent implements OnInit, AfterContentInit {
     this.router.navigate(['/job-form'])
   }
 
+  private logout() {
+    this.router.navigate(['/splash']);
+    localStorage.clear();
+  }
+
 }
