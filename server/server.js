@@ -31,12 +31,14 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 
+var yesterday = moment().subtract(1, 'days');
+var jobCounter = {};
+
 var job = new CronJob({
-  cronTime: '30 22 19 * * 1-5',
+  cronTime: '00 47 13 * * 1-5',
   onTick: function() {
     User.findAll()
       .then(function(userArr) {
@@ -48,7 +50,15 @@ var job = new CronJob({
           })
             .then(function(jobs) {
               jobs.forEach(function(job) {
-                
+                var jobCreation = moment(job.dataValues.createdAt)
+                if(jobCreation.diff(yesterday) > 0) {
+                  var userId = job.dataValues.userId.toString()
+                  if(jobCounter[userId] === undefined) {
+                    jobCounter[userId] = 1
+                  } else {
+                    jobCounter[userId]++
+                  }
+                }
               })
             })
         })
@@ -58,6 +68,46 @@ var job = new CronJob({
   timeZone: 'America/Los_Angeles'
 });
 job.start();
+
+var job2 = new CronJob({
+  cronTime: '05 47 13 * * 1-5',
+  onTick: function() {
+    for(var key in jobCounter) {
+      if(jobCounter[key] <= 4) {
+        User.findOne({
+          where: {
+            id: key
+          }
+        })
+          .then(function(user) {
+            console.log("This is User email", user.dataValues.email)
+            var helper = require('sendgrid').mail;
+            var from_email = new helper.Email(user.dataValues.email);
+            var to_email = new helper.Email(user.dataValues.email);
+            var subject = 'Hello World from the SendGrid Node.js Library!';
+            var content = new helper.Content('text/plain', 'Hello, Email!');
+            var mail = new helper.Mail(from_email, subject, to_email, content);
+
+            var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+            var request = sg.emptyRequest({
+              method: 'POST',
+              path: '/v3/mail/send',
+              body: mail.toJSON(),
+            });
+
+            sg.API(request, function(error, response) {
+              console.log(response.statusCode);
+              console.log(response.body);
+              console.log(response.headers);
+            });
+          })
+      } 
+    }
+  },
+  start: false,
+  timeZone: 'America/Los_Angeles'
+});
+job2.start();
 
 passport.serializeUser(function(user, done) {
   done(null, user);

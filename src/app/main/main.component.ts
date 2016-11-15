@@ -93,6 +93,7 @@ export class MainComponent implements OnInit, AfterContentInit {
       this.rowData = jobList;
       this.rowData.forEach(function(row) {
         var day:any = moment(row.date);
+        console.log("this is day", day)
         var today:any = moment().startOf('day');
         if(row.date === null) {
           row["remaining"] = "Invalid Date"
@@ -102,7 +103,7 @@ export class MainComponent implements OnInit, AfterContentInit {
           row["remaining"] = Math.round((today - day) / 86400000) + " days ago"
         }
       })
-      console.log(moment("2016-11-14T21:56:19.083Z").isValid());
+      console.log(moment("2016-11-14T21:56:19.083Z", "YYYY-MM-DDTHH:mm:ss.SSSSZ"), "This is moment");
       console.log(this.rowData)
     })
   }
