@@ -25,6 +25,8 @@
     "ag-grid-ng2": "^6.3.0",
     "angular2-modal": "^2.0.1",
     "async": "^2.1.2",
+    "bcrypt": "^0.8.7",
+    "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
