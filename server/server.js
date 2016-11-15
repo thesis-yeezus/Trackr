@@ -14,6 +14,8 @@ var cookieParser = require('cookie-parser');
 var jwt = require('jwt-simple');
 var moment = require('moment');
 var CronJob = require('cron').CronJob;
+var helper = require('sendgrid').mail;
+var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 var User = require('./db').User;
 var JobOpening = require('./db').JobOpening;
 
@@ -81,14 +83,11 @@ var job2 = new CronJob({
         })
           .then(function(user) {
             console.log("This is User email", user.dataValues.email)
-            var helper = require('sendgrid').mail;
             var from_email = new helper.Email(user.dataValues.email);
             var to_email = new helper.Email(user.dataValues.email);
             var subject = 'Hello World from the SendGrid Node.js Library!';
             var content = new helper.Content('text/plain', 'Hello, Email!');
             var mail = new helper.Mail(from_email, subject, to_email, content);
-
-            var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
             var request = sg.emptyRequest({
               method: 'POST',
               path: '/v3/mail/send',
