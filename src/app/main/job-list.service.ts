@@ -25,7 +25,7 @@ export class JobListService {
     ): Promise<JobPosting> {
       console.log(posting,"This is posting")
       return this.http
-        .post(this.jobListUrl+'job-opening', JSON.stringify(
+        .post(this.jobListUrl + 'job-opening', JSON.stringify(
           posting
         ), {headers: this.headers})
         .toPromise()
@@ -45,6 +45,20 @@ export class JobListService {
             .toPromise()
             .then(response => response.json() as any[])
             .catch(this.handleError)
+  }
+
+  editJobs(job: any): Promise<any[]> {
+    return this.http.put(this.jobListUrl + 'job-opening', job, {headers: this.headers})
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError)
+  }
+
+  deleteJob(jobId: number): Promise<any> {
+    return this.http.delete(this.jobListUrl + "job-opening?jobId=" + jobId, {headers: this.headers})
+      .toPromise()
+      .then(response => console.log(".then in delete.job", response))
+      .catch(this.handleError)
   }
 
 }
