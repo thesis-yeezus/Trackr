@@ -67,24 +67,6 @@ export class MainComponent implements OnInit, AfterContentInit {
    }
 
   ngOnInit() {
-    // make a get request for all jobs
-  }
-
-  ngAfterContentInit() {
-    var self = this;
-    setTimeout(function(){
-      self.getRowData(window.localStorage["username"]);
-    },500)
-
-   const splitCookie = document.cookie.split(';')
-   splitCookie.forEach(cookie => {
-     if (cookie.indexOf('userId') !== -1) {
-       localStorage["userId"] = cookie.slice(7);
-     } else if (cookie.indexOf('username') !== -1) {
-       localStorage["username"] = cookie.slice(10);
-     }
-   })
-    
     if(document.cookie) {
       const splitCookie = document.cookie.split(';')
       splitCookie.forEach(cookie => {
@@ -95,6 +77,15 @@ export class MainComponent implements OnInit, AfterContentInit {
         }
       })
     }
+  }
+
+  ngAfterContentInit() {
+    var self = this;
+    setTimeout(function(){
+      self.getRowData(window.localStorage["username"]);
+    },500)
+    
+    
   }
 
   private getRowData(user: string) {
@@ -146,6 +137,8 @@ export class MainComponent implements OnInit, AfterContentInit {
   private logout() {
     this.router.navigate(['/splash']);
     localStorage.clear();
+    document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
   }
 
 }
