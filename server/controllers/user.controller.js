@@ -6,10 +6,8 @@ userController.createUser = function(req, res) {
   userModel.createUser(req.body)
     .then(function(data) {
       // Create cookie while user is created & send id to front-end.
-      var userIdObj = {
-        userId: data.dataValues.id
-      }
-      res.cookie('userId', JSON.stringify(userIdObj))
+      var userId = data.dataValues.id
+      res.cookie('userId',userId)
       res.status(200).send(data)
     })
     .catch(function(err) {
