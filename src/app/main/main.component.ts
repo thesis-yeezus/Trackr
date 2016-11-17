@@ -84,7 +84,7 @@ export class MainComponent implements OnInit, AfterContentInit {
   }
 
   private saveJob() {
-    console.log(this.rowData);
+    console.log("this is row data", this.rowData);
     this.rowData.forEach(ele => {
       this.joblistService.editJobs(ele).then(updatedList => {
 

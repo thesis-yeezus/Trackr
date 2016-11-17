@@ -2,7 +2,7 @@
   main works!
 </p>
 <button class="ui button" (click)="logout()">Logout</button>
-<div style="width: 1000px;">
+<div style="width: 1500px;">
   <ag-grid-ng2 #agGrid style="width: 100%; height: 350px;" class="ag-blue"
       [gridOptions]="gridOptions"
       [showToolPanel]="showToolPanel"
@@ -31,9 +31,9 @@
       <ag-grid-column headerName="Email" field="contactEmail" [width]="150" [editable] = "true"></ag-grid-column>
       <ag-grid-column headerName="Number" field="contactNumber" [width]="150" [editable] = "true"></ag-grid-column>
     </ag-grid-column>
-    <ag-grid-column headerName="Comments">
-      <ag-grid-column headerName="Experiences" field="comments" [width]="150" [editable] = "true"></ag-grid-column>
-    </ag-grid-column>
+    <ag-grid-column headerName="Comments" field="comments" [width]="150" [editable] = "true"></ag-grid-column>
+    <ag-grid-column headerName="Interview" field="interview" [width]="100" [checkboxSelection] = "true"></ag-grid-column>
+    <ag-grid-column headerName="Pursuing" field="pursuing" [width]="100" [checkboxSelection] = "true"></ag-grid-column>
   </ag-grid-ng2>
 </div>
 <button class="ui button primary" (click)="this.redirectToJob()">Add Job</button>
