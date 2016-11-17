@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { GridOptions, IFilter } from 'ag-grid/main';
@@ -15,45 +15,12 @@ import * as moment from 'moment';
 
 export class MainComponent implements OnInit, AfterContentInit {
 
-  private convert() {
-    return 'testingConvert!'
-  }
-
-  private dummyData: any[] = [
-  {
-    id: 1,
-    companyName: 'Google',
-    position: 'Front End dev',
-    url: 'google.com',
-    contactName: 'John Doe',
-    contactEmail: 'john@google.com',
-    contactNumber: '123-123-1234',
-    comments: 'Great!',
-    interview: true,
-    pursuing: true,
-    date: 'January 1st'
-    
-  },
-  {
-    id: 2,
-    companyName: 'Apple',
-    position: 'Back End dev',
-    url: 'apple.com',
-    contactName: 'Jane Doe',
-    contactEmail: 'jane@apple.com',
-    contactNumber: '123-123-2334',
-    comments: 'Great!!!!!!!!!!!!!!',
-    interview: true,
-    pursuing: true,
-    date: this.convert()
-  }
-]
-
   private gridOptions: GridOptions;
   private showGrid: boolean;
   private rowData: any[];
   private columnDefs: any[];
   private rowCount: string;
+  private saveNotification: string = '';
 
   constructor(
     private router: Router,
@@ -64,6 +31,10 @@ export class MainComponent implements OnInit, AfterContentInit {
 
     //this.getRowData();
     this.showGrid = true;
+   }
+
+   onCellValueChanged(e) {
+     this.saveJob()
    }
 
   ngOnInit() {
@@ -119,6 +90,7 @@ export class MainComponent implements OnInit, AfterContentInit {
 
       })
     })
+    this.saveNotification = "Job list saved today at " + moment().format('LTS')
   }
 
   private removeJob() {
