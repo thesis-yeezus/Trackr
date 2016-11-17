@@ -15,7 +15,9 @@
       toolPanelSuppressGroups
       toolPanelSuppressValues
       rowHeight="22"
-      rowSelection="multiple">
+      rowSelection="multiple"
+      (cellValueChanged) = "onCellValueChanged($event)"
+      >
     <ag-grid-column headerName="Date">
       <ag-grid-column headerName="Applied" field="date" [width]="100" [suppressSorting]="true" [suppressMenu]="true" [editable] = "true"></ag-grid-column>
       <ag-grid-column headerName="Since Applied" field="remaining" [width]="120" [editable] = "true"></ag-grid-column>
@@ -35,8 +37,8 @@
   </ag-grid-ng2>
 </div>
 <button class="ui button primary" (click)="this.redirectToJob()">Add Job</button>
-<button class="ui button primary" (click)="this.saveJob()">Save</button>
 <button class="ui button primary" (click)="this.removeJob()">Remove Job</button>
+<div>{{saveNotification}}</div>
 <!--<button class="ui button primary" (click)="myModalNormal.show({inverted: true})">Click me</button>
 <sm-modal title="Hello from Modal" class="" icon="home" #myModalNormal>
     <modal-content>
