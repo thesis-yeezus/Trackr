@@ -37,6 +37,21 @@ jobOpeningModel.getJobs = function(username) {
     })
 }
 
+jobOpeningModel.getJob = function(jobId) {
+  return JobOpening.findOne({
+    where: {
+      id: jobId
+    }
+  })
+    .then(function(job) {
+        console.log('in getJob', job.dataValues)
+        return job
+    })
+    .catch(function(err) {
+      console.err(err)
+    })
+}
+
 jobOpeningModel.deleteJob = function(jobId) {
   return JobOpening.destroy({
     where: {

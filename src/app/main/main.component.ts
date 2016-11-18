@@ -178,6 +178,12 @@ export class MainComponent implements OnInit, AfterContentInit {
     },1000)
   }
 
+  private goToJob() {
+    if(this.gridOptions.api.getSelectedNodes().length !== 0) {
+     this.router.navigate(['/main', this.gridOptions.api.getSelectedNodes()[0].data.id])
+    }
+  }
+
   private logout() {
     this.router.navigate(['/splash']);
     localStorage.clear();
