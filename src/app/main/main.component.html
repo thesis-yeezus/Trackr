@@ -1,8 +1,20 @@
-<p>
-  main works!
-</p>
+<h1>
+  Welcome Back, {{name}}!
+</h1>
 <button class="ui button" (click)="redirectToAccountSettings()">Account Settings</button>
 <button class="ui button" (click)="logout()">Logout</button>
+
+
+<a class="icon-linkedin" rel="nofollow"
+    href="http://www.linkedin.com/"
+    onclick="popUp=window.open(
+        'http://www.linkedin.com/shareArticle?url=http://example.com',
+        'popupwindow',
+        'scrollbars=yes,width=800,height=400');
+    popUp.focus();
+    return false">
+    <i class="visuallyhidden">share on linkedin</i>
+</a>
 
 <div style="width: 1000px;">
   <ag-grid-ng2 #agGrid style="width: 100%; height: 350px;" class="ag-blue"

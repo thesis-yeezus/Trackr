@@ -81,12 +81,13 @@ app.get('/api/auth/linkedin/callback',
   console.log("this is req", req.user)
      var userId = req.user[0].dataValues.id
      var username = req.user[0].dataValues.username
+     var firstName = req.user[0].dataValues.firstName
       // username: req.user.id,
       // firstName: req.user.name.givenName,
       // lastName: req.user.name.familyName,
       // email: req.user.emails[0].value
     // Successful authentication, redirect home.
-    res.status(200).cookie('userId', userId).cookie('username', username);
+    res.status(200).cookie('userId', userId).cookie('username', username).cookie('firstName', firstName);
     res.redirect('/main');
 });
 
