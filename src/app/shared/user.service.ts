@@ -52,12 +52,17 @@ export class UserService {
                  if(res) {
                    window.localStorage["userId"] = res.id;
                    window.localStorage["username"] = res.username;
+                   window.localStorage["firstName"] = res.firstName;
+                   window.localStorage["lastName"] = res.lastName;
+                   window.localStorage["email"] = res.email;
                    return true;
                  } else {
                    return false
                  }
                })
   }
+
+
   
   // getUser(id: number): Promise<User> {
   //   return this.http.get(this.userUrl)

@@ -1,0 +1,79 @@
+<h1>
+  Account Settings
+</h1>
+<button class="ui button" (click)="redirectToMain()">Main Page</button>
+<button class="ui button" (click)="changePassword.show({inverted:false})">Change Password</button>
+<button class="ui button" (click)="logout()">Logout</button>
+
+<h2>Hello, {{firstName}}</h2>
+
+<h3>Username: {{username}}</h3>
+<h3>First Name: {{firstName}}</h3>
+<h3>Last Name: {{lastName}}</h3>
+<h3>E-mail Address: {{email}}</h3>
+
+<!--<form [formGroup]="accountSettings" class="ui form" >
+  <div class="field">
+    <label>Change Username</label>
+    <input type="text" placeholder="Username Required" [formControl]="accountSettings.controls['username']">
+  </div>
+  <div class="fields">
+    <div class="field">
+      <label>Edit First Name</label>
+      <input type="text" placeholder="First Name Required" [formControl]="accountSettings.controls['firstName']">
+    </div>
+    <div class="field">
+      <label>Edit Last Name</label>
+      <input type="text" placeholder="Last Name Required" [formControl]="accountSettings.controls['lastName']">
+    </div>
+  </div>
+</form>-->
+
+<form [formGroup]="accountSettings" class="ui form"> 
+  <div class="fields">
+    <div class="field">
+      <label>Edit First Name</label>
+      <input type="text" placeholder="First Name Required" [formControl]="accountSettings.controls['firstName']" [ngClass]="{'error': accountSettings.controls['firstName'].invalid && accountSettings.controls['firstName'].touched}">
+    </div> 
+    <div class="field">
+      <label>Edit Last Name</label> 
+      <input type="text" placeholder="Last Name Required" [formControl]="accountSettings.controls['lastName']" [ngClass]="{'error': accountSettings.controls['lastName'].invalid && accountSettings.controls['lastName'].touched}">
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Change Username</label>
+      <input type="text" placeholder="Username Required" [formControl]="accountSettings.controls['username']" [ngClass]="{'error': accountSettings.controls['username'].invalid && accountSettings.controls['username'].touched}">
+    </div>
+  </div>
+  <div class="fields">
+    <div class="field">
+      <label>Change E-mail Address</label>
+      <input type="email" asyncValidator placeholder="E-mail Address Required" [formControl]="accountSettings.controls['email']" [ngClass]="{'error': accountSettings.controls['email'].invalid && accountSettings.controls['email'].touched}">
+    </div>
+  </div>
+  <button class="ui primary button" type="submit" [disabled]="!accountSettings.valid || accountSettings.pristine">Save</button>
+  <button class="ui button" (click)="redirectToMain()">Cancel</button>
+</form>
+
+<sm-modal title="Change Password" class="basic" #changePassword>
+  <modal-content>
+    <form [formGroup]="changePW" class="ui form">
+    <div class="three fields">
+        <div class="field">
+          <label>Change Password</label>
+          <input type="password" placeholder="New Password" [formControl]="changePW.controls['password']" [ngClass]="{'error': changePW.controls['password'].invalid && changePW.controls['password'].touched}">
+        </div>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <label>Re-type Password</label>
+          <input type="password" placeholder="Re-type New Password" [formControl]="changePW.controls['confirmPassword']" [ngClass]="{'error': changePW.value.password !== changePW.value.confirmPassword}">
+          <small *ngIf="changePW.value.password !== changePW.value.confirmPassword">Password is not the same</small>
+        </div>
+      </div>
+      <button class="ui button" type="submit" [disabled]="!changePW.valid || changePW.pristine">Submit</button>
+      <button class="ui button" type="submit" (click)="changePassword.hide()">Cancel</button>
+    </form>
+  </modal-content>
+</sm-modal>

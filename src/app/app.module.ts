@@ -21,6 +21,7 @@ import { AuthGuard }             from './shared/auth.guards';
 import { AuthenticationService } from './shared/authentication.service';
 import { UserService }           from './shared/user.service';
 import { LinkedinComponent }     from './linkedin/linkedin.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 // import {UserService} from './shared/user.service'
 
@@ -44,7 +45,8 @@ import { LinkedinComponent }     from './linkedin/linkedin.component';
     SignoutComponent,
     SplashComponent,
     JobFormComponent,
-    LinkedinComponent
+    LinkedinComponent,
+    AccountSettingsComponent
   ],
 
   providers: [
