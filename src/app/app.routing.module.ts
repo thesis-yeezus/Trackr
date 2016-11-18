@@ -6,6 +6,7 @@ import { MainComponent }        from './main/main.component';
 import { JobFormComponent }     from './main/job-form.component';
 import { SignupComponent }      from './signup/signup.component';
 import { AuthGuard }            from './shared/auth.guards';
+import { AccountSettingsComponent }      from './account-settings/account-settings.component';
 //TODO Add other routes
 
 //import './rxjs-extensions';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'main',  component: MainComponent},
   { path: 'job-form', component: JobFormComponent},
+  { path: 'account-settings', component: AccountSettingsComponent},
   //took out AuthGuard to make linkedin work
   
   //Add logout button to job-form and main

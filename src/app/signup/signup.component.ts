@@ -38,6 +38,9 @@ export class SignupComponent implements OnInit {
 
   createUser(user: any) {
     window.localStorage["username"] = user.username;
+    window.localStorage["firstName"] = user.firstName;
+    window.localStorage["lastName"] = user.lastName;
+    window.localStorage["email"] = user.email;
     console.log('dis is the user:', user);
     console.log('this is window.localStorage:', window.localStorage);
     this.userService.createUser(user);
