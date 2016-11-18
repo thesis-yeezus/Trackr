@@ -1,7 +1,9 @@
 <p>
   main works!
 </p>
+<button class="ui button" (click)="redirectToAccountSettings()">Account Settings</button>
 <button class="ui button" (click)="logout()">Logout</button>
+
 <div style="width: 1000px;">
   <ag-grid-ng2 #agGrid style="width: 100%; height: 350px;" class="ag-blue"
       [gridOptions]="gridOptions"

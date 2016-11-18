@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
     .subscribe(result => {
       console.log('inside loginUser in loginComponent')
       if (result === true) {
+        
         // Then redirect to the main page
         this.router.navigate(['/main'])
       } else {

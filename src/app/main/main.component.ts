@@ -106,6 +106,10 @@ export class MainComponent implements OnInit, AfterContentInit {
     },1000)
   }
 
+  private redirectToAccountSettings() {
+    this.router.navigate(['/account-settings']);
+  }
+
   private logout() {
     this.router.navigate(['/splash']);
     localStorage.clear();
