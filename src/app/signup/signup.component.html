@@ -26,7 +26,7 @@
     <div class="field">
       <label>Password</label>
       <input type="password" placeholder="Password" [formControl]="signupForm.controls['password']" [ngClass]="{'error': signupForm.controls['password'].invalid && signupForm.controls['password'].touched}">
-      <small *ngIf="signupForm.controls['password'].invalid && signupForm.controls['password'].touched">Password must contain at least one number</small>  
+      <small *ngIf="signupForm.controls['password'].invalid && signupForm.controls['password'].touched">Password must be at least 6 characters long and contain at least one number</small>  
     </div>
   </div>
   <div class="fields">
