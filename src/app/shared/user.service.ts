@@ -35,6 +35,7 @@ export class UserService {
       .subscribe((response) => {
         console.log(`Made it back to user.service.ts and the user has been added:`, response.json())
         window.localStorage["userId"] = response.json().id;
+        window.localStorage["firstName"] = response.json().firstName;
       })
   }
 

@@ -43,8 +43,12 @@ export class MainComponent implements OnInit, AfterContentInit {
       splitCookie.forEach(cookie => {
         if (cookie.indexOf('userId') !== -1) {
           localStorage['userId'] = cookie.slice(7);
-        } else if (cookie.indexOf('username') !== -1) {
+        }
+        if (cookie.indexOf('username') !== -1) {
           localStorage['username'] = cookie.slice(10);
+        }
+        if (cookie.indexOf('firstName') !== -1) {
+          localStorage['firstName'] = cookie.slice(11)
         }
       })
     }
@@ -55,8 +59,7 @@ export class MainComponent implements OnInit, AfterContentInit {
     setTimeout(function(){
       self.getRowData(window.localStorage["username"]);
     },500)
-    
-    
+    self["name"] = localStorage['firstName'];    
   }
 
   private getRowData(user: string) {
