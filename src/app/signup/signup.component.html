@@ -26,6 +26,7 @@
     <div class="field">
       <label>Password</label>
       <input type="password" placeholder="Password" [formControl]="signupForm.controls['password']" [ngClass]="{'error': signupForm.controls['password'].invalid && signupForm.controls['password'].touched}">
+      <small *ngIf="signupForm.controls['password'].invalid && signupForm.controls['password'].touched">Password must contain at least one number</small>  
     </div>
   </div>
   <div class="fields">
@@ -39,6 +40,7 @@
     <div class="field">
       <label>E-mail Address</label>
       <input type="email" asyncValidator placeholder="E-mail Address" [formControl]="signupForm.controls['email']" [ngClass]="{'error': signupForm.controls['email'].invalid && signupForm.controls['email'].touched}">
+      <small *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched">That doesn't look like a valid Email</small>
     </div>
   </div>
   <button class="ui button" type="submit" [disabled]="!signupForm.valid || signupForm.pristine">Submit</button>
