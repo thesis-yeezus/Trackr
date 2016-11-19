@@ -183,20 +183,15 @@ export class MainComponent implements OnInit, AfterContentInit {
     },1000)
   }
 
-<<<<<<< HEAD
   private redirectToAccountSettings() {
     this.router.navigate(['/account-settings']);
   }
-
-||||||| merged common ancestors
-=======
   private goToJob() {
     if(this.gridOptions.api.getSelectedNodes().length !== 0) {
      this.router.navigate(['/main', this.gridOptions.api.getSelectedNodes()[0].data.id])
     }
   }
 
->>>>>>> feat/jobpage
   private logout() {
     this.router.navigate(['/splash']);
     localStorage.clear();
