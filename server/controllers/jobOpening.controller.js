@@ -25,6 +25,18 @@ jobOpeningController.getJobs = function(req, res) {
     });
 };
 
+jobOpeningController.getJob = function(req, res) {
+  console.log("This is req.query", req.query)
+  jobOpeningModel.getJob(parseInt(req.query.jobId))
+    .then(function(data) {
+      console.log("in jobOpeningController.getJob", data)
+      res.send(data)
+    })
+    .catch(function(err) {
+      res.status(418).send(err);
+    });
+};
+
   jobOpeningController.deleteJob = function(req, res) {
     console.log("Inside deleteJobs")
     jobOpeningModel.deleteJob(req.query.jobId)

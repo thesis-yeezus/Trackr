@@ -34,7 +34,7 @@
       <label>URL</label>
       <input type="text" class="form-control" 
         name="url" [(ngModel)]="jobPosting.url" 
-        #url="ngModel" required minlength="5">
+        #url="ngModel" required minlength="4">
       <small [hidden]="url.valid || (url.pristine && !f.submitted)" class="text-danger">
             URL is required.
           </small>

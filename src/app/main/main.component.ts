@@ -28,6 +28,7 @@ export class MainComponent implements OnInit, AfterContentInit {
   ) {
     // we pass an empty gridOptions in, so we can grab the api out
     this.gridOptions = <GridOptions>{};
+    this.createColumnDefs();
 
     //this.getRowData();
     this.showGrid = true;
@@ -35,6 +36,76 @@ export class MainComponent implements OnInit, AfterContentInit {
 
    onCellValueChanged(e) {
      this.saveJob()
+   }
+
+   private createColumnDefs() {
+     this.columnDefs = [
+      {
+        headerName: "Date",
+        children: [
+          {
+            headerName: "Applied",
+            field: "date",
+            width: 100,
+            suppressSorting: true,
+            suppressMenu: true,
+            editable: true
+          },
+          {
+            headerName: "Since Applied",
+            field: "remaining",
+            width: 120,
+            editable: true
+          }
+        ]
+      },
+      {
+        headerName: "Company",
+        children: [
+          {
+            headerName: "Name",
+            field: "companyName",
+            width: 150,
+            editable: true
+          },
+          {
+            headerName: "Position",
+            field: "position",
+            width: 150,
+            editable: true
+          }
+        ]
+      },
+      {
+        headerName: "Contact",
+        children: [
+          {
+            headerName: "Name",
+            field: "contactName",
+            width: 150,
+            editable: true
+          },
+          {
+            headerName: "Email",
+            field: "contactEmail",
+            width: 150,
+            editable: true
+          },
+          {
+            headerName: "Number",
+            field: "contactNumber",
+            width: 150,
+            editable: true
+          }
+        ]
+      },
+      {
+        headerName: "Comments",
+        field: "comments",
+        width: 150,
+        editable: true
+      }
+    ]
    }
 
   ngOnInit() {
@@ -52,6 +123,7 @@ export class MainComponent implements OnInit, AfterContentInit {
         }
       })
     }
+    
   }
 
   ngAfterContentInit() {
@@ -61,6 +133,8 @@ export class MainComponent implements OnInit, AfterContentInit {
     },500)
     self["name"] = localStorage['firstName'];    
   }
+
+
 
   private getRowData(user: string) {
     this.joblistService.getJobList(user).then(jobList => {
@@ -87,7 +161,7 @@ export class MainComponent implements OnInit, AfterContentInit {
   }
 
   private saveJob() {
-    console.log(this.rowData);
+    console.log("this is row data", this.rowData);
     this.rowData.forEach(ele => {
       this.joblistService.editJobs(ele).then(updatedList => {
 
@@ -109,10 +183,20 @@ export class MainComponent implements OnInit, AfterContentInit {
     },1000)
   }
 
+<<<<<<< HEAD
   private redirectToAccountSettings() {
     this.router.navigate(['/account-settings']);
   }
 
+||||||| merged common ancestors
+=======
+  private goToJob() {
+    if(this.gridOptions.api.getSelectedNodes().length !== 0) {
+     this.router.navigate(['/main', this.gridOptions.api.getSelectedNodes()[0].data.id])
+    }
+  }
+
+>>>>>>> feat/jobpage
   private logout() {
     this.router.navigate(['/splash']);
     localStorage.clear();
