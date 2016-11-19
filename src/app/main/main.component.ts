@@ -118,6 +118,7 @@ export class MainComponent implements OnInit, AfterContentInit {
     localStorage.clear();
     document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "firstName=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
   }
 
 }

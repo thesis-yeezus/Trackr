@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
         // Then redirect to the main page
         this.router.navigate(['/main'])
       } else {
-        // Some error message
+        console.log("Failed to login")
         this.error = 'Username or password is incorrect';
         this.loading = false;
       }
