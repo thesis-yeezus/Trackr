@@ -84,10 +84,12 @@ export class JobPageComponent implements OnInit {
   private itemDate() {
     this.jobPageItems.date = false
   }
-  private save(post: JobPosting, isValid: boolean) {
+  private save(post: any, isValid: boolean) {
     console.log(post, isValid);
-    post.userId = parseInt(window.localStorage["userId"]);
-    this.joblistService.createJob(post);
+    post.id = this.jobData.id;
+    this.joblistService.editJobs(post).then(updatedList => {
+
+      })
     this.router.navigate(['/main']);
   }
 

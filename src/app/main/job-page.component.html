@@ -6,6 +6,7 @@
   <form #f="ngForm" novalidate (ngSubmit)="save(f.value, f.valid)">
 
   <div (click) = "itemCompanyName()">
+    <h2>Company Name</h2>
     <div [hidden]="!jobPageItems.companyName">{{jobData.companyName}}</div>
     <div [hidden]="jobPageItems.companyName">
       <input class="form-control" [(ngModel)]="jobData.companyName" name="companyName" #companyName="ngModel" required minlength="1">
@@ -16,6 +17,7 @@
   </div>
 
   <div (click) = "itemPosition()">
+    <h2>Position</h2>
     <div [hidden]="!jobPageItems.position">{{jobData.position}}</div>
     <div [hidden]="jobPageItems.position">
       <input class="form-control" [(ngModel)]="jobData.position" name="position" #position="ngModel" required minlength="1">
@@ -26,6 +28,7 @@
   </div>
 
   <div (click) = "itemUrl()">
+    <h2>URL</h2>
     <div [hidden]="!jobPageItems.url">{{jobData.url}}</div>
     <div [hidden]="jobPageItems.url">
       <input class="form-control" [(ngModel)]="jobData.url" name="url" #url="ngModel" required minlength="2">
@@ -36,6 +39,7 @@
   </div>
 
   <div (click) = "itemContactName()">
+    <h2>Contact Name</h2>
     <div [hidden]="!jobPageItems.contactName">{{jobData.contactName}}</div>
     <div [hidden]="jobPageItems.contactName">
       <input class="form-control" [(ngModel)]="jobData.contactName" name="contactName" #contactName="ngModel">
@@ -43,6 +47,7 @@
   </div>
 
   <div (click) = "itemContactEmail()">
+    <h2>Contact Email</h2>
     <div [hidden]="!jobPageItems.contactEmail">{{jobData.contactEmail}}</div>
     <div [hidden]="jobPageItems.contactEmail">
       <input class="form-control" [(ngModel)]="jobData.contactEmail" name="contactEmail" #contactEmail="ngModel">
@@ -50,6 +55,7 @@
   </div>
 
   <div (click) = "itemContactNumber()">
+    <h2>Contact Number</h2>
     <div [hidden]="!jobPageItems.contactNumber">{{jobData.contactNumber}}</div>
     <div [hidden]="jobPageItems.contactNumber">
       <input class="form-control" [(ngModel)]="jobData.contactNumber" name="contactNumber" #contactNumber="ngModel">
@@ -57,6 +63,7 @@
   </div>
 
   <div (click) = "itemComments()">
+    <h2>Comment</h2>
     <div [hidden]="!jobPageItems.comments">{{jobData.comments}}</div>
     <div [hidden]="jobPageItems.comments">
       <input class="form-control" [(ngModel)]="jobData.comments" name="comments" #comments="ngModel">
@@ -64,6 +71,7 @@
   </div>
 
   <div (click) = "itemDate()">
+    <h2>Date</h2>
     <div [hidden]="!jobPageItems.date">{{jobData.date}}</div>
     <div [hidden]="jobPageItems.date">
       <input type="text" class="form-control" name="date" [(ngModel)]="jobData.date" #date="ngModel" required pattern="^\d{4}-\d{1,2}-\d{1,2}$">
@@ -74,6 +82,7 @@
   </div>
 
   <div>
+    <h2>Days since</h2>
     <div *ngIf="jobData.remaining">{{jobData.remaining}}</div>
   </div>
     <button type="submit" [disabled]="!f.valid" class="btn btn-default">Submit</button>
