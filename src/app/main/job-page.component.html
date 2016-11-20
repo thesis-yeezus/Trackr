@@ -1,0 +1,90 @@
+<p>
+  job-page works!
+</p>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<div *ngIf="jobData" class="container">
+  <form #f="ngForm" novalidate (ngSubmit)="save(f.value, f.valid)">
+
+  <div (click) = "itemCompanyName()">
+    <h2>Company Name</h2>
+    <div [hidden]="!jobPageItems.companyName">{{jobData.companyName}}</div>
+    <div [hidden]="jobPageItems.companyName">
+      <input class="form-control" [(ngModel)]="jobData.companyName" name="companyName" #companyName="ngModel" required minlength="1">
+      <small [hidden]="companyName.valid || (companyName.pristine && !f.submitted)" class="text-danger">
+        Company name is required.
+      </small>
+    </div>
+  </div>
+
+  <div (click) = "itemPosition()">
+    <h2>Position</h2>
+    <div [hidden]="!jobPageItems.position">{{jobData.position}}</div>
+    <div [hidden]="jobPageItems.position">
+      <input class="form-control" [(ngModel)]="jobData.position" name="position" #position="ngModel" required minlength="1">
+      <small [hidden]="position.valid || (position.pristine && !f.submitted)" class="text-danger">
+        Position is required.
+      </small>
+    </div>
+  </div>
+
+  <div (click) = "itemUrl()">
+    <h2>URL</h2>
+    <div [hidden]="!jobPageItems.url">{{jobData.url}}</div>
+    <div [hidden]="jobPageItems.url">
+      <input class="form-control" [(ngModel)]="jobData.url" name="url" #url="ngModel" required minlength="2">
+      <small [hidden]="url.valid || (url.pristine && !f.submitted)" class="text-danger">
+        Url is required.
+      </small>
+    </div>
+  </div>
+
+  <div (click) = "itemContactName()">
+    <h2>Contact Name</h2>
+    <div [hidden]="!jobPageItems.contactName">{{jobData.contactName}}</div>
+    <div [hidden]="jobPageItems.contactName">
+      <input class="form-control" [(ngModel)]="jobData.contactName" name="contactName" #contactName="ngModel">
+    </div>
+  </div>
+
+  <div (click) = "itemContactEmail()">
+    <h2>Contact Email</h2>
+    <div [hidden]="!jobPageItems.contactEmail">{{jobData.contactEmail}}</div>
+    <div [hidden]="jobPageItems.contactEmail">
+      <input class="form-control" [(ngModel)]="jobData.contactEmail" name="contactEmail" #contactEmail="ngModel">
+    </div>
+  </div>
+
+  <div (click) = "itemContactNumber()">
+    <h2>Contact Number</h2>
+    <div [hidden]="!jobPageItems.contactNumber">{{jobData.contactNumber}}</div>
+    <div [hidden]="jobPageItems.contactNumber">
+      <input class="form-control" [(ngModel)]="jobData.contactNumber" name="contactNumber" #contactNumber="ngModel">
+    </div>
+  </div>
+
+  <div (click) = "itemComments()">
+    <h2>Comment</h2>
+    <div [hidden]="!jobPageItems.comments">{{jobData.comments}}</div>
+    <div [hidden]="jobPageItems.comments">
+      <input class="form-control" [(ngModel)]="jobData.comments" name="comments" #comments="ngModel">
+    </div>
+  </div>
+
+  <div (click) = "itemDate()">
+    <h2>Date</h2>
+    <div [hidden]="!jobPageItems.date">{{jobData.date}}</div>
+    <div [hidden]="jobPageItems.date">
+      <input type="text" class="form-control" name="date" [(ngModel)]="jobData.date" #date="ngModel" required pattern="^\d{4}-\d{1,2}-\d{1,2}$">
+      <small [hidden]="date.valid || (date.pristine && !f.submitted)" class="text-danger">
+        Date is required in YYYY-MM-DD.
+      </small>
+    </div>
+  </div>
+
+  <div>
+    <h2>Days since</h2>
+    <div *ngIf="jobData.remaining">{{jobData.remaining}}</div>
+  </div>
+    <button type="submit" [disabled]="!f.valid" class="btn btn-default">Submit</button>
+  </form>
+</div>

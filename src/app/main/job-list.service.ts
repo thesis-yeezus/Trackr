@@ -33,10 +33,14 @@ export class JobListService {
         .catch(this.handleError);
   }
 
-  getJob(user: string,id: number): Promise<JobPosting> {
-    return this.http.get(this.jobListUrl)
+  getJob(id: number): Promise<any> {
+    console.log("making getJob request")
+    return this.http.get(this.jobListUrl + "job-opening/id/?jobId=" + id)
           .toPromise()
-          .then(response => response.json().data)
+          .then(response => {
+            console.log("getjob Response:", response.json())
+            return response.json()
+          })
           .catch(this.handleError);
   }
 

@@ -27,7 +27,7 @@ export class JobFormComponent implements OnInit {
       contactEmail: '',
       contactNumber: '',
       comments: '',
-      date: 'yyyy-dd-mm',
+      date: 'yyyy-mm-dd',
       userId: parseInt(window.localStorage["userId"])
       }
     };
