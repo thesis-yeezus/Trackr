@@ -28,6 +28,7 @@ export class UserService {
   private options = new RequestOptions({ headers: this.headers });
   private createUserUrl = '/api/user/createUser';
   private loginUserUrl = '/api/user/loginUser';
+  private applySignupSettingsUrl = '/api/user/applySignupSettings';
 
   createUser(user: any) {
     console.log('The user', user)
@@ -61,6 +62,19 @@ export class UserService {
                    return false
                  }
                })
+  }
+
+  applySignupSettings(settings: any, userId: any) {
+    console.log('Are we making it to applySignupSettings?', settings)
+    console.log('The number?', userId)
+    this.http
+        .put(this.applySignupSettingsUrl, JSON.stringify({settings: settings, userId: userId}), {headers: this.headers})
+        .subscribe((response) => {
+          console.log('SUP', response)
+          window.localStorage["receiveEmails"] = response.json().receiveEmails
+          window.localStorage["frequency"] = response.json().frequency
+          window.localStorage["setGoals"] = response.json().goals
+        })
   }
 
 

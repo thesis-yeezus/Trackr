@@ -5,6 +5,7 @@ var userRouter = express.Router();
 
 userRouter.post('/createUser', userController.createUser);
 userRouter.post('/loginUser', userController.loginUser);
+userRouter.put('/applySignupSettings', userController.applySignupSettings);
 
 
 

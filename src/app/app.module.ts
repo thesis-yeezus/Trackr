@@ -23,6 +23,7 @@ import { UserService }           from './shared/user.service';
 import { LinkedinComponent }     from './linkedin/linkedin.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { JobPageComponent }      from './main/job-page.component';
+import { SignupSettingsComponent } from './signup-settings/signup-settings.component';
 
 
 // import {UserService} from './shared/user.service'
@@ -50,7 +51,8 @@ import { JobPageComponent }      from './main/job-page.component';
     LinkedinComponent,
     AccountSettingsComponent,
     LinkedinComponent,
-    JobPageComponent
+    JobPageComponent,
+    SignupSettingsComponent
   ],
 
   providers: [

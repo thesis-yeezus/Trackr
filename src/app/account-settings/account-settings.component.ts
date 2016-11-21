@@ -58,6 +58,7 @@ export class AccountSettingsComponent implements OnInit {
    // Radioboxes: [ ] Yes [x] No
    // If Yes, undisable the form for the goals 
      // Radioboxes for week or day and a form for number
+  // If No, disable the goal form input, and set frequency and goals value to 0;
   // Email notifications? 
 
 // save button at the bottom!!! 
