@@ -47,7 +47,7 @@ export class SignupComponent implements OnInit {
     
     var here = this;
     setTimeout(function(){
-      here.router.navigate(['/main'])
+      here.router.navigate(['/signup-settings'])
     }, 1000)
   }
 

@@ -1,14 +1,18 @@
 import { NgModule }                     from '@angular/core';
 import { RouterModule, Routes }         from '@angular/router';
 
-import { SplashComponent }              from './splash/splash.component';
-import { MainComponent }                from './main/main.component';
-import { JobFormComponent }             from './main/job-form.component';
-import { SignupComponent }              from './signup/signup.component';
-import { AuthGuard }                    from './shared/auth.guards';
-import { AccountSettingsComponent }     from './account-settings/account-settings.component';
-import { JobPageComponent }             from './main/job-page.component';
 
+
+
+
+import { SplashComponent }      from './splash/splash.component';
+import { MainComponent }        from './main/main.component';
+import { JobFormComponent }     from './main/job-form.component';
+import { SignupComponent }      from './signup/signup.component';
+import { AuthGuard }            from './shared/auth.guards';
+import { AccountSettingsComponent }      from './account-settings/account-settings.component';
+import { SignupSettingsComponent } from './signup-settings/signup-settings.component';
+import { JobPageComponent }             from './main/job-page.component';
 //TODO Add other routes
 
 //import './rxjs-extensions';
@@ -17,6 +21,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/splash', pathMatch: 'full' },
   { path: 'splash', component: SplashComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'signup-settings', component: SignupSettingsComponent },
   { path: 'main',  component: MainComponent, canActivate: [AuthGuard]},
   { path: 'main/:id',  component: JobPageComponent, canActivate: [AuthGuard]},
   { path: 'job-form', component: JobFormComponent, canActivate: [AuthGuard]},

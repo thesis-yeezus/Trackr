@@ -48,4 +48,24 @@ userModel.loginUser = function(username, password) {
     })
 }
 
+userModel.applySignupSettings = function(setGoals, receiveEmails, userId) {
+  return User.find({
+    where: {
+      id: userId
+    }
+  })
+  .then(function(user) {
+    user.update({
+      goals: setGoals,
+      receiveEmails: receiveEmails
+    })
+    console.log('the first of two consolelogs')
+    return user;
+  })
+  .catch(function(err) {
+    console.log('Error in userModel.applySignupSettings', err)
+  })
+}
+
+
 module.exports = userModel

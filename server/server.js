@@ -94,10 +94,11 @@ app.get('/api/auth/linkedin/callback',
 
 app.use('/api', router);
 
-// Display error 404 for unknown routes
-app.use(function(req, res) {
-  res.send('Error 404: Page not found');
-});
+// Display error 404 for unknown routes, 
+  //JEFF - DON'T UNCOMMENT THIS
+// app.use(function(req, res) {
+//   res.send('Error 404: Page not found');
+// });
 
 app.listen(port, function() {
   console.log(`server listening on port ${port}`);

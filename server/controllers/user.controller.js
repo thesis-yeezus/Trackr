@@ -27,6 +27,17 @@ userController.loginUser = function(req, res) {
     });
 };
 
+userController.applySignupSettings = function(req, res) {
+  console.log('inside of userController.applySignupSettings', req.body)
+  console.log('inside of userController.applySignupSettingsSETTINGS', req.body.settings)
+  console.log('inside of userController.applySignupSettingsID', req.body.userId)
+  userModel.applySignupSettings(req.body.settings.setGoals, req.body.settings.receiveEmails, req.body.userId)
+    .then(function(data) {
+      console.log('is there even data here?', data)
+      res.status(200).send(data)
+    })
+};
+
 
 
 
