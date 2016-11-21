@@ -54,8 +54,7 @@ export class MainComponent implements OnInit, AfterContentInit {
           {
             headerName: "Since Applied",
             field: "remaining",
-            width: 120,
-            editable: true
+            width: 120
           }
         ]
       },
@@ -104,6 +103,33 @@ export class MainComponent implements OnInit, AfterContentInit {
         field: "comments",
         width: 150,
         editable: true
+      },
+      {
+        headerName: "Appointments",
+        children: [
+          {
+            headerName: "Phone Screen",
+            field: "phoneScreen",
+            width: 150,
+            editable: true
+          },
+          {
+            headerName: "Till Screen",
+            field: "tillPhoneScreen",
+            width: 150
+          },
+          {
+            headerName: "Interview",
+            field: "interview",
+            width: 150,
+            editable: true
+          },
+          {
+            headerName: "Till Interview",
+            field: "tillInterview",
+            width: 150
+          }
+        ]
       }
     ]
    }
@@ -141,6 +167,7 @@ export class MainComponent implements OnInit, AfterContentInit {
     this.joblistService.getJobList(user).then(jobList => {
       this.rowData = jobList;
       this.rowData.forEach(function(row) {
+        console.log("THIS IS ROW DATA", row)
         var day:any = moment(row.date);
         console.log("this is day", day)
         var today:any = moment().startOf('day');
@@ -150,6 +177,23 @@ export class MainComponent implements OnInit, AfterContentInit {
           row["remaining"] = "1 day ago"
         } else {
           row["remaining"] = Math.round((today - day) / 86400000) + " days ago"
+        }
+        var tillPhoneScreen:any = moment(row.phoneScreen) 
+        console.log("what is tillPhoneScreen", row.phoneScreen)
+        if(row.phoneScreenDate === null) {
+          row["tillPhoneScreen"] = "No Date"
+        } else if(Math.round((tillPhoneScreen - today) / 86400000) === 1) { 
+          row["tillPhoneScreen"] = "1 day to go"
+        } else {
+          row["tillPhoneScreen"] = Math.round((tillPhoneScreen - today) / 86400000) + " days to go"
+        }
+        var tillInterview:any = moment(row.interview) 
+        if(row.interviewDate === null) {
+          row["tillInterview"] = "No Date"
+        } else if(Math.round((tillInterview - today) / 86400000) === 1) { 
+          row["tillInterview"] = "1 day to go"
+        } else {
+          row["tillInterview"] = Math.round((tillInterview - today) / 86400000) + " days to go"
         }
       })
       console.log(moment("2016-11-14T21:56:19.083Z", "YYYY-MM-DDTHH:mm:ss.SSSSZ"), "This is moment");

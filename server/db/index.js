@@ -27,7 +27,7 @@ Keyword.belongsToMany(Blog, {through: 'BlogKeyword'});
 // SharedJob.hasMany(User, {as: 'Receiver'});
 JobOpening.hasOne(SharedJob);
 
-// db.sync({force: true});
+//db.sync({force: true});
 db.sync();
 
 module.exports = {

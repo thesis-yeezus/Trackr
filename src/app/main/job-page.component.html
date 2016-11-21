@@ -85,6 +85,28 @@
     <h2>Days since</h2>
     <div *ngIf="jobData.remaining">{{jobData.remaining}}</div>
   </div>
+
+  <div (click) = "itemPhoneScreen()">
+    <h2>Phone Screen</h2>
+    <div [hidden]="!jobPageItems.phoneScreen">{{jobData.phoneScreen}}</div>
+    <div [hidden]="jobPageItems.phoneScreen">
+      <input type="text" class="form-control" name="phoneScreen" [(ngModel)]="jobData.phoneScreen" #phoneScreen="ngModel" required pattern="^\d{4}-\d{1,2}-\d{1,2}$">
+      <small [hidden]="phoneScreen.valid || (phoneScreen.pristine && !f.submitted)" class="text-danger">
+        Required in YYYY-MM-DD format.
+      </small>
+    </div>
+  </div>
+
+  <div (click) = "itemInterview()">
+    <h2>Phone Screen</h2>
+    <div [hidden]="!jobPageItems.interview">{{jobData.interview}}</div>
+    <div [hidden]="jobPageItems.interview">
+      <input type="text" class="form-control" name="interview" [(ngModel)]="jobData.interview" #interview="ngModel" required pattern="^\d{4}-\d{1,2}-\d{1,2}$">
+      <small [hidden]="interview.valid || (interview.pristine && !f.submitted)" class="text-danger">
+        Required in YYYY-MM-DD format.
+      </small>
+    </div>
+  </div>
     <button type="submit" [disabled]="!f.valid" class="btn btn-default">Submit</button>
   </form>
 </div>
