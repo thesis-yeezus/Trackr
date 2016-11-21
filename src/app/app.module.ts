@@ -22,6 +22,7 @@ import { AuthenticationService } from './shared/authentication.service';
 import { UserService }           from './shared/user.service';
 import { LinkedinComponent }     from './linkedin/linkedin.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { SignupSettingsComponent } from './signup-settings/signup-settings.component';
 
 // import {UserService} from './shared/user.service'
 
@@ -46,7 +47,8 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
     SplashComponent,
     JobFormComponent,
     LinkedinComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    SignupSettingsComponent
   ],
 
   providers: [

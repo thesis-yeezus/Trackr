@@ -7,6 +7,7 @@ import { JobFormComponent }     from './main/job-form.component';
 import { SignupComponent }      from './signup/signup.component';
 import { AuthGuard }            from './shared/auth.guards';
 import { AccountSettingsComponent }      from './account-settings/account-settings.component';
+import { SignupSettingsComponent } from './signup-settings/signup-settings.component';
 //TODO Add other routes
 
 //import './rxjs-extensions';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/splash', pathMatch: 'full' },
   { path: 'splash', component: SplashComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'signup-settings', component: SignupSettingsComponent },
   { path: 'main',  component: MainComponent, canActivate: [AuthGuard]},
   { path: 'job-form', component: JobFormComponent, canActivate: [AuthGuard]},
   { path: 'account-settings', component: AccountSettingsComponent},

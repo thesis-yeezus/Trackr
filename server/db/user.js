@@ -7,9 +7,9 @@ module.exports = function(db) {
     email: { type: Sequelize.STRING },
     username: { type: Sequelize.STRING },
     password: { type: Sequelize.STRING },
-    role: { type: Sequelize.STRING },
-    frequency: { type: Sequelize.INTEGER, defaultValue: 1},
-    goals: { type: Sequelize.INTEGER, defaultValue: 5}
+    receiveEmails: { type: Sequelize.BOOLEAN, defaultValue: true },
+    frequency: { type: Sequelize.INTEGER, defaultValue: 1}, //1 is everyday, other options are 3 and 7.
+    goals: { type: Sequelize.INTEGER, defaultValue: null} // in a week
   });
 
   return User; 
