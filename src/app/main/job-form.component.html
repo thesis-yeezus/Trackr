@@ -69,7 +69,7 @@
     </div>
 
     <div class="form-group">
-      <label>Date</label>
+      <label>Date Submitted</label>
       <input type="text" class="form-control" 
         name="date" [(ngModel)]="jobPosting.date" 
         #date="ngModel" required pattern="^\d{4}-\d{1,2}-\d{1,2}$">
@@ -78,7 +78,25 @@
           </small>
     </div>
 
-  
+    <div class="form-group">
+      <label>Phone screen date</label>
+      <input type="text" class="form-control" 
+        name="phoneScreen" [(ngModel)]="jobPosting.phoneScreen" 
+        #phoneScreen="ngModel" pattern="^\d{4}-\d{1,2}-\d{1,2}$">
+      <small [hidden]="phoneScreen.valid || (phoneScreen.pristine && !f.submitted)" class="text-danger">
+           Has to be in YYYY-MM-DD format.
+          </small>
+    </div>
+
+    <div class="form-group">
+      <label>Interview date</label>
+      <input type="text" class="form-control" 
+        name="interview" [(ngModel)]="jobPosting.interview" 
+        #interview="ngModel" pattern="^\d{4}-\d{1,2}-\d{1,2}$">
+      <small [hidden]="interview.valid || (interview.pristine && !f.submitted)" class="text-danger">
+           Has to be in YYYY-MM-DD format.
+          </small>
+    </div>
 
     <button type="reset" class="btn btn-default">Reset</button>
     <button type="submit" [disabled]="!f.valid" class="btn btn-default">Submit</button>

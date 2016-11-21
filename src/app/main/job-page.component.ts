@@ -31,6 +31,8 @@ export class JobPageComponent implements OnInit {
     this.jobPageItems.contactNumber = true;
     this.jobPageItems.comments = true;
     this.jobPageItems.date = true;
+    this.jobPageItems.phoneScreen = true;
+    this.jobPageItems.interview = true;
 
     console.log("Do we have the job id?", this.route.params) 
     this.route.params.forEach((params: Params) => {
@@ -83,6 +85,12 @@ export class JobPageComponent implements OnInit {
   }
   private itemDate() {
     this.jobPageItems.date = false
+  }
+  private itemPhoneScreen() {
+    this.jobPageItems.phoneScreen = false
+  }
+  private itemInterview() {
+    this.jobPageItems.interview = false
   }
   private save(post: any, isValid: boolean) {
     console.log(post, isValid);

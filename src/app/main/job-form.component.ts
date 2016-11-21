@@ -28,6 +28,8 @@ export class JobFormComponent implements OnInit {
       contactNumber: '',
       comments: '',
       date: 'yyyy-mm-dd',
+      phoneScreen: '',
+      interview: '',
       userId: parseInt(window.localStorage["userId"])
       }
     };
@@ -42,6 +44,4 @@ export class JobFormComponent implements OnInit {
     this.jobListService.createJob(post);
     this.router.navigate(['/main']);
   }
-
-  
 }

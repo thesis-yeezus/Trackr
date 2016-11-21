@@ -7,5 +7,7 @@ export interface JobPosting {
   contactNumber: string;
   comments: string;
   date: string;
+  phoneScreen: string;
+  interview: string;
   userId: number;
 }
