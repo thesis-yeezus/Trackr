@@ -19,6 +19,7 @@ var job = new CronJob({
   onTick: function() {
     User.findAll({
       where: {
+        receiveEmails: true,
         frequency: 1
       }
     })
@@ -53,6 +54,7 @@ var threeDayJob = new CronJob({
   onTick: function() {
     User.findAll({
       where: {
+        receiveEmails: true,
         frequency: 3
       }
     })
@@ -86,6 +88,7 @@ var weeklyJob = new CronJob({
   onTick: function() {
     User.findAll({
       where: {
+        receiveEmails: true,
         frequency: 7
       }
     })
@@ -122,6 +125,7 @@ var dailyEmailer = new CronJob({
       if(jobCounter[key] <= oneDayGoals) {
         User.findOne({
           where: {
+            receiveEmails: true,
             frequency: 1
           }
         })
@@ -159,6 +163,7 @@ var threeDayEmailer = new CronJob({
       if(threeDayJobCounter[key] <= threeDayGoals) {
         User.findOne({
           where: {
+            receiveEmails: true,
             frequency: 3
           }
         })
@@ -196,6 +201,7 @@ var weeklyEmailer = new CronJob({
       if(weeklyJobCounter[key] <= weeklyGoals) {
         User.findOne({
           where: {
+            receiveEmails: true,
             frequency: 7
           }
         })

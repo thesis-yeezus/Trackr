@@ -1,9 +1,43 @@
+<div class="ui fixed inverted menu">
+    <div class="ui container">
+      <a href="/splash" class="header item">
+        <img class="logo" src="assets/images/logo.png">
+        Trackr
+      </a>
+      <a href="/main" class="item">Home</a>
+
+      <div class="right menu">
+    <div class="ui simple dropdown item">
+        User Settings <i class="dropdown icon" (click)="redirectToAccountSettings()"></i>
+        <div class="menu">
+          <a class="item" href="#">Link Item</a>
+          <a class="item" href="#">Link Item</a>
+          <div class="divider"></div>
+          <div class="header">Header Item</div>
+          <div class="item">
+            <i class="dropdown icon"></i>
+            Sub Menu
+            <div class="menu">
+              <a class="item" href="#">Link Item</a>
+              <a class="item" href="#">Link Item</a>
+            </div>
+          </div>
+          <a class="item" href="#">Link Item</a>
+        </div>
+      </div>
+    </div>
+    <a class="ui item"(click)="logout()">
+      Logout
+    </a>
+  </div>
+      
+  </div>
 
 <h1>
   Welcome Back, {{name}}!
 </h1>
-<button class="ui button" (click)="redirectToAccountSettings()">Account Settings</button>
-<button class="ui button" (click)="logout()">Logout</button>
+<button class="ui button" >Account Settings</button>
+<button class="ui button" >Logout</button>
 
 <a class="icon-linkedin" rel="nofollow"
     href="http://www.linkedin.com/"

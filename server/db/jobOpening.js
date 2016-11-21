@@ -9,8 +9,8 @@ module.exports = function(db) {
     contactEmail: { type: Sequelize.STRING, defaultValue: null },
     contactNumber: { type: Sequelize.STRING, defaultValue: null },
     comments: { type: Sequelize.STRING, defaultValue: null },
-    interview: { type: Sequelize.BOOLEAN, defaultValue: null },
-    pursuing: { type: Sequelize.BOOLEAN, defaultValue: null },
+    interviewDate: { type: Sequelize.STRING, defaultValue: null },
+    phonescreenDate: { type: Sequelize.STRING, defaultValue: null },
     date: { type: Sequelize.STRING, defaultValue: null }
   });
 
