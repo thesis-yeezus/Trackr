@@ -43,3 +43,7 @@ body{
 .panel .header{
 	margin: 5px 0;
 }
+
+.ui .white {
+	color: white;
+}

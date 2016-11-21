@@ -1,45 +1,40 @@
-<div class="ui fixed inverted menu">
-    <div class="ui container">
+<div class="ui inverted menu">
+    <div class="ui container" style="width:1800px">
       <a href="/splash" class="header item">
-        <img class="logo" src="assets/images/logo.png">
-        Trackr
+        <img class="logo" src="./assets/icon.png">
       </a>
       <a href="/main" class="item">Home</a>
+        <h2 class="ui white header" style="padding-left: 700px;">T r a c k r</h2>
 
       <div class="right menu">
-    <div class="ui simple dropdown item">
-        User Settings <i class="dropdown icon" (click)="redirectToAccountSettings()"></i>
+    <div class="ui simple dropdown item" (click)="redirectToAccountSettings()">
+      {{this.name}}
+         <i class="dropdown icon"></i>
         <div class="menu">
-          <a class="item" href="#">Link Item</a>
-          <a class="item" href="#">Link Item</a>
+          <a class="item">Change Settings</a>
+          <a class="item">Change Password</a>
           <div class="divider"></div>
           <div class="header">Header Item</div>
           <div class="item">
             <i class="dropdown icon"></i>
             Sub Menu
             <div class="menu">
-              <a class="item" href="#">Link Item</a>
-              <a class="item" href="#">Link Item</a>
+              <a class="item">Link Item</a>
+              <a class="item">Help</a>
             </div>
           </div>
-          <a class="item" href="#">Link Item</a>
+          <a class="item" (click)="logout()">Logout</a>
         </div>
       </div>
     </div>
-    <a class="ui item"(click)="logout()">
-      Logout
-    </a>
+    
   </div>
       
   </div>
 
-<h1>
-  Welcome Back, {{name}}!
-</h1>
-<button class="ui button" >Account Settings</button>
-<button class="ui button" >Logout</button>
 
-<a class="icon-linkedin" rel="nofollow"
+
+<!--<a class="icon-linkedin" rel="nofollow"
     href="http://www.linkedin.com/"
     onclick="popUp=window.open(
         'http://www.linkedin.com/shareArticle?url=http://example.com',
@@ -48,10 +43,10 @@
     popUp.focus();
     return false">
     <i class="visuallyhidden">share on linkedin</i>
-</a>
+</a>-->
 
-<div style="width: 1500px;">
-  <ag-grid-ng2 #agGrid style="width: 100%; height: 350px;" class="ag-blue"
+<div class="ui container" style="margin-top:3em; width:1800px; height:750px">
+  <ag-grid-ng2 #agGrid style="width: 100%; height: 700px;" class="ag-blue"
       [gridOptions]="gridOptions"
       [columnDefs]="columnDefs"
       [showToolPanel]="showToolPanel"
@@ -87,4 +82,5 @@
 <button class="ui button primary" (click)="this.redirectToJob()">Add Job</button>
 <button class="ui button primary" (click)="this.removeJob()">Remove Job</button>
 <button class="ui button primary" (click)="this.goToJob()">Go To Job</button>
+
 <div>{{saveNotification}}</div>

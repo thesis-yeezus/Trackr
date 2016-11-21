@@ -132,6 +132,7 @@ export class MainComponent implements OnInit, AfterContentInit {
       self.getRowData(window.localStorage["username"]);
     },500)
     self["name"] = localStorage['firstName'];    
+    self["username"] = localStorage['username']
   }
 
 
