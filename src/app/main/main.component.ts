@@ -36,7 +36,6 @@ export class MainComponent implements OnInit, AfterContentInit {
 
    onCellValueChanged(e) {
      this.saveJob()
-     console.log("onCellValueChanged", e)
      this.getRowData(window.localStorage["username"])
    }
 
@@ -72,6 +71,12 @@ export class MainComponent implements OnInit, AfterContentInit {
           {
             headerName: "Position",
             field: "position",
+            width: 150,
+            editable: true
+          },
+          {
+            headerName: "URL",
+            field: "url",
             width: 150,
             editable: true
           }
@@ -174,7 +179,7 @@ export class MainComponent implements OnInit, AfterContentInit {
         var day:any = moment(row.date);
         console.log("this is day", day)
         var today:any = moment().startOf('day');
-        if(row.date === null) {
+        if(!Number.isInteger(Math.round(day))) {
           row["remaining"] = "Invalid Date"
         } else if(Math.round((today - day) / 86400000) === 1) { 
           row["remaining"] = "1 day ago"
@@ -183,7 +188,7 @@ export class MainComponent implements OnInit, AfterContentInit {
         }
         var tillPhoneScreen:any = moment(row.phoneScreen) 
         console.log("what is tillPhoneScreen", row.phoneScreen)
-        if(row.phoneScreenDate === null) {
+        if(!Number.isInteger(Math.round(tillPhoneScreen))) {
           row["tillPhoneScreen"] = "No Date"
         } else if(Math.round((tillPhoneScreen - today) / 86400000) === 1) { 
           row["tillPhoneScreen"] = "1 day to go"
@@ -195,7 +200,7 @@ export class MainComponent implements OnInit, AfterContentInit {
           row["tillPhoneScreen"] = Math.round((tillPhoneScreen - today) / 86400000) + " days to go"
         }
         var tillInterview:any = moment(row.interview) 
-        if(row.interviewDate === null) {
+        if(!Number.isInteger(Math.round(tillInterview))) {
           row["tillInterview"] = "No Date"
         } else if(Math.round((tillInterview - today) / 86400000) === 1) { 
           row["tillInterview"] = "1 day to go"
