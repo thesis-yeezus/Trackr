@@ -44,10 +44,102 @@ var job = new CronJob({
         })
       })
   },
-  start: true,
+  start: false,
   timeZone: 'America/Los_Angeles'
 });
 job.start();
+
+var interviewCheck = new CronJob({
+  cronTime: '00 00 12 * * 1-7',
+  onTick: function() {
+    User.findAll({
+      where: {
+        receiveEmails: true
+      }
+    })
+      .then(function(userArr) {
+        userArr.forEach(function(user) {
+          JobOpening.findAll({
+            where: {
+              userId: user.dataValues.id
+            }
+          })
+            .then(function(jobs) {
+              jobs.forEach(function(job) {
+                var interviewDate = moment(job.dataValues.interview)
+                if(interviewDate.diff(moment()) <= 86400000) {
+                  var from_email = new helper.Email('trackr.dev@gmail.com');
+                  var to_email = new helper.Email(user.dataValues.email);
+                  var subject = 'Interview Reminder from Trackr';
+                  var content = new helper.Content('text/plain', 'Hello, Email!');
+                  var mail = new helper.Mail(from_email, subject, to_email, content);
+                  var request = sg.emptyRequest({
+                    method: 'POST',
+                    path: '/v3/mail/send',
+                    body: mail.toJSON(),
+                  });
+
+                  sg.API(request, function(error, response) {
+                    console.log(response.statusCode);
+                    console.log(response.body);
+                    console.log(response.headers);
+                  });
+                }
+              })
+            })
+        })
+      })
+  },
+  start: false,
+  timeZone: 'America/Los_Angeles'
+});
+interviewCheck.start();
+
+var phoneScreenCheck = new CronJob({
+  cronTime: '00 00 12 * * 1-7',
+  onTick: function() {
+    User.findAll({
+      where: {
+        receiveEmails: true
+      }
+    })
+      .then(function(userArr) {
+        userArr.forEach(function(user) {
+          JobOpening.findAll({
+            where: {
+              userId: user.dataValues.id
+            }
+          })
+            .then(function(jobs) {
+              jobs.forEach(function(job) {
+                var phoneScreenDate = moment(job.dataValues.interview)
+                if(phoneScreenDate.diff(moment()) <= 86400000) {
+                  var from_email = new helper.Email('trackr.dev@gmail.com');
+                  var to_email = new helper.Email(user.dataValues.email);
+                  var subject = 'Interview Reminder from Trackr';
+                  var content = new helper.Content('text/plain', 'Hello, Email!');
+                  var mail = new helper.Mail(from_email, subject, to_email, content);
+                  var request = sg.emptyRequest({
+                    method: 'POST',
+                    path: '/v3/mail/send',
+                    body: mail.toJSON(),
+                  });
+
+                  sg.API(request, function(error, response) {
+                    console.log(response.statusCode);
+                    console.log(response.body);
+                    console.log(response.headers);
+                  });
+                }
+              })
+            })
+        })
+      })
+  },
+  start: false,
+  timeZone: 'America/Los_Angeles'
+});
+phoneScreenCheck.start();
 
 var threeDayJob = new CronJob({
   cronTime: '00 00 15 */3 * 1-7',
@@ -78,7 +170,7 @@ var threeDayJob = new CronJob({
         })
       })
   },
-  start: true,
+  start: false,
   timeZone: 'America/Los_Angeles'
 });
 threeDayJob.start();
@@ -113,7 +205,7 @@ var weeklyJob = new CronJob({
         })
       })
   },
-  start: true,
+  start: false,
   timeZone: 'America/Los_Angeles'
 });
 weeklyJob.start();
@@ -131,9 +223,9 @@ var dailyEmailer = new CronJob({
         })
           .then(function(user) {
             console.log("This is User email", user.dataValues.email)
-            var from_email = new helper.Email(user.dataValues.email);
+            var from_email = new helper.Email('trackr.dev@gmail.com');
             var to_email = new helper.Email(user.dataValues.email);
-            var subject = 'Hello World from the SendGrid Node.js Library!';
+            var subject = 'Failure To Meet Goals from Trackr';
             var content = new helper.Content('text/plain', 'Hello, Email!');
             var mail = new helper.Mail(from_email, subject, to_email, content);
             var request = sg.emptyRequest({
@@ -169,9 +261,9 @@ var threeDayEmailer = new CronJob({
         })
           .then(function(user) {
             console.log("This is User email", user.dataValues.email)
-            var from_email = new helper.Email(user.dataValues.email);
+            var from_email = new helper.Email('trackr.dev@gmail.com');
             var to_email = new helper.Email(user.dataValues.email);
-            var subject = 'Hello World from the SendGrid Node.js Library!';
+            var subject = 'Failure To Meet Goals from Trackr';
             var content = new helper.Content('text/plain', 'Hello, Email!');
             var mail = new helper.Mail(from_email, subject, to_email, content);
             var request = sg.emptyRequest({
@@ -207,9 +299,9 @@ var weeklyEmailer = new CronJob({
         })
           .then(function(user) {
             console.log("This is User email", user.dataValues.email)
-            var from_email = new helper.Email(user.dataValues.email);
+            var from_email = new helper.Email('trackr.dev@gmail.com');
             var to_email = new helper.Email(user.dataValues.email);
-            var subject = 'Hello World from the SendGrid Node.js Library!';
+            var subject = 'Failure To Meet Goals from Trackr';
             var content = new helper.Content('text/plain', 'Hello, Email!');
             var mail = new helper.Mail(from_email, subject, to_email, content);
             var request = sg.emptyRequest({

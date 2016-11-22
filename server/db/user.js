@@ -9,7 +9,7 @@ module.exports = function(db) {
     password: { type: Sequelize.STRING },
     receiveEmails: { type: Sequelize.BOOLEAN, defaultValue: true },
     frequency: { type: Sequelize.INTEGER, defaultValue: 1}, //1 is everyday, other options are 3 and 7.
-    goals: { type: Sequelize.INTEGER, defaultValue: null} // in a week
+    goals: { type: Sequelize.INTEGER, defaultValue: 5} // in a week
   });
 
   return User; 
