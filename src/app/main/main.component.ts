@@ -159,6 +159,7 @@ export class MainComponent implements OnInit, AfterContentInit {
     },500)
     self["name"] = localStorage['firstName'];    
     self["username"] = localStorage['username']
+    self["today"] = moment().format('MMMM Do YYYY')
   }
 
 

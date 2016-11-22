@@ -4,25 +4,17 @@
         <img class="logo" src="./assets/icon.png">
       </a>
       <a href="/main" class="item">Home</a>
-        <h2 class="ui white header" style="padding-left: 700px;">T r a c k r</h2>
-
+        <h2 class="ui white header center aligned container" style="padding-left:100px;">T r a c k r</h2>
       <div class="right menu">
     <div class="ui simple dropdown item" (click)="redirectToAccountSettings()">
       {{this.name}}
          <i class="dropdown icon"></i>
         <div class="menu">
+          <div class="header">Account Settings</div>
+          <div class="divider"></div>
           <a class="item">Change Settings</a>
           <a class="item">Change Password</a>
           <div class="divider"></div>
-          <div class="header">Header Item</div>
-          <div class="item">
-            <i class="dropdown icon"></i>
-            Sub Menu
-            <div class="menu">
-              <a class="item">Link Item</a>
-              <a class="item">Help</a>
-            </div>
-          </div>
           <a class="item" (click)="logout()">Logout</a>
         </div>
       </div>
@@ -31,6 +23,36 @@
   </div>
       
   </div>
+
+  <div class="ui vertical stripe quote segment">
+    <div class="ui equal width stackable internally celled grid">
+      <div class="center aligned row">
+    <div class="column">
+      <div class="ui center aligned">
+        <h3>Welcome Back, {{name}}!</h3>
+        </div>
+      </div>
+      <div class="column">
+      <div class="ui center aligned">
+        <h1>{{today}}</h1>
+        </div>
+      </div>
+      <div class="column">
+      <div class="ui three column grid">
+        <div class="column">
+        <button class="ui button primary" (click)="this.redirectToJob()">Add Job</button>
+        </div>
+        <div class="column">
+        <button class="ui button primary" (click)="this.removeJob()">Remove Job</button>
+        </div>
+        <div class="column">
+        <button class="ui button primary" (click)="this.goToJob()">Go To Job</button>
+        </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
 
 
 
@@ -79,8 +101,3 @@
     <ag-grid-column headerName="Pursuing" field="pursuing" [width]="100" [checkboxSelection] = "true"></ag-grid-column>-->
   </ag-grid-ng2>
 </div>
-<button class="ui button primary" (click)="this.redirectToJob()">Add Job</button>
-<button class="ui button primary" (click)="this.removeJob()">Remove Job</button>
-<button class="ui button primary" (click)="this.goToJob()">Go To Job</button>
-
-<div>{{saveNotification}}</div>
