@@ -2,17 +2,21 @@ var moment = require('moment');
 var CronJob = require('cron').CronJob;  
 var helper = require('sendgrid').mail;
 var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+var fs = require('fs');
+var path = require('path');
 var User = require('../db').User;
 var JobOpening = require('../db').JobOpening;
 var yesterday = moment().subtract(1, 'days');
 var threeDaysAgo = moment().subtract(3, 'days');
 var weekAgo = moment().subtract(7, 'days');
 var jobCounter = {};
-var oneDayGoals = null;
+var oneDayGoals = {};
 var threeDayJobCounter = {};
-var threeDayGoals = null;
+var threeDayGoals = {};
 var weeklyJobCounter = {};
-var weeklyGoals = null;
+var weeklyGoals = {};
+var interviewReminder = path.join(__dirname, 'interviewReminder.html')
+var phoneScreenReminder = path.join(__dirname, 'phoneScreenReminder.html')
 
 var job = new CronJob({
   cronTime: '00 00 15 * * 1-7',
@@ -25,7 +29,7 @@ var job = new CronJob({
     })
       .then(function(userArr) {
         userArr.forEach(function(user) {
-          oneDayGoals = user.dataValues.goals
+          oneDayGoals[user.dataValues.userId] = user.dataValues.goals
           jobCounter[user.dataValues.userId] = 0
           JobOpening.findAll({
             where: {
@@ -50,7 +54,7 @@ var job = new CronJob({
 job.start();
 
 var interviewCheck = new CronJob({
-  cronTime: '00 00 12 * * 1-7',
+  cronTime: '00 12 12 * * 1-7',
   onTick: function() {
     User.findAll({
       where: {
@@ -67,23 +71,30 @@ var interviewCheck = new CronJob({
             .then(function(jobs) {
               jobs.forEach(function(job) {
                 var interviewDate = moment(job.dataValues.interview)
-                if(interviewDate.diff(moment()) <= 86400000) {
-                  var from_email = new helper.Email('trackr.dev@gmail.com');
-                  var to_email = new helper.Email(user.dataValues.email);
-                  var subject = 'Interview Reminder from Trackr';
-                  var content = new helper.Content('text/plain', 'Hello, Email!');
-                  var mail = new helper.Mail(from_email, subject, to_email, content);
-                  var request = sg.emptyRequest({
-                    method: 'POST',
-                    path: '/v3/mail/send',
-                    body: mail.toJSON(),
-                  });
+                console.log("This is interviewdate diff moment, ", interviewDate.diff(moment()))
+                if(interviewDate.diff(moment()) <= 86400000 && interviewDate.diff(moment())) {
+                  fs.readFile(interviewReminder, {encoding: 'utf-8'}, function(err, data) {
+                    if ( ! err ) {
+                      var from_email = new helper.Email('trackr.dev@gmail.com');
+                      var to_email = new helper.Email(user.dataValues.email);
+                      var subject = 'Interview Reminder from Trackr';
+                      var content = new helper.Content('text/html', data);
+                      var mail = new helper.Mail(from_email, subject, to_email, content);
+                      var request = sg.emptyRequest({
+                        method: 'POST',
+                        path: '/v3/mail/send',
+                        body: mail.toJSON(),
+                      });
 
-                  sg.API(request, function(error, response) {
-                    console.log(response.statusCode);
-                    console.log(response.body);
-                    console.log(response.headers);
-                  });
+                      sg.API(request, function(error, response) {
+                        console.log(response.statusCode);
+                        console.log(response.body);
+                        console.log(response.headers);
+                      });
+                  } else {
+                    console.log(err);
+                  }
+                  })
                 }
               })
             })
@@ -96,7 +107,7 @@ var interviewCheck = new CronJob({
 interviewCheck.start();
 
 var phoneScreenCheck = new CronJob({
-  cronTime: '00 00 12 * * 1-7',
+  cronTime: '00 12 12 * * 1-7',
   onTick: function() {
     User.findAll({
       where: {
@@ -112,24 +123,30 @@ var phoneScreenCheck = new CronJob({
           })
             .then(function(jobs) {
               jobs.forEach(function(job) {
-                var phoneScreenDate = moment(job.dataValues.interview)
-                if(phoneScreenDate.diff(moment()) <= 86400000) {
-                  var from_email = new helper.Email('trackr.dev@gmail.com');
-                  var to_email = new helper.Email(user.dataValues.email);
-                  var subject = 'Interview Reminder from Trackr';
-                  var content = new helper.Content('text/plain', 'Hello, Email!');
-                  var mail = new helper.Mail(from_email, subject, to_email, content);
-                  var request = sg.emptyRequest({
-                    method: 'POST',
-                    path: '/v3/mail/send',
-                    body: mail.toJSON(),
-                  });
+                var phoneScreenDate = moment(job.dataValues.phoneScreen)
+               if(phoneScreenDate.diff(moment()) <= 86400000 && phoneScreenDate.diff(moment()) > 0) {
+                  fs.readFile(phoneScreenReminder, {encoding: 'utf-8'}, function(err, data) {
+                    if ( ! err ) {
+                      var from_email = new helper.Email('trackr.dev@gmail.com');
+                      var to_email = new helper.Email(user.dataValues.email);
+                      var subject = 'Phone Screen Reminder from Trackr';
+                      var content = new helper.Content('text/html', data);
+                      var mail = new helper.Mail(from_email, subject, to_email, content);
+                      var request = sg.emptyRequest({
+                        method: 'POST',
+                        path: '/v3/mail/send',
+                        body: mail.toJSON(),
+                      });
 
-                  sg.API(request, function(error, response) {
-                    console.log(response.statusCode);
-                    console.log(response.body);
-                    console.log(response.headers);
-                  });
+                      sg.API(request, function(error, response) {
+                        console.log(response.statusCode);
+                        console.log(response.body);
+                        console.log(response.headers);
+                      });
+                  } else {
+                    console.log(err);
+                  }
+                  })
                 }
               })
             })
@@ -152,6 +169,7 @@ var threeDayJob = new CronJob({
     })
       .then(function(userArr) {
         userArr.forEach(function(user) {
+          threeDayGoals[user.dataValues.userId] = user.dataValues.goals
           threeDayJobCounter[user.dataValues.userId] = 0
           JobOpening.findAll({
             where: {
@@ -186,7 +204,7 @@ var weeklyJob = new CronJob({
     })
       .then(function(userArr) {
         userArr.forEach(function(user) {
-          weeklyGoals = user.dataValues.goals
+          weeklyGoals[user.dataValues.userId] = user.dataValues.goals
           weeklyJobCounter[user.dataValues.userId] = 0
           JobOpening.findAll({
             where: {
@@ -214,7 +232,7 @@ var dailyEmailer = new CronJob({
   cronTime: '15 00 15 * * 1-7',
   onTick: function() {
     for(var key in jobCounter) {
-      if(jobCounter[key] <= oneDayGoals) {
+      if(jobCounter[key] <= oneDayGoals[key]) {
         User.findOne({
           where: {
             receiveEmails: true,
@@ -226,7 +244,7 @@ var dailyEmailer = new CronJob({
             var from_email = new helper.Email('trackr.dev@gmail.com');
             var to_email = new helper.Email(user.dataValues.email);
             var subject = 'Failure To Meet Goals from Trackr';
-            var content = new helper.Content('text/plain', 'Hello, Email!');
+            var content = new helper.Content('text/plain', 'Good Afternoon, \r\nThis is a quick reminder that you have not reached your goal of ' + oneDayGoals[key] + ' job applications. \r\n If you wish to stop receiving emails please visit Trackr.com and cancel notifications!');
             var mail = new helper.Mail(from_email, subject, to_email, content);
             var request = sg.emptyRequest({
               method: 'POST',
@@ -252,7 +270,7 @@ var threeDayEmailer = new CronJob({
   cronTime: '20 00 15 */3 * 1-7',
   onTick: function() {
     for(var key in threeDayJobCounter) {
-      if(threeDayJobCounter[key] <= threeDayGoals) {
+      if(threeDayJobCounter[key] <= threeDayGoals[key]) {
         User.findOne({
           where: {
             receiveEmails: true,
@@ -264,7 +282,7 @@ var threeDayEmailer = new CronJob({
             var from_email = new helper.Email('trackr.dev@gmail.com');
             var to_email = new helper.Email(user.dataValues.email);
             var subject = 'Failure To Meet Goals from Trackr';
-            var content = new helper.Content('text/plain', 'Hello, Email!');
+            var content = new helper.Content('text/plain', 'Good Afternoon, \r\nThis is a quick reminder that you have not reached your goal of ' + threeDayGoals[key] + ' job applications. \r\n If you wish to stop receiving emails please visit Trackr.com and cancel notifications!');
             var mail = new helper.Mail(from_email, subject, to_email, content);
             var request = sg.emptyRequest({
               method: 'POST',
@@ -290,7 +308,7 @@ var weeklyEmailer = new CronJob({
   cronTime: '25 00 15 */7 * 1-7',
   onTick: function() {
     for(var key in weeklyJobCounter) {
-      if(weeklyJobCounter[key] <= weeklyGoals) {
+      if(weeklyJobCounter[key] <= weeklyGoals[key]) {
         User.findOne({
           where: {
             receiveEmails: true,
@@ -302,7 +320,7 @@ var weeklyEmailer = new CronJob({
             var from_email = new helper.Email('trackr.dev@gmail.com');
             var to_email = new helper.Email(user.dataValues.email);
             var subject = 'Failure To Meet Goals from Trackr';
-            var content = new helper.Content('text/plain', 'Hello, Email!');
+            var content = new helper.Content('text/plain', 'Good Afternoon, \r\nThis is a quick reminder that you have not reached your goal of ' + weeklyGoals[key] + ' job applications. \r\n If you wish to stop receiving emails please visit Trackr.com and cancel notifications!');
             var mail = new helper.Mail(from_email, subject, to_email, content);
             var request = sg.emptyRequest({
               method: 'POST',
