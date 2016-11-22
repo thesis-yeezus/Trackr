@@ -48,7 +48,7 @@
 
 <sm-modal title="Change Password" class="basic" #changePassword>
   <modal-content>
-    <form [formGroup]="changePW" class="ui form">
+    <form [formGroup]="changePW" class="ui form" (ngSubmit)="changedPassword(changePW.value)">
     <div class="three fields">
         <div class="field">
           <label>Change Password</label>
@@ -62,7 +62,7 @@
           <small *ngIf="changePW.value.password !== changePW.value.confirmPassword">Password is not the same</small>
         </div>
       </div>
-      <button class="ui button" type="submit" [disabled]="!changePW.valid || changePW.pristine">Submit</button>
+      <button class="ui button" type="submit" [disabled]="!changePW.valid || changePW.pristine" (click)="changePassword.hide()">Submit</button>
       <button class="ui button" type="submit" (click)="changePassword.hide()">Cancel</button>
     </form>
   </modal-content>

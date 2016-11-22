@@ -40,13 +40,23 @@ userController.applySignupSettings = function(req, res) {
 
 userController.updateUserSettings = function(req, res) {
   console.log('inside of userController.updateUserSettings', req.body)
-  userModel.updateUserSettings(req.body.userId, req.body.firstName, req.body.lastName, req.body.username, req.body.email, req.body.setGoals, req.body.receiveEmail)
+  userModel.updateUserSettings(req.body.userId, req.body.settings.firstName, req.body.settings.lastName, req.body.settings.username, req.body.settings.email, req.body.settings.setGoals, req.body.settings.receiveEmail)
     .then(function(data) {
       console.log('reached userController.updateUserSettings')
       res.status(200).send(data)
     })
 }
 
+userController.changedPassword = function(req, res) {
+  console.log('inside of userController.changedPassword', req.body.userId)
+  console.log('inside of userController.changedPassword', req.body.password.password)
+  userModel.changedPassword(req.body.userId, req.body.password.password)
+    .then(function(data) {
+      console.log('reached userController.changedPassword')
+      res.status(200).send(data)
+    })
+
+}
 
 
 
