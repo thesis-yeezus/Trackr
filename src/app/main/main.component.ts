@@ -189,7 +189,7 @@ export class MainComponent implements OnInit, AfterContentInit {
         var tillPhoneScreen:any = moment(row.phoneScreen) 
         console.log("what is tillPhoneScreen", row.phoneScreen)
         if(!Number.isInteger(Math.round(tillPhoneScreen))) {
-          row["tillPhoneScreen"] = "No Date"
+          row["tillPhoneScreen"] = "Invalid Date"
         } else if(Math.round((tillPhoneScreen - today) / 86400000) === 1) { 
           row["tillPhoneScreen"] = "1 day to go"
         } else if(Math.round((tillPhoneScreen - today) / 86400000) === -1) { 
@@ -201,7 +201,7 @@ export class MainComponent implements OnInit, AfterContentInit {
         }
         var tillInterview:any = moment(row.interview) 
         if(!Number.isInteger(Math.round(tillInterview))) {
-          row["tillInterview"] = "No Date"
+          row["tillInterview"] = "Invalid Date"
         } else if(Math.round((tillInterview - today) / 86400000) === 1) { 
           row["tillInterview"] = "1 day to go"
         } else if(Math.round((tillInterview - today) / 86400000) === -1) { 
