@@ -1,15 +1,18 @@
-<p>
-  job-form works!
-</p>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <!--<button class="ui button primary" (click)="myModalNormal.show({inverted: true})">Click me</button>
 <sm-modal title="Hello from Modal" class="" icon="home" #myModalNormal>
 <modal-content>-->
-<div class="container">
-  <h1>Add Job</h1>
-  <button type="button" class="btn btn-default" (click)="this.back()">Go back</button>
-  <form #f="ngForm" novalidate (ngSubmit)="save(f.value, f.valid)">
+<div class="ui container">
+  
+  
+  <form class="ui form" #f="ngForm" novalidate (ngSubmit)="save(f.value, f.valid)">
+     <div class="ui right aligned container" style="margin-top:2em">
+      <button type="reset" class="btn btn-default">Reset</button>
+      <button type="button" class="btn btn-default" (click)="this.back()">Go back</button>
+    </div>
 
+    <h1 class="ui dividing header">Add Job</h1>
+   
     <div class="form-group">
       <label>Company Name</label>
       <input type="text" class="form-control" 
@@ -98,7 +101,7 @@
           </small>
     </div>
 
-    <button type="reset" class="btn btn-default">Reset</button>
+    
     <button type="submit" [disabled]="!f.valid" class="btn btn-default">Submit</button>
   </form>
 </div>
