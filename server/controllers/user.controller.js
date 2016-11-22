@@ -38,6 +38,15 @@ userController.applySignupSettings = function(req, res) {
     })
 };
 
+userController.updateUserSettings = function(req, res) {
+  console.log('inside of userController.updateUserSettings', req.body)
+  userModel.updateUserSettings(req.body.userId, req.body.firstName, req.body.lastName, req.body.username, req.body.email, req.body.setGoals, req.body.receiveEmail)
+    .then(function(data) {
+      console.log('reached userController.updateUserSettings')
+      res.status(200).send(data)
+    })
+}
+
 
 
 

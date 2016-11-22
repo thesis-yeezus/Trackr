@@ -67,5 +67,26 @@ userModel.applySignupSettings = function(setGoals, receiveEmails, userId) {
   })
 }
 
+userModel.updateUserSettings = function(userId, firstName, lastName, username, email, setGoals, receiveEmail) {
+  return User.find({
+    where: {
+      id: userId
+    }
+  })
+  .then(function(user) {
+    user.update({
+      firstName: firstName,
+      lastName: lastName,
+      username: username,
+      goals: setGoals,
+      receiveEmails: receiveEmail
+    })
+    return user;
+  })
+  .catch(function(err) {
+    console.log('Error in userModel.updateUserSettings', err)
+  })
+}
+
 
 module.exports = userModel
