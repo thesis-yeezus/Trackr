@@ -36,6 +36,8 @@ export class MainComponent implements OnInit, AfterContentInit {
 
    onCellValueChanged(e) {
      this.saveJob()
+     console.log("onCellValueChanged", e)
+     this.getRowData(window.localStorage["username"])
    }
 
    private createColumnDefs() {
@@ -185,6 +187,10 @@ export class MainComponent implements OnInit, AfterContentInit {
           row["tillPhoneScreen"] = "No Date"
         } else if(Math.round((tillPhoneScreen - today) / 86400000) === 1) { 
           row["tillPhoneScreen"] = "1 day to go"
+        } else if(Math.round((tillPhoneScreen - today) / 86400000) === -1) { 
+          row["tillPhoneScreen"] = "1 day ago"
+        } else if(Math.round((tillPhoneScreen - today) / 86400000) < 0) { 
+          row["tillPhoneScreen"] = Math.abs(Math.round((tillPhoneScreen - today) / 86400000)) + " days ago"
         } else {
           row["tillPhoneScreen"] = Math.round((tillPhoneScreen - today) / 86400000) + " days to go"
         }
@@ -193,6 +199,10 @@ export class MainComponent implements OnInit, AfterContentInit {
           row["tillInterview"] = "No Date"
         } else if(Math.round((tillInterview - today) / 86400000) === 1) { 
           row["tillInterview"] = "1 day to go"
+        } else if(Math.round((tillInterview - today) / 86400000) === -1) { 
+          row["tillInterview"] = "1 day ago"
+        } else if(Math.round((tillInterview - today) / 86400000) < 0) { 
+          row["tillInterview"] = Math.abs(Math.round((tillInterview - today) / 86400000)) + " days ago"
         } else {
           row["tillInterview"] = Math.round((tillInterview - today) / 86400000) + " days to go"
         }
