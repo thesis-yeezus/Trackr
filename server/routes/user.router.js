@@ -6,7 +6,7 @@ var userRouter = express.Router();
 userRouter.post('/createUser', userController.createUser);
 userRouter.post('/loginUser', userController.loginUser);
 userRouter.put('/applySignupSettings', userController.applySignupSettings);
-
+userRouter.put('/updateUserSettings', userController.updateUserSettings);
 
 
 //userRouter.put('/:_id', updateUser); // Use this is we include account settings (11/15/16)

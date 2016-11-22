@@ -7,29 +7,7 @@
 
 <h2>Hello, {{firstName}}</h2>
 
-<h3>Username: {{username}}</h3>
-<h3>First Name: {{firstName}}</h3>
-<h3>Last Name: {{lastName}}</h3>
-<h3>E-mail Address: {{email}}</h3>
-
-<!--<form [formGroup]="accountSettings" class="ui form" >
-  <div class="field">
-    <label>Change Username</label>
-    <input type="text" placeholder="Username Required" [formControl]="accountSettings.controls['username']">
-  </div>
-  <div class="fields">
-    <div class="field">
-      <label>Edit First Name</label>
-      <input type="text" placeholder="First Name Required" [formControl]="accountSettings.controls['firstName']">
-    </div>
-    <div class="field">
-      <label>Edit Last Name</label>
-      <input type="text" placeholder="Last Name Required" [formControl]="accountSettings.controls['lastName']">
-    </div>
-  </div>
-</form>-->
-
-<form [formGroup]="accountSettings" class="ui form"> 
+<form [formGroup]="accountSettings" class="ui form" (ngSubmit)="updateUserSettings(accountSettings.value)"> 
   <div class="fields">
     <div class="field">
       <label>Edit First Name</label>
@@ -51,6 +29,18 @@
       <label>Change E-mail Address</label>
       <input type="email" asyncValidator placeholder="E-mail Address Required" [formControl]="accountSettings.controls['email']" [ngClass]="{'error': accountSettings.controls['email'].invalid && accountSettings.controls['email'].touched}">
     </div>
+  </div>
+  <div>
+    <label>
+      I would like to complete <input type="text" class="ui form one wide field inline" [formControl]="accountSettings.controls['setGoals']"> applications a week.
+    </label>
+  </div>
+  Receive E-mail notifications regarding upcoming interviews and goal updates?
+  <div *ngFor="let receiveEmail of receiveEmails">
+    <label>
+      <input type="radio" name="receiveEmail" [value]="receiveEmail.value" [formControl]="accountSettings.controls['receiveEmail']">
+      {{receiveEmail.display}}
+    </label>
   </div>
   <button class="ui primary button" type="submit" [disabled]="!accountSettings.valid || accountSettings.pristine">Save</button>
   <button class="ui button" (click)="redirectToMain()">Cancel</button>
