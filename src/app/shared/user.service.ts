@@ -30,6 +30,7 @@ export class UserService {
   private loginUserUrl = '/api/user/loginUser';
   private applySignupSettingsUrl = '/api/user/applySignupSettings';
   private updateUserSettingsUrl = '/api/user/updateUserSettings';
+  private changedPasswordUrl = '/api/user/changedPassword'
 
   createUser(user: any) {
     console.log('The user', user)
@@ -79,6 +80,8 @@ export class UserService {
   }
 
   updateUserSettings(settings: any, userId: any) {
+    console.log('Are we making it to updateUserSettings', settings)
+    console.log('The number?', userId)
     this.http
         .put(this.updateUserSettingsUrl, JSON.stringify({settings: settings, userId: userId}), {headers: this.headers})
         .subscribe((response) => {
@@ -91,6 +94,14 @@ export class UserService {
           window.localStorage["receiveEmail"] = res.receiveEmails
           window.localStorage["frequency"] = res.frequency
           window.localStorage["setGoals"] = res.goals
+        })
+  }
+
+  changedPassword(password: any, userId: any) {
+    this.http
+        .put(this.changedPasswordUrl, JSON.stringify({password: password, userId: userId}), {headers: this.headers})
+        .subscribe((response) => {
+          console.log('Password Changed:', response)
         })
   }
 

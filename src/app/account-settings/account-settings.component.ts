@@ -72,6 +72,12 @@ export class AccountSettingsComponent implements OnInit {
       }, 1000)
   }
 
+  changedPassword(password: any) {
+    console.log('changed password', password)
+    var userId: any = window.localStorage["userId"];
+    this.userService.changedPassword(password, userId)
+  }
+
 // Make everything editable/updateable as prepoplated form inputs
  
 // Ability to change pw

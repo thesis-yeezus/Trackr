@@ -78,6 +78,7 @@ userModel.updateUserSettings = function(userId, firstName, lastName, username, e
       firstName: firstName,
       lastName: lastName,
       username: username,
+      email: email,
       goals: setGoals,
       receiveEmails: receiveEmail
     })
@@ -85,6 +86,24 @@ userModel.updateUserSettings = function(userId, firstName, lastName, username, e
   })
   .catch(function(err) {
     console.log('Error in userModel.updateUserSettings', err)
+  })
+}
+
+userModel.changedPassword = function(userId, password) {
+  return User.find({
+    where: {
+      id: userId
+    }
+  })
+  .then(function(user) {
+    var salt = bcrypt.genSaltSync(5);
+    var hashedPassword = bcrypt.hashSync(password, salt);
+    user.update({
+      password: hashedPassword
+    })
+  })
+  .catch(function(err) {
+    console.log('Error in userModel.changedPassword', err)
   })
 }
 
