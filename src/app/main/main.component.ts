@@ -47,7 +47,7 @@ export class MainComponent implements OnInit, AfterContentInit {
           {
             headerName: "Applied",
             field: "date",
-            width: 100,
+            width: 80,
             suppressSorting: true,
             suppressMenu: true,
             editable: true
@@ -106,37 +106,37 @@ export class MainComponent implements OnInit, AfterContentInit {
         ]
       },
       {
-        headerName: "Comments",
-        field: "comments",
-        width: 150,
-        editable: true
-      },
-      {
         headerName: "Appointments",
         children: [
           {
             headerName: "Phone Screen",
             field: "phoneScreen",
-            width: 150,
+            width: 120,
             editable: true
           },
           {
             headerName: "Till Screen",
             field: "tillPhoneScreen",
-            width: 150
+            width: 100
           },
           {
             headerName: "Interview",
             field: "interview",
-            width: 150,
+            width: 120,
             editable: true
           },
           {
             headerName: "Till Interview",
             field: "tillInterview",
-            width: 150
+            width: 120
           }
         ]
+      },
+      {
+        headerName: "Comments",
+        field: "comments",
+        width: 238,
+        editable: true
       }
     ]
    }
