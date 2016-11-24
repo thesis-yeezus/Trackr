@@ -249,7 +249,7 @@ export class MainComponent implements OnInit, AfterContentInit {
   }
   private goToJob() {
     if(this.gridOptions.api.getSelectedNodes().length !== 0) {
-     this.router.navigate(['/main', this.gridOptions.api.getSelectedNodes()[0].data.id])
+     this.router.navigate(['/main/' + this.gridOptions.api.getSelectedNodes()[0].data.hash, this.gridOptions.api.getSelectedNodes()[0].data.id])
     }
   }
 
