@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'signup-settings', component: SignupSettingsComponent },
   { path: 'main',  component: MainComponent, canActivate: [AuthGuard]},
-  { path: 'main/:id',  component: JobPageComponent, canActivate: [AuthGuard]},
+  { path: 'main/:hash/:id',  component: JobPageComponent },
   { path: 'job-form', component: JobFormComponent, canActivate: [AuthGuard]},
   { path: 'account-settings', component: AccountSettingsComponent},
 

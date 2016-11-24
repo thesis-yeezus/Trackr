@@ -26,6 +26,11 @@
       background-size: cover !important;
     }
 
+    @font-face {
+      font-family: Typoster;
+      src: url('../assets/typoster.otf')
+    }
+
     .masthead.segment {
       min-height: 900px;
       padding: 1em 0em;

@@ -20,6 +20,8 @@ export class JobPageComponent implements OnInit {
   private currentId: number;
   private jobData: any;
   private jobPageItems: any;
+  private showSubmit: boolean;
+  private url: string;
 
   ngOnInit() {
     this.jobPageItems = {};
@@ -33,7 +35,10 @@ export class JobPageComponent implements OnInit {
     this.jobPageItems.date = true;
     this.jobPageItems.phoneScreen = true;
     this.jobPageItems.interview = true;
-
+    this.url = "http://www.linkedin.com/shareArticle?url=" + window.location.href
+    
+    console.log("This is window", window.location.href)
+    console.log(this.url)
     console.log("Do we have the job id?", this.route.params) 
     this.route.params.forEach((params: Params) => {
       console.log("inforeach params", params)
@@ -52,6 +57,11 @@ export class JobPageComponent implements OnInit {
           } else {
             data["remaining"] = Math.round((today - day) / 86400000) + " days ago"
           }
+          if(parseInt(localStorage["userId"]) === this.jobData.userId) {
+            this.showSubmit = true;
+          } else {  
+            this.showSubmit = false;
+          }
         })
         .catch(err => console.log(err))
     })
@@ -61,36 +71,54 @@ export class JobPageComponent implements OnInit {
   }
 
   private itemCompanyName() {
-    console.log("I GO IN THERE", this.jobPageItems.companyName)
-    this.jobPageItems.companyName = false
-    console.log("FALSE?", this.jobPageItems.companyName)
+    if(parseInt(localStorage["userId"]) === this.jobData.userId) {
+      this.jobPageItems.companyName = false
+    }
   }
   private itemPosition() {
-    this.jobPageItems.position = false
+    if(parseInt(localStorage["userId"]) === this.jobData.userId) {
+      this.jobPageItems.position = false
+    }
   }
   private itemUrl() {
-    this.jobPageItems.url = false
+    if(parseInt(localStorage["userId"]) === this.jobData.userId) {
+      this.jobPageItems.url = false
+    }
   }
   private itemContactName() {
-    this.jobPageItems.contactName = false
+    if(parseInt(localStorage["userId"]) === this.jobData.userId) {
+      this.jobPageItems.contactName = false
+    }
   }
   private itemContactEmail() {
-    this.jobPageItems.contactEmail = false
+    if(parseInt(localStorage["userId"]) === this.jobData.userId) {
+      this.jobPageItems.contactEmail = false
+    }
   }
   private itemContactNumber() {
-    this.jobPageItems.contactNumber = false
+    if(parseInt(localStorage["userId"]) === this.jobData.userId) {
+      this.jobPageItems.contactNumber = false
+    }
   }
   private itemComments() {
-    this.jobPageItems.comments = false
+    if(parseInt(localStorage["userId"]) === this.jobData.userId) {
+      this.jobPageItems.comments = false
+    }
   }
   private itemDate() {
-    this.jobPageItems.date = false
+    if(parseInt(localStorage["userId"]) === this.jobData.userId) {
+      this.jobPageItems.date = false
+    }
   }
   private itemPhoneScreen() {
-    this.jobPageItems.phoneScreen = false
+    if(parseInt(localStorage["userId"]) === this.jobData.userId) {
+      this.jobPageItems.phoneScreen = false
+    }
   }
   private itemInterview() {
-    this.jobPageItems.interview = false
+    if(parseInt(localStorage["userId"]) === this.jobData.userId) {
+      this.jobPageItems.interview = false
+    }
   }
   private save(post: any, isValid: boolean) {
     console.log(post, isValid);
@@ -99,6 +127,10 @@ export class JobPageComponent implements OnInit {
 
       })
     this.router.navigate(['/main']);
+  }
+  private popUp() {
+    window.open(this.url,'popupwindow','scrollbars=yes,width=800,height=400').focus();
+    return false;
   }
 
 }
