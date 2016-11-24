@@ -1,4 +1,5 @@
 var Sequelize = require('sequelize');
+var randomstring = require('randomstring');
 
 module.exports = function(db) {
   var JobOpening = db.define('jobOpening', {
@@ -11,8 +12,13 @@ module.exports = function(db) {
     comments: { type: Sequelize.STRING, defaultValue: null },
     interview: { type: Sequelize.STRING, defaultValue: null },
     phoneScreen: { type: Sequelize.STRING, defaultValue: null },
-    date: { type: Sequelize.STRING, defaultValue: null }
+    date: { type: Sequelize.STRING, defaultValue: null },
+    hash: { type: Sequelize.STRING }
   });
+
+  JobOpening.hook('beforeValidate', function(job, options) {
+    job.hash = randomstring.generate(10);
+  })
 
   return JobOpening; 
 };
