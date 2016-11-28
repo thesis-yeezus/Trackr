@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://localhost:8000",
+    "target": "http://ec2-54-244-61-0.us-west-2.compute.amazonaws.com:8000/api/auth/linkedin/callback",
     "secure": false
   }
 }
