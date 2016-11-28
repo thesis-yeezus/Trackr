@@ -6,14 +6,14 @@
       <a href="/main" class="item">Home</a>
         <h2 class="ui white header center aligned container" style="padding-left:100px;">T r a c k r</h2>
       <div class="right menu">
-    <div class="ui simple dropdown item" (click)="redirectToAccountSettings()">
+    <div class="ui simple dropdown item">
       {{this.name}}
          <i class="dropdown icon"></i>
         <div class="menu">
           <div class="header">Account Settings</div>
           <div class="divider"></div>
-          <a class="item">Change Settings</a>
-          <a class="item">Change Password</a>
+          <a class="item" (click)="redirectToAccountSettings()" >Change Settings</a>
+          <a class="item" (click)="changePassword.show({inverted:false})">Change Password</a>
           <div class="divider"></div>
           <a class="item" (click)="logout()">Logout</a>
         </div>
@@ -101,3 +101,25 @@
     <ag-grid-column headerName="Pursuing" field="pursuing" [width]="100" [checkboxSelection] = "true"></ag-grid-column>-->
   </ag-grid-ng2>
 </div>
+
+<sm-modal title="Change Password" class="basic" #changePassword>
+  <modal-content>
+    <form [formGroup]="changePW" class="ui form" (ngSubmit)="changedPassword(changePW.value)">
+    <div class="three fields">
+        <div class="field">
+          <label>Change Password</label>
+          <input type="password" placeholder="New Password" [formControl]="changePW.controls['password']" [ngClass]="{'error': changePW.controls['password'].invalid && changePW.controls['password'].touched}">
+        </div>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <label>Re-type Password</label>
+          <input type="password" placeholder="Re-type New Password" [formControl]="changePW.controls['confirmPassword']" [ngClass]="{'error': changePW.value.password !== changePW.value.confirmPassword}">
+          <small *ngIf="changePW.value.password !== changePW.value.confirmPassword">Password is not the same</small>
+        </div>
+      </div>
+      <button class="ui button" type="submit" [disabled]="!changePW.valid || changePW.pristine" (click)="changePassword.hide()">Submit</button>
+      <button class="ui button" type="submit" (click)="changePassword.hide()">Cancel</button>
+    </form>
+  </modal-content>
+</sm-modal>
