@@ -1,0 +1,61 @@
+<div class="ui container">
+      <div class="ui large secondary pointing menu">
+        <div>
+         <button class="ui left attached button" style="margin-top:1.25em" (click)="redirectToHomePage()">Go Back To The Homepage</button>
+        </div>
+        <div class="right item">
+          <a href="/api/auth/linkedin"><img class="linkedin" style="height:34px" src="../../assets/linkedin.png"/></a>
+          <div>
+            <app-login></app-login>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+<div class="ui container">
+  <h2>
+  User Registration
+</h2>
+<div class="ui container">
+<form [formGroup]="signupForm" class="ui form" (ngSubmit)="createUser(signupForm.value)"> 
+  <div class="fields">
+    <div class="field">
+      <label>First Name</label>
+      <input type="text" placeholder="First Name" [formControl]="signupForm.controls['firstName']" [ngClass]="{'error': signupForm.controls['firstName'].invalid && signupForm.controls['firstName'].touched}">
+    </div> 
+    <div class="field">
+      <label>Last Name</label> 
+      <input type="text" placeholder="Last Name" [formControl]="signupForm.controls['lastName']" [ngClass]="{'error': signupForm.controls['lastName'].invalid && signupForm.controls['lastName'].touched}">
+    </div>
+  </div>
+  <div class="fields">
+    <div class="field">
+      <label>Username</label>
+      <input type="text" placeholder="Username" [formControl]="signupForm.controls['username']" [ngClass]="{'error': signupForm.controls['username'].invalid && signupForm.controls['username'].touched}">
+    </div>
+  </div>
+  <div class="fields">
+    <div class="field">
+      <label>Password</label>
+      <input type="password" placeholder="Password" [formControl]="signupForm.controls['password']" [ngClass]="{'error': signupForm.controls['password'].invalid && signupForm.controls['password'].touched}">
+      <small *ngIf="signupForm.controls['password'].invalid && signupForm.controls['password'].touched">Password must be at least 6 characters long and contain at least one number</small>  
+    </div>
+  </div>
+  <div class="fields">
+    <div class="field">
+      <label>Re-type Password</label>
+      <input type="password" placeholder="Re-type Password" [formControl]="signupForm.controls['confirmPassword']" [ngClass]="{'error': signupForm.value.password !== signupForm.value.confirmPassword}">
+      <small *ngIf="signupForm.value.password !== signupForm.value.confirmPassword">Password is not the same</small>
+    </div>
+  </div>
+  <div class="fields">
+    <div class="field">
+      <label>E-mail Address</label>
+      <input type="email" asyncValidator placeholder="E-mail Address" [formControl]="signupForm.controls['email']" [ngClass]="{'error': signupForm.controls['email'].invalid && signupForm.controls['email'].touched}">
+      <small *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched">That doesn't look like a valid Email</small>
+    </div>
+  </div>
+  <button class="ui button" type="submit" [disabled]="!signupForm.valid || signupForm.pristine">Submit</button>
+</form>
+</div>
+</div>

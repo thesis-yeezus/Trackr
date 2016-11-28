@@ -1,0 +1,160 @@
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a class="active item">Home</a>
+    <a class="item">Work</a>
+    <a class="item">Company</a>
+    <a class="item">Careers</a>
+    <div class="right menu">
+      <div class="item">
+        <a class="ui button">Log in</a>
+      </div>
+      <div class="item">
+        <a class="ui primary button">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+  <a class="active item">Home</a>
+  <a class="item">Work</a>
+  <a class="item">Company</a>
+  <a class="item">Careers</a>
+  <a class="item">Login</a>
+  <a class="item">Signup</a>
+</div>
+
+
+<!-- Page Contents -->
+<div class="pusher">
+  <div class="ui vertical masthead center aligned segment landing-image">
+
+    <div class="ui container">
+      <div class="ui large secondary pointing menu">
+        <a class="toc item">
+          <i class="sidebar icon"></i>
+        </a>
+        <a class="active item">Home</a>
+        <a class="item black">How it works</a>
+        <a class="item black">Company</a>
+        <a class="item black">Careers</a>
+        <div class="right item">
+          <a href="/api/auth/linkedin"><img class="linkedin" src="../../assets/linkedin.png"/></a>
+          <div>
+            <button class="left attached ui button" (click)="redirectToSignupPage()">Signup</button>
+          <!--<button class="right attached ui button">Already Registered?</button>-->
+            <app-login></app-login>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui text container">
+      <div class="ui container" style="margin-top:20em">
+        <img src="../assets/Trackr.png"/>
+      </div>
+      <h2>We help you help yourself</h2>
+      <div class="ui huge primary button" (click)="redirectToSignupPage()">Get Started <i class="right arrow icon"></i></div>
+    </div>
+
+  </div>
+
+  <div class="ui vertical stripe segment">
+    <div class="ui middle aligned stackable grid container">
+      <div class="row">
+        <div class="eight wide column">
+          <h3 class="ui header">Your Most Powerful Job Hunting Resource</h3>
+          <p>We provide you with the best service to help you track your job applications. Customizable reminders and notifications help keep you prepared for everything in the job hunt.</p>
+          <h3 class="ui header">Never Be Caught Off Guard</h3>
+          <p>Statistics show that candidates who plan their job hunt carefully with Trackr are 60% more likely to be hired.</p>
+        </div>
+        <div class="six wide right floated column">
+          <img src="./assets/reminder.jpg" class="ui large bordered rounded image">
+        </div>
+      </div>
+      <!--<div class="row">
+        <div class="center aligned column">
+          <a class="ui huge button">Check Them Out</a>
+        </div>
+      </div>-->
+    </div>
+  </div>
+
+
+  <div class="ui vertical stripe quote segment">
+    <div class="ui equal width stackable internally celled grid">
+      <div class="center aligned row">
+        <div class="column">
+          <h3>Jeffrey Yoo</h3>
+          <p>Software Engineer, Product Manager</p>
+          </div>
+        <div class="column">
+          <h3>Oliver Wang</h3>
+          <p>Software Engineer, Scrum Master</p>
+        </div>
+        <div class="column">
+          <h3>Michael Yang</h3>
+          <p>Software Engineer</p> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui vertical stripe segment">
+    <div class="ui text container">
+      <h3 class="ui header">What is Lorem Ipsum?</h3>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      <h4 class="ui horizontal header divider">
+      </h4>
+      <h3 class="ui header">Why do we use it?</h3>
+      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+    </div>
+  </div>
+
+
+  <div class="ui inverted vertical footer segment">
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="three wide column">
+          <h4 class="ui inverted header">About</h4>
+          <div class="ui inverted link list">
+            <a class="item">Sitemap</a>
+            <a class="item">Contact Us</a>
+            <a class="item">Job FAQ</a>
+            <a class="item">Trackrrr</a>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header">Services</h4>
+          <div class="ui inverted link list">
+            <a class="item">Cover Letter Templates</a>
+            <a class="item">Resume Builder</a>
+            <a class="item">How To Access</a>
+            <a class="item">Easter Egg</a>
+          </div>
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui inverted header">The standard Lorem Ipsum passage</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--<div class="container">
+  <div id="inner" style="overflow:hidden;width: 2000px">-->
+
+  <!--</div>
+</div>-->
+<!--navbar at the top with login and signup button. is the login modal selector tag placed here, or is it some
+  kind of redirect? Signup button as well, that redirects. $location? 
+  Signup Today button, already a registered user? button -->
+
+<!--<p>
+  This is the splash page.
+</p>
+
+<!--Marketing words-->
+<!--<p>Trackr will help keep all your job applications organized and help let you know if you should reach out to an employer again! Never forget where you applied to with Trackr!</p>-->

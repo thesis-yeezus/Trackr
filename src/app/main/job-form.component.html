@@ -1,0 +1,116 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<!--<button class="ui button primary" (click)="myModalNormal.show({inverted: true})">Click me</button>
+<sm-modal title="Hello from Modal" class="" icon="home" #myModalNormal>
+<modal-content>-->
+<div class="ui container">
+  
+  
+  <form class="ui form" #f="ngForm" novalidate (ngSubmit)="save(f.value, f.valid)">
+     <div class="ui right aligned container" style="margin-top:2em">
+      <button type="reset" class="btn btn-default">Reset</button>
+      <button type="button" class="btn btn-default" (click)="this.back()">Go back</button>
+    </div>
+
+    <h1 class="ui dividing header">Add Job</h1>
+   
+    <div class="form-group">
+      <label>Company Name</label>
+      <input type="text" class="form-control" 
+        name="companyName" [(ngModel)]="jobPosting.companyName" 
+        #companyName="ngModel" required minlength="1">
+      <small [hidden]="companyName.valid || (companyName.pristine && !f.submitted)" class="text-danger">
+            Company name is required.
+          </small>
+    </div>
+
+    <div class="form-group">
+      <label>Position</label>
+      <input type="text" class="form-control" 
+        name="position" [(ngModel)]="jobPosting.position" 
+        #position="ngModel" required minlength="1">
+      <small [hidden]="position.valid || (position.pristine && !f.submitted)" class="text-danger">
+            Position is required.
+          </small>
+    </div>
+
+    <div class="form-group">
+      <label>URL</label>
+      <input type="text" class="form-control" 
+        name="url" [(ngModel)]="jobPosting.url" 
+        #url="ngModel" required minlength="4">
+      <small [hidden]="url.valid || (url.pristine && !f.submitted)" class="text-danger">
+            URL is required.
+          </small>
+    </div>
+
+    <div class="form-group">
+      <label>Contact Name</label>
+      <input type="text" class="form-control" 
+        name="contactName" [(ngModel)]="jobPosting.contactName" 
+        #contactName="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label>Contact Email</label>
+      <input type="text" class="form-control" 
+        name="contactEmail" [(ngModel)]="jobPosting.contactEmail" 
+        #contactEmail="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label>Contact Number</label>
+      <input type="text" class="form-control" 
+        name="contactNumber" [(ngModel)]="jobPosting.contactNumber" 
+        #contactNumber="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label>Comments</label>
+      <input type="text" class="form-control" 
+        name="comments" [(ngModel)]="jobPosting.comments" 
+        #comments="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label>Date Submitted</label>
+      <input type="text" class="form-control" 
+        name="date" [(ngModel)]="jobPosting.date" 
+        #date="ngModel" required pattern="^\d{4}-\d{1,2}-\d{1,2}$">
+      <small [hidden]="date.valid || (date.pristine && !f.submitted)" class="text-danger">
+            Date is required in YYYY-MM-DD.
+          </small>
+    </div>
+
+    <div class="form-group">
+      <label>Phone screen date</label>
+      <input type="text" class="form-control" 
+        name="phoneScreen" [(ngModel)]="jobPosting.phoneScreen" 
+        #phoneScreen="ngModel" pattern="^\d{4}-\d{1,2}-\d{1,2}$">
+      <small [hidden]="phoneScreen.valid || (phoneScreen.pristine && !f.submitted)" class="text-danger">
+           Has to be in YYYY-MM-DD format.
+          </small>
+    </div>
+
+    <div class="form-group">
+      <label>Interview date</label>
+      <input type="text" class="form-control" 
+        name="interview" [(ngModel)]="jobPosting.interview" 
+        #interview="ngModel" pattern="^\d{4}-\d{1,2}-\d{1,2}$">
+      <small [hidden]="interview.valid || (interview.pristine && !f.submitted)" class="text-danger">
+           Has to be in YYYY-MM-DD format.
+          </small>
+    </div>
+
+    
+    <button type="submit" [disabled]="!f.valid" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+  <!--<div class="margin-20">
+    <div>Form details:-</div>
+    <pre>Is form valid?: <br>{{f.valid | json}}</pre>
+    <pre>Is form submitted?: <br>{{f.submitted | json}}</pre>
+    <pre>form value: <br>{{f.value | json}}</pre>
+  </div>-->
+<!--</modal-content>
+</sm-modal>-->

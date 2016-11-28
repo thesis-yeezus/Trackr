@@ -1,0 +1,125 @@
+<div class="ui inverted menu">
+    <div class="ui container" style="width:1800px">
+      <a href="/splash" class="header item">
+        <img class="logo" src="./assets/icon.png">
+      </a>
+      <a href="/main" class="item">Home</a>
+        <h2 class="ui white header center aligned container" style="padding-left:100px;">T r a c k r</h2>
+      <div class="right menu">
+    <div class="ui simple dropdown item">
+      {{this.name}}
+         <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="header">Account Settings</div>
+          <div class="divider"></div>
+          <a class="item" (click)="redirectToAccountSettings()" >Change Settings</a>
+          <a class="item" (click)="changePassword.show({inverted:false})">Change Password</a>
+          <div class="divider"></div>
+          <a class="item" (click)="logout()">Logout</a>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+      
+  </div>
+
+  <div class="ui vertical stripe quote segment">
+    <div class="ui equal width stackable internally celled grid">
+      <div class="center aligned row">
+    <div class="column">
+      <div class="ui center aligned">
+        <h3>Welcome Back, {{name}}!</h3>
+        </div>
+      </div>
+      <div class="column">
+      <div class="ui center aligned">
+        <h1>{{today}}</h1>
+        </div>
+      </div>
+      <div class="column">
+      <div class="ui three column grid">
+        <div class="column">
+        <button class="ui button primary" (click)="this.redirectToJob()">Add Job</button>
+        </div>
+        <div class="column">
+        <button class="ui button primary" (click)="this.removeJob()">Remove Job</button>
+        </div>
+        <div class="column">
+        <button class="ui button primary" (click)="this.goToJob()">Go To Job</button>
+        </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+
+
+<!--<a class="icon-linkedin" rel="nofollow"
+    href="http://www.linkedin.com/"
+    onclick="popUp=window.open(
+        'http://www.linkedin.com/shareArticle?url=http://example.com',
+        'popupwindow',
+        'scrollbars=yes,width=800,height=400');
+    popUp.focus();
+    return false">
+    <i class="visuallyhidden">share on linkedin</i>
+</a>-->
+
+<div class="ui container" style="margin-top:3em; width:1800px; height:750px">
+  <ag-grid-ng2 #agGrid style="width: 100%; height: 700px;" class="ag-blue"
+      [gridOptions]="gridOptions"
+      [columnDefs]="columnDefs"
+      [showToolPanel]="showToolPanel"
+      [rowData]="rowData"
+
+      enableColResize
+      enableSorting
+      enableFilter
+      groupHeaders
+      toolPanelSuppressGroups
+      toolPanelSuppressValues
+      rowHeight="22"
+      rowSelection="multiple"
+      (cellValueChanged) = "onCellValueChanged($event)">
+    <!--<ag-grid-column headerName="Date">
+      <ag-grid-column headerName="Applied" field="date" [width]="100" [suppressSorting]="true" [suppressMenu]="true" [editable] = "true"></ag-grid-column>
+      <ag-grid-column headerName="Since Applied" field="remaining" [width]="120" [editable] = "true"></ag-grid-column>
+    </ag-grid-column>
+    <ag-grid-column headerName="Company">
+      <ag-grid-column headerName="Name" field="companyName" [width]="150" [editable] = "true" ></ag-grid-column>
+      <ag-grid-column headerName="Position" field="position" [width]="150" [editable] = "true"></ag-grid-column>
+    </ag-grid-column>
+    <ag-grid-column headerName="Contact">
+      <ag-grid-column headerName="Name" field="contactName" [width]="150" [editable] = "true"></ag-grid-column>
+      <ag-grid-column headerName="Email" field="contactEmail" [width]="150" [editable] = "true"></ag-grid-column>
+      <ag-grid-column headerName="Number" field="contactNumber" [width]="150" [editable] = "true"></ag-grid-column>
+    </ag-grid-column>
+    <ag-grid-column headerName="Comments" field="comments" [width]="150" [editable] = "true"></ag-grid-column>
+    <ag-grid-column headerName="Interview" field="interview" [width]="100" [checkboxSelection] = "true"></ag-grid-column>
+    <ag-grid-column headerName="Pursuing" field="pursuing" [width]="100" [checkboxSelection] = "true"></ag-grid-column>-->
+  </ag-grid-ng2>
+</div>
+
+<sm-modal title="Change Password" class="basic" #changePassword>
+  <modal-content>
+    <form [formGroup]="changePW" class="ui form" (ngSubmit)="changedPassword(changePW.value)">
+    <div class="three fields">
+        <div class="field">
+          <label>Change Password</label>
+          <input type="password" placeholder="New Password" [formControl]="changePW.controls['password']" [ngClass]="{'error': changePW.controls['password'].invalid && changePW.controls['password'].touched}">
+        </div>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <label>Re-type Password</label>
+          <input type="password" placeholder="Re-type New Password" [formControl]="changePW.controls['confirmPassword']" [ngClass]="{'error': changePW.value.password !== changePW.value.confirmPassword}">
+          <small *ngIf="changePW.value.password !== changePW.value.confirmPassword">Password is not the same</small>
+        </div>
+      </div>
+      <button class="ui button" type="submit" [disabled]="!changePW.valid || changePW.pristine" (click)="changePassword.hide()">Submit</button>
+      <button class="ui button" type="submit" (click)="changePassword.hide()">Cancel</button>
+    </form>
+  </modal-content>
+</sm-modal>

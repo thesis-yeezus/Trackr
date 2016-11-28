@@ -1,0 +1,44 @@
+<div class="ui container">
+      <div class="ui large secondary pointing menu">
+        <div class="right item">
+        <button class="ui button" (click)="logout()">Logout</button>
+        </div>
+      </div>
+    </div>
+    
+
+
+<div class="ui container">
+  <div class="ui container" style="width:50%;text-align:center;margin-top:3em">
+<h2>Goals & Notification Settings</h2>
+<small>Settings can be changed later in Account Settings</small>
+  </div>
+  <div class="ui container" style="margin-top:3em; padding-left:350px">
+<form [formGroup]="signupSettingsForm" class="ui form" (ngSubmit)="applySignupSettings(signupSettingsForm.value)">
+  <!--Would you like to set a daily/weekly goal for sending out applications?
+  <div *ngFor="let goal of goals">
+    <label>
+      <input type="radio" name="goal" [value]="goal.value" [formControl]="signupSettingsForm.controls['goals']">
+      {{goal.display}}
+    </label>
+  </div>-->
+  <div class="ui container">
+    <label>
+      I would like to complete <input type="text" class="ui form one wide field inline" [formControl]="signupSettingsForm.controls['setGoals']"> applications a week.
+    </label>
+  </div>
+  Receive E-mail notifications regarding upcoming interviews and goal updates?
+  <div *ngFor="let receiveEmail of receiveEmails" class="ui container">
+    <label>
+      <input type="radio" name="receiveEmail" [value]="receiveEmail.value" [formControl]="signupSettingsForm.controls['receiveEmails']">
+      {{receiveEmail.display}}
+    </label>
+  </div>
+  <div class="ui container" style="margin-top:6em;padding-left:150px">
+  <button class="ui button" (click)="redirectToMainPage()">Skip</button>
+  <button class="ui button" type="submit">Save</button>
+  </div>
+</form>
+</div>
+
+</div>
