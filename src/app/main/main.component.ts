@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { GridOptions, IFilter } from 'ag-grid/main';
 
 import { JobListService } from './job-list.service';
+import { UserService } from '../shared/user.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import * as moment from 'moment';
 
@@ -21,10 +23,13 @@ export class MainComponent implements OnInit, AfterContentInit {
   private columnDefs: any[];
   private rowCount: string;
   private saveNotification: string = '';
+  private changePW: FormGroup;
 
   constructor(
+    private userService: UserService,
     private router: Router,
-    private joblistService: JobListService
+    private joblistService: JobListService,
+    private fb: FormBuilder
   ) {
     // we pass an empty gridOptions in, so we can grab the api out
     this.gridOptions = <GridOptions>{};
@@ -32,6 +37,10 @@ export class MainComponent implements OnInit, AfterContentInit {
 
     //this.getRowData();
     this.showGrid = true;
+    this.changePW = this.fb.group({
+      'password': [null, Validators.compose([Validators.required, Validators.pattern("^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,100}$")])],
+      'confirmPassword': [null, Validators.compose([Validators.required, Validators.pattern("^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,100}$")])]
+    })
    }
 
    onCellValueChanged(e) {
@@ -242,6 +251,12 @@ export class MainComponent implements OnInit, AfterContentInit {
     setTimeout(function(){
       self.getRowData(window.localStorage["username"]);
     },1000)
+  }
+
+  private changedPassword(password: any) {
+    console.log('changed password', password)
+    var userId: any = window.localStorage["userId"];
+    this.userService.changedPassword(password, userId)
   }
 
   private redirectToAccountSettings() {

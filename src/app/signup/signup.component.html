@@ -1,10 +1,22 @@
-<button class="ui left attached button" (click)="redirectToHomePage()">Go Back To The Homepage</button>
-<app-login ></app-login>
-
-<h2>
+<div class="ui container">
+      <div class="ui large secondary pointing menu">
+        <div>
+         <button class="ui left attached button" style="margin-top:1.25em" (click)="redirectToHomePage()">Go Back To The Homepage</button>
+        </div>
+        <div class="right item">
+          <a href="/api/auth/linkedin"><img class="linkedin" style="height:34px" src="../../assets/linkedin.png"/></a>
+          <div>
+            <app-login></app-login>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+<div class="ui container">
+  <h2>
   User Registration
 </h2>
-
+<div class="ui container">
 <form [formGroup]="signupForm" class="ui form" (ngSubmit)="createUser(signupForm.value)"> 
   <div class="fields">
     <div class="field">
@@ -16,13 +28,13 @@
       <input type="text" placeholder="Last Name" [formControl]="signupForm.controls['lastName']" [ngClass]="{'error': signupForm.controls['lastName'].invalid && signupForm.controls['lastName'].touched}">
     </div>
   </div>
-  <div class="two fields">
+  <div class="fields">
     <div class="field">
       <label>Username</label>
       <input type="text" placeholder="Username" [formControl]="signupForm.controls['username']" [ngClass]="{'error': signupForm.controls['username'].invalid && signupForm.controls['username'].touched}">
     </div>
   </div>
-  <div class="three fields">
+  <div class="fields">
     <div class="field">
       <label>Password</label>
       <input type="password" placeholder="Password" [formControl]="signupForm.controls['password']" [ngClass]="{'error': signupForm.controls['password'].invalid && signupForm.controls['password'].touched}">
@@ -45,3 +57,5 @@
   </div>
   <button class="ui button" type="submit" [disabled]="!signupForm.valid || signupForm.pristine">Submit</button>
 </form>
+</div>
+</div>
