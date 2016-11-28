@@ -45,7 +45,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new LinkedInStrategy({
     consumerKey: process.env.linkedInKey,
     consumerSecret: process.env.linkedInSecret,
-    callbackURL: "http://localhost:4200/api/auth/linkedin/callback",
+    callbackURL: "http://ec2-54-244-61-0.us-west-2.compute.amazonaws.com:8000/api/auth/linkedin/callback",
     profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
   },
   function(token, tokenSecret, profile, done) {
@@ -64,8 +64,10 @@ passport.use(new LinkedInStrategy({
     })
   }));
 
-app.use('/', express.static(path.join(__dirname, '../src')));
-
+app.use('/', express.static(path.join(__dirname, '../dist')));
+app.get('*', function (request, response){
+  response.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
+});
 app.get('/api/auth/linkedin',
   passport.authenticate('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }))
 
