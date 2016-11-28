@@ -10,7 +10,7 @@ import { JobPosting } from './job-posting.interface';
 @Injectable()
 export class JobListService {
 
-  private jobListUrl = 'http://localhost:8000/api/';
+  private jobListUrl = 'http://ec2-54-244-61-0.us-west-2.compute.amazonaws.com:8000/api/';
 
   constructor(private http: Http) { }
 
