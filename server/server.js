@@ -65,6 +65,9 @@ passport.use(new LinkedInStrategy({
   }));
 
 app.use('/', express.static(path.join(__dirname, '../dist')));
+app.get('*', function (request, response){
+  response.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
+});
 
 app.get('/api/auth/linkedin',
   passport.authenticate('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }))
