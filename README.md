@@ -1,9 +1,21 @@
 # Trackr
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.19-3.
+Trackr is a single page web application that utilizes ng-grid in assisting the user in obtaining employment via organization of sent out resumes.
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### TODO
+- Update the splash page description
+- Fix the shared LinkedIn feature
+
+## Getting Started
+
+### Prerequisites
+1. Clone the repository using git
+2. Run `npm install`.
+3. Run `ng build`.
+4. Run `npm run server`
+5. Go to localhost:8000
+
+or visit http://ec2-54-244-61-0.us-west-2.compute.amazonaws.com:8000/
 
 ## Code scaffolding
 
