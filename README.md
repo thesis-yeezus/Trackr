@@ -10,8 +10,8 @@ Trackr is a single page web application that utilizes ng-grid in assisting the u
 
 ### Prerequisites
 1. Clone the repository using git
-2. Run `npm install`.
-3. Run `ng build`.
+2. Run `npm install`
+3. Run `ng build`
 4. Run `npm run server`
 5. Go to localhost:8000
 
