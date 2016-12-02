@@ -19,7 +19,7 @@ or visit http://bit.ly/2h0F4dh
 
 ### Built With
 * [Angular 2](https://angular.io/)
-* [POSTGRESQL](https://postgresql.org/)
+* [PostqeSQL](https://postgresql.org/)
 * [ag-Grid](https://www.ag-grid.com/)
 * [Node](https://nodejs.org/en/)
 * [Express](http://expressjs.com/)
