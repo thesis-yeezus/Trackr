@@ -3,8 +3,6 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
 
-// JEFF - 11/11/16, Review the fuck out of this
-
 @Injectable()
 export class AuthenticationService {
 	public token: string;
@@ -15,32 +13,9 @@ export class AuthenticationService {
 		this.token = currentUser && currentUser.token;
 	}
 
-	// THIS IS FOR WHEN THERE'S A TOKEN!!!
-	// login(username, password): Observable<boolean> {
-	// 	return this.http.post('/api/authenticate', JSON.stringify({ username: username, password: password }))
-	// 		.map((response: Response) => {
-	// 			// login successful if there's a jwt token in the response
-	// 			let token = response.json() && response.json().token;
-	// 			if (token) {
-	// 				// set token property
-	// 				this.token = token;
-
-	// 				// store username and jwt token in local storage to keep user logged in between page refreshes
-	// 				localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
-
-	// 				// return true to indicate successful login
-	// 				return true;
-	// 			} else {
-	// 				// return false to indicate failed login
-	// 				return false;
-	// 			}
-	// 		});
-	// }
-
 	logout(): void {
 		// clear token remove user from local storage to log user out
 		this.token = null;
-		// localStorage.removeItem('currentUser');
 		localStorage.clear();
 	}
 }
