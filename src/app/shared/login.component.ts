@@ -46,16 +46,11 @@ export class LoginComponent implements OnInit {
     this.authenticationService.logout();
   }
   
-  // JEFF - 11/11/16, THIS IS THE OLD WAY TO LOGIN, W/O TOKENS
   loginUser(formObj){
-    console.log('This is the formObj:', formObj)
-    //call userservice method here to login
-    // JEFF//ABOVE CONSOLE WORKS, BUT NOW UP TO SUBSCRIBE 1
     this.userService.loginUser(formObj.username, formObj.password)
     .subscribe(result => {
       console.log('inside loginUser in loginComponent')
       if (result === true) {
-        
         // Then redirect to the main page
         this.router.navigate(['/main'])
       } else {
@@ -65,21 +60,4 @@ export class LoginComponent implements OnInit {
       }
     }) 
   }
-
-  // NEW WAY TO LOGIN IF WE HAVE TOKENS
-  // login(formObj) {
-  //   this.loading = true;
-  //   this.authenticationService.login(formObj.username, formObj.password)
-  //       // come back to this point JEFF
-  //       .subscribe(result => {
-  //         if (result === true) {
-  //           // login successful
-  //           this.router.navigate(['/main']);
-  //         } else {
-  //             // login failed
-  //             this.error = 'Username or password is incorrect';
-  //             this.loading = false;
-  //         }
-  //     });
-  //   }
 }
