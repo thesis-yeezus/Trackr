@@ -55,18 +55,6 @@
     </div>
 
 
-
-<!--<a class="icon-linkedin" rel="nofollow"
-    href="http://www.linkedin.com/"
-    onclick="popUp=window.open(
-        'http://www.linkedin.com/shareArticle?url=http://example.com',
-        'popupwindow',
-        'scrollbars=yes,width=800,height=400');
-    popUp.focus();
-    return false">
-    <i class="visuallyhidden">share on linkedin</i>
-</a>-->
-
 <div class="ui container" style="margin-top:3em; width:1800px; height:750px">
   <ag-grid-ng2 #agGrid style="width: 100%; height: 700px;" class="ag-blue"
       [gridOptions]="gridOptions"
@@ -83,22 +71,7 @@
       rowHeight="22"
       rowSelection="multiple"
       (cellValueChanged) = "onCellValueChanged($event)">
-    <!--<ag-grid-column headerName="Date">
-      <ag-grid-column headerName="Applied" field="date" [width]="100" [suppressSorting]="true" [suppressMenu]="true" [editable] = "true"></ag-grid-column>
-      <ag-grid-column headerName="Since Applied" field="remaining" [width]="120" [editable] = "true"></ag-grid-column>
-    </ag-grid-column>
-    <ag-grid-column headerName="Company">
-      <ag-grid-column headerName="Name" field="companyName" [width]="150" [editable] = "true" ></ag-grid-column>
-      <ag-grid-column headerName="Position" field="position" [width]="150" [editable] = "true"></ag-grid-column>
-    </ag-grid-column>
-    <ag-grid-column headerName="Contact">
-      <ag-grid-column headerName="Name" field="contactName" [width]="150" [editable] = "true"></ag-grid-column>
-      <ag-grid-column headerName="Email" field="contactEmail" [width]="150" [editable] = "true"></ag-grid-column>
-      <ag-grid-column headerName="Number" field="contactNumber" [width]="150" [editable] = "true"></ag-grid-column>
-    </ag-grid-column>
-    <ag-grid-column headerName="Comments" field="comments" [width]="150" [editable] = "true"></ag-grid-column>
-    <ag-grid-column headerName="Interview" field="interview" [width]="100" [checkboxSelection] = "true"></ag-grid-column>
-    <ag-grid-column headerName="Pursuing" field="pursuing" [width]="100" [checkboxSelection] = "true"></ag-grid-column>-->
+
   </ag-grid-ng2>
 </div>
 
