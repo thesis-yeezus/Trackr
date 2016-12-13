@@ -6,23 +6,18 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 class User {
-  // id: number;
   firstName: string;
   lastName: string;
   username: string;
   password: string;
   email: string;
-  // role: string;
 }
 
 @Injectable()
 export class UserService {
   public token: string;
   //Resolve HTTP using the constructor
-  constructor(private http: Http) { 
-    // var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // this.token = currentUser && currentUser.token;
-  }
+  constructor(private http: Http) {}
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private options = new RequestOptions({ headers: this.headers });
@@ -104,20 +99,4 @@ export class UserService {
           console.log('Password Changed:', response)
         })
   }
-
-  
-  // getUser(id: number): Promise<User> {
-  //   return this.http.get(this.userUrl)
-  //         .toPromise()
-  //         .then(response => response.json().data)
-  //         // .catch(this.handleError);
-  // }
-  
-  // getUserList(): Promise<User[]> {
-  //   return this.http.get(this.userUrl)
-  //           .toPromise()
-  //           .then(response => response.json().data as User[])
-  //           .catch(this.handleError)
-  // }
-
 }
