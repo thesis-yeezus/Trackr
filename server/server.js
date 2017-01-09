@@ -72,33 +72,18 @@ app.get('/api/auth/linkedin',
 app.get('/api/auth/linkedin/callback', 
   passport.authenticate('linkedin', { failureRedirect: '/signup' }),
   function(req, res) {
-    // console.log("This is req", req.user)
-  //   var token = jwt.encode({
-  //       iss: req.user.id,
-  //       exp: moment().add(7, 'd').valueOf()
-  //     }, process.env.SECRET);
-  //  res.cookie('token', token)
+
   console.log("this is req", req.user)
      var userId = req.user[0].dataValues.id
      var username = req.user[0].dataValues.username
      var firstName = req.user[0].dataValues.firstName
-      // username: req.user.id,
-      // firstName: req.user.name.givenName,
-      // lastName: req.user.name.familyName,
-      // email: req.user.emails[0].value
-    // Successful authentication, redirect home.
+
     res.status(200).cookie('userId', userId).cookie('username', username).cookie('firstName', firstName);
     res.redirect('/main');
 });
 
 
 app.use('/api', router);
-
-// Display error 404 for unknown routes, 
-  //JEFF - DON'T UNCOMMENT THIS
-// app.use(function(req, res) {
-//   res.send('Error 404: Page not found');
-// });
 
 app.listen(port, function() {
   console.log(`server listening on port ${port}`);

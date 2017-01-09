@@ -8,13 +8,7 @@
 <small>Settings can be changed later in Account Settings</small>
 
 <form [formGroup]="signupSettingsForm" class="ui form" (ngSubmit)="applySignupSettings(signupSettingsForm.value)">
-  <!--Would you like to set a daily/weekly goal for sending out applications?
-  <div *ngFor="let goal of goals">
-    <label>
-      <input type="radio" name="goal" [value]="goal.value" [formControl]="signupSettingsForm.controls['goals']">
-      {{goal.display}}
-    </label>
-  </div>-->
+
   <div>
     <label>
       I would like to complete <input type="text" class="ui form one wide field inline" [formControl]="signupSettingsForm.controls['setGoals']"> applications a week.

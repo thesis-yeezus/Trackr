@@ -8,15 +8,11 @@ export class AuthGuard implements CanActivate {
 
     canActivate() {
         if (localStorage.getItem('userId')) {
-            // logged in so return true
-            console.log('what in here', localStorage.getItem('userId'))
             return true;
         } 
         if (document.cookie) {
             return true;
         } else 
-
-        // not logged in so redirect to splash page
         this.router.navigate(['/splash']);
         return false;
     }
