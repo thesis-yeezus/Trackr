@@ -33,7 +33,6 @@ export class UserService {
   private changedPasswordUrl = '/api/user/changedPassword'
 
   createUser(user: any) {
-    console.log('The user', user)
     this.http.post(this.createUserUrl, JSON.stringify(user), {headers: this.headers})
       .subscribe((response) => {
         console.log(`Made it back to user.service.ts and the user has been added:`, response.json())
@@ -44,13 +43,11 @@ export class UserService {
 
   
   loginUser(username, password): Observable<boolean> {
-    console.log('are we making it here?:',username, password)
     
     return this.http
                .post(this.loginUserUrl, JSON.stringify({username: username, password: password}), {headers: this.headers})
                .map((response: Response) => {
-                 console.log('this is the response:', response)
-                 console.log('this is the response.json:', response.json())
+      
                  let res = response.json();
                  console.log(res);
                  if(res) {
@@ -67,12 +64,9 @@ export class UserService {
   }
 
   applySignupSettings(settings: any, userId: any) {
-    console.log('Are we making it to applySignupSettings?', settings)
-    console.log('The number?', userId)
     this.http
         .put(this.applySignupSettingsUrl, JSON.stringify({settings: settings, userId: userId}), {headers: this.headers})
         .subscribe((response) => {
-          console.log('SUP', response)
           window.localStorage["receiveEmail"] = response.json().receiveEmails
           window.localStorage["frequency"] = response.json().frequency
           window.localStorage["setGoals"] = response.json().goals
@@ -80,8 +74,6 @@ export class UserService {
   }
 
   updateUserSettings(settings: any, userId: any) {
-    console.log('Are we making it to updateUserSettings', settings)
-    console.log('The number?', userId)
     this.http
         .put(this.updateUserSettingsUrl, JSON.stringify({settings: settings, userId: userId}), {headers: this.headers})
         .subscribe((response) => {
@@ -104,20 +96,4 @@ export class UserService {
           console.log('Password Changed:', response)
         })
   }
-
-  
-  // getUser(id: number): Promise<User> {
-  //   return this.http.get(this.userUrl)
-  //         .toPromise()
-  //         .then(response => response.json().data)
-  //         // .catch(this.handleError);
-  // }
-  
-  // getUserList(): Promise<User[]> {
-  //   return this.http.get(this.userUrl)
-  //           .toPromise()
-  //           .then(response => response.json().data as User[])
-  //           .catch(this.handleError)
-  // }
-
 }
